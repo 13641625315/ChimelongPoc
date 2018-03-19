@@ -58,7 +58,7 @@ c4c-integration/
 installer/
 hybris/Mobile-Commerce-SDK/
 licenses/
-licence/
+
 hybris/data/
 yb2bacceleratorstorefront/
 hybris/**/build.xml
