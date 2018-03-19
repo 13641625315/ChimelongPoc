@@ -16,7 +16,6 @@ hybris/bin/*
 !hybris/bin/custom/
 
 # Absolute path to ignore
-hybris/config/local.properties
 HYBRISCOMM6600P_0-70003031.ZIP
  
 # Filename patterns to ignore
