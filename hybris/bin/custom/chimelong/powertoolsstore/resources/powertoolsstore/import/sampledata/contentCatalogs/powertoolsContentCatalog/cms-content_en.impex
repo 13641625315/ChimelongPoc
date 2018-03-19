@@ -146,8 +146,18 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$la
 
 ;;GuangZhouChimelongHappyWorldCategoryNavNode;"ChimelongHappyWorld"
 ;;GuangZhouChimelongAnimalWorldCategoryNavNode;"ChimelongAnimalWorld"
+;;GuangZhouChimelongWaterWorldCategoryNavNode;"ChimelongWaterWorld"
+;;GuangZhouChimelongBigCircusCategoryNavNode;"ChimelongBigCircus"
+;;GuangZhouChimelongBirdWorldCategoryNavNode;"ChimelongBirdWorld"
+;;GuangZhouChimelongBigHotelCategoryNavNode;"ChimelongBigHotel"
 ;;GuangZhouChimelongPandaHotelCategoryNavNode;"ChimelongPandaHotel"
 ;;GuangZhouChimelongXiangJiangHotelCategoryNavNode;"ChimelongXiangJiang"
+;;ZhuHaiChimelongOceanKingdomCategoryNavNode;"ChimelongOceanKingdom"
+;;ZhuHaiChimelongInternationalCircusCategoryNavNode;"ChimelongInternationalCircus"
+;;ZhuHaiChimelongHQWHotelCategoryNavNode;"ChimelongHQWHotel"
+;;ZhuHaiChimelongPenguinHotelCategoryNavNode;"ChimelongPenguinHotel"
+;;ZhuHaiChimelongCircusHotelCategoryNavNode;"ChimelongCircusHotel"
+;;ZhuHaiChimelongYinHaiHotelCategoryNavNode;"ChimelongYinHaiHotel"
 
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;GuangZhouChimelongCategoryNavLink;"GuangZhou"
@@ -155,8 +165,18 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 
 ;;GuangZhouChimelongHappyWorldCategoryNavLink;"ChimelongHappyWorld"
 ;;GuangZhouChimelongAnimalWorldCategoryNavLink;"ChimelongAnimalWorld"
+;;GuangZhouChimelongWaterWorldCategoryNavLink;"ChimelongWaterWorld"
+;;GuangZhouChimelongBigCircusCategoryNavLink;"ChimelongBigCircus"
+;;GuangZhouChimelongBirdWorldCategoryNavLink;"ChimelongBirdWorld"
+;;GuangZhouChimelongBigHotelCategoryNavLink;"ChimelongBigHotel"
 ;;GuangZhouChimelongPandaHotelCategoryNavLink;"ChimelongPandaHotel"
 ;;GuangZhouChimelongXiangJiangHotelCategoryNavLink;"ChimelongXiangJiang"
+;;ZhuHaiChimelongOceanKingdomCategoryNavLink;"ChimelongOceanKingdom"
+;;ZhuHaiChimelongInternationalCircusCategoryNavLink;"ChimelongInternationalCircus"
+;;ZhuHaiChimelongHQWHotelCategoryNavLink;"ChimelongHQWHotel"
+;;ZhuHaiChimelongPenguinHotelCategoryNavLink;"ChimelongPenguinHotel"
+;;ZhuHaiChimelongCircusHotelCategoryNavLink;"ChimelongCircusHotel"
+;;ZhuHaiChimelongYinHaiHotelCategoryNavLink;"ChimelongYinHaiHotel"
 #CRIS end
 # Powertools FAQ Page
 

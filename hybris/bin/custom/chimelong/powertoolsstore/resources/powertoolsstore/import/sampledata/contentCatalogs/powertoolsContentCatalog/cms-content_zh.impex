@@ -131,8 +131,18 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$la
 
 ;;GuangZhouChimelongHappyWorldCategoryNavNode;"长隆欢乐世界"
 ;;GuangZhouChimelongAnimalWorldCategoryNavNode;"长隆野生动物世界"
+;;GuangZhouChimelongWaterWorldCategoryNavNode;"长隆水上乐园"
+;;GuangZhouChimelongBigCircusCategoryNavNode;"长隆国际大马戏"
+;;GuangZhouChimelongBirdWorldCategoryNavNode;"长隆飞鸟乐园"
+;;GuangZhouChimelongBigHotelCategoryNavNode;"长隆酒店"
 ;;GuangZhouChimelongPandaHotelCategoryNavNode;"长隆熊猫酒店"
 ;;GuangZhouChimelongXiangJiangHotelCategoryNavNode;"长隆香江大酒店"
+;;ZhuHaiChimelongOceanKingdomCategoryNavNode;"长隆海洋王国"
+;;ZhuHaiChimelongInternationalCircusCategoryNavNode;"长隆横琴国际马戏城"
+;;ZhuHaiChimelongHQWHotelCategoryNavNode;"长隆横琴湾酒店"
+;;ZhuHaiChimelongPenguinHotelCategoryNavNode;"长隆企鹅酒店"
+;;ZhuHaiChimelongCircusHotelCategoryNavNode;"长隆马戏酒店"
+;;ZhuHaiChimelongYinHaiHotelCategoryNavNode;"长隆迎海酒店公寓"
 
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;GuangZhouChimelongCategoryNavLink;"广州"
@@ -140,8 +150,18 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 
 ;;GuangZhouChimelongHappyWorldCategoryNavLink;"长隆欢乐世界"
 ;;GuangZhouChimelongAnimalWorldCategoryNavLink;"长隆野生动物世界"
+;;GuangZhouChimelongWaterWorldCategoryNavLink;"长隆水上乐园"
+;;GuangZhouChimelongBigCircusCategoryNavLink;"长隆国际大马戏"
+;;GuangZhouChimelongBirdWorldCategoryNavLink;"长隆飞鸟乐园"
+;;GuangZhouChimelongBigHotelCategoryNavLink;"长隆酒店"
 ;;GuangZhouChimelongPandaHotelCategoryNavLink;"长隆熊猫酒店"
 ;;GuangZhouChimelongXiangJiangHotelCategoryNavLink;"长隆香江大酒店"
+;;ZhuHaiChimelongOceanKingdomCategoryNavLink;"长隆海洋王国"
+;;ZhuHaiChimelongInternationalCircusCategoryNavLink;"长隆横琴国际马戏城"
+;;ZhuHaiChimelongHQWHotelCategoryNavLink;"长隆横琴湾酒店"
+;;ZhuHaiChimelongPenguinHotelCategoryNavLink;"长隆企鹅酒店"
+;;ZhuHaiChimelongCircusHotelCategoryNavLink;"长隆马戏酒店"
+;;ZhuHaiChimelongYinHaiHotelCategoryNavLink;"长隆迎海酒店公寓"
 #CRIS end
 
 # CMS Navigation Nodes

@@ -1,5 +1,5 @@
 # Folders to ignore, whatever the place they are
- 
+
 .metadata
 .recommenders
 .sonarlint
@@ -7,9 +7,11 @@ classes
 hybris/bin/**/bin
 gensrc
 testclasses
+testsrc
  
 # Folders to ignore at the root of the repository
 hybris/log/
+hybris/config/
  
 # filter only custom extension
 hybris/bin/*
@@ -58,7 +60,7 @@ c4c-integration/
 installer/
 hybris/Mobile-Commerce-SDK/
 licenses/
-
+licence/
 hybris/data/
 yb2bacceleratorstorefront/
 hybris/**/build.xml
