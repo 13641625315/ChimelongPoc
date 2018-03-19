@@ -1,0 +1,11 @@
+#Ant properties
+#Fri Nov 17 02:09:23 UTC 2017
+builddate=20171117 0209
+description=powertoolsstore
+group.id=de.hybris.platform
+module.name=platform-module
+name=powertoolsstore
+releasedate=20171116 1450
+vendor=hybris
+version=6.6.0.0
+version.api=6.6.0
