@@ -55,7 +55,7 @@
 			<value code="OTA" />
 		</enumtype>
 
-		<enumtype generate="true" code="ChimelongDiscountGroup"
+		<enumtype generate="true" code="ClDiscountGroup"
 			autocreate="true">
 			<value code="TA" />
 			<value code="OTA" />
@@ -79,20 +79,19 @@
 				cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
 
-		<relation code="ChimelongDiscountGroup2RuleRel" generate="true"
+		<relation code="ClDiscountGroup2RuleRel" generate="true"
 			localized="false" autocreate="true">
-			<deployment table="ChimelongDiscountGroup2RuleRel"
-				typecode="31002" />
-			<sourceElement qualifier="chimelongDiscountGroups"
-				type="ChimelongDiscountGroup" cardinality="many" collectiontype="list" />
-			<targetElement qualifier="chimelongDiscountGroupRules"
-				type="ChimelongDiscountGroupRule" cardinality="many" collectiontype="list"
+			<deployment table="ClDiscountGroup2RuleRel" typecode="31002" />
+			<sourceElement qualifier="clDiscountGroups"
+				type="ClDiscountGroup" cardinality="many" collectiontype="list" />
+			<targetElement qualifier="clDiscountGroupRules"
+				type="ClDiscountGroupRule" cardinality="many" collectiontype="list"
 				ordered="true" />
 		</relation>
 
-		<relation code="Accommodation2FacilitiesRel" generate="true"
+		<relation code="Accommo2FacilityRel" generate="true"
 			localized="false" autocreate="true">
-			<deployment table="Accommodation2FacilitiesRel" typecode="31003" />
+			<deployment table="Accommo2FacilityRel" typecode="31003" />
 			<sourceElement qualifier="accommodationProducts" type="AccommodationProduct"
 				cardinality="many" collectiontype="list" />
 			<targetElement qualifier="accommodationFacilities"
@@ -169,10 +168,10 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CircusTicketVariantProduct" extends="VariantProduct"
+			<itemtype code="CircusTicket" extends="VariantProduct"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.CircusTicketVariantProduct">
-				<deployment table="CircusTicketVariantProduct" typecode="30005"></deployment>
+				<deployment table="CircusTicket" typecode="30005"></deployment>
 				<attributes>
 					<attribute qualifier="showTime" type="java.lang.String">
 						<persistence type="property" />
@@ -182,7 +181,7 @@
 
 			<itemtype code="CircusShowTime" autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.CircusShowTime">
-				<deployment table="CircusTicketVariantProduct" typecode="30006"></deployment>
+				<deployment table="CircusShowTime" typecode="30006"></deployment>
 				<attributes>
 					<attribute qualifier="showName" type="java.lang.String">
 						<persistence type="property" />
@@ -196,9 +195,9 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="ChimelongDiscountGroupRule" autocreate="true"
+			<itemtype code="ClDiscountGroupRule" autocreate="true"
 				generate="true" jaloclass="com.chimelong.core.jalo.ChimelongDiscountGroupRule">
-				<deployment table="CircusTicketVariantProduct" typecode="30007"></deployment>
+				<deployment table="ClDiscountGroupRule" typecode="30007"></deployment>
 				<attributes>
 					<attribute qualifier="dateRanges" type="DateRangeList">
 						<persistence type="property" />
@@ -210,7 +209,6 @@
 			</itemtype>
 
 			<itemtype code="StockLevel" autocreate="false" generate="false">
-				<description>Extending StockLevel type to include date related fields</description>
 				<attributes>
 					<attribute type="java.util.Date" qualifier="date">
 						<persistence type="property" />
