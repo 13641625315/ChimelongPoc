@@ -40,3 +40,9 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[l
  ;1711;;Rotary Hammers;;
  ;1731;;Universal Cutters;;
  ;830;;Cables For Computers And Peripherals;;
+ #CRIS start
+ ;cl1;;Tiket;;
+ ;cl2;;Hotel;;
+ ;cl11;;ChimelongHappyWorld;;
+ ;cl21;;ChimelongBigHotel;;
+ #CRIS end

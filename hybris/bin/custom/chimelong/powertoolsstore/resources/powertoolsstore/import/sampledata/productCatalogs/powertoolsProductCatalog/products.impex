@@ -452,7 +452,10 @@ INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufa
  ;5888798;1593, brand_692;HIS;HGTK01-SB;
  ;6100520;1731, brand_191;Siemens;MS46000;4242003304143
  ;6100521;1731, brand_191;Siemens;MS75002;4242003453353
-
+ #CRIS start
+ ;cltp110001;cl1, cl11;;;
+ #CRIS end
+ 
 UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summary[lang=$lang];$catalogVersion
  ;637227;Plier Set (3 Pack);Having the proper tool for the job is as important to the do-it-yourself electronic enthusiast as it is to the professional. Belkin's wide selection of multi-purpose computer tools handles upgrades, repairs, cleaning, routine maintenance and adjustments with ease.;Plier Set (3 Pack)
  ;693923;P.C. Service Kit / C.S.A. Soldering Iron ;This 19-piece PC toolkit provides you with everything you'll need to repair and maintain today's computers. Designed to be used in offices or by computer services people, the carrying case is made from vinyl and is zippered to keep everything in one place.  ;P.C. Service Kit / C.S.A. Soldering Iron

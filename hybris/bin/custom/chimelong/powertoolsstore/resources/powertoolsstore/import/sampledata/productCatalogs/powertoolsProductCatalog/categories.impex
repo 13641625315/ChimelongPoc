@@ -43,6 +43,12 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;1710
 ;1711
 ;1731
+#CRIS start
+;cl1
+;cl2
+;cl11
+;cl21
+#CRIS end
 
 # Insert Category Structure
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
@@ -67,6 +73,10 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;1710;1355
 ;1711;1355
 ;1731;1355
+#CRIS start
+;cl11;cl1
+;cl21;cl2
+#CRIS end
 
 UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
 ;;1;Open Catalogue;

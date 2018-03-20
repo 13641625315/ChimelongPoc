@@ -40,3 +40,9 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[l
  ;1711;;电锤;;
  ;1731;;通用刀具;;
  ;830;;计算机及外设用电缆;;
+ #CRIS start
+ ;cl1;;门票;;
+ ;cl2;;酒店;;
+ ;cl11;;长隆欢乐世界;;
+ ;cl21;;长隆酒店;;
+ #CRIS end
