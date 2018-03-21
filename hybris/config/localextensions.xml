@@ -67,5 +67,6 @@
 		<extension name='chimelonginitialdata' />
 		<extension name='chimelongcockpits' />
 		<extension name='chimelongfulfilmentprocess' />
+		<extension name="chimelongbackoffice"/>
 	</extensions>
 </hybrisconfig>
