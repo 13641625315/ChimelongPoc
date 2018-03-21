@@ -44,5 +44,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[l
  ;cl1;;门票;;
  ;cl2;;酒店;;
  ;cl11;;长隆欢乐世界;;
+ ;cl12;;长隆野生动物园;;
+ ;cl13;;长隆水上乐园;;
  ;cl21;;长隆酒店;;
  #CRIS end

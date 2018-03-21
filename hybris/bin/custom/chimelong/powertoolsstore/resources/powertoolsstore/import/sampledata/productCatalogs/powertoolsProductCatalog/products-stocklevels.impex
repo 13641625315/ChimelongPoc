@@ -890,3 +890,27 @@ INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code))
 ;2613282;2613282:pw_warehouse_n
 ;3756512;3756512:pw_warehouse_n
 ;3756514;3756514:pw_warehouse_n
+
+
+
+
+
+
+##### jinwei created start #######
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;h001; pw_warehouse_s ; 9999 ;notSpecified
+;h002; pw_warehouse_s ; 9999 ;notSpecified
+;h003; pw_warehouse_s ; 9999 ;notSpecified
+;a001; pw_warehouse_s ; 9999 ;notSpecified
+;a002; pw_warehouse_s ; 9999 ;notSpecified
+;a003; pw_warehouse_s ; 9999 ;notSpecified
+;b001; pw_warehouse_s ; 9999 ;notSpecified
+;b002; pw_warehouse_s ; 9999 ;notSpecified
+;b003; pw_warehouse_s ; 9999 ;notSpecified
+
+#### jinwei created end #####
+
+
+
+
+

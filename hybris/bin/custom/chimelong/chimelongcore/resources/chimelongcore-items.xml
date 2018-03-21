@@ -16,9 +16,10 @@
 		<collectiontype code="CombinedProductEntryList"
 			elementtype="CombinedProductEntry" autocreate="true" generate="true"
 			type="list" />
-		<collectiontype code="DateRangeList"
+		<!-- <collectiontype code="DateRangeList"
 			elementtype="de.hybris.platform.util.StandardDateRange" autocreate="true"
-			generate="true" type="list" />
+			generate="true" type="list" /> -->
+			<collectiontype elementtype="DateRange" code="DateRangeList" type="list"/>
 	</collectiontypes>
 
 	<enumtypes>
@@ -147,6 +148,10 @@
 						type="PriceRowCollectionType">
 						<persistence type="dynamic" />
 					</attribute>
+					<attribute qualifier="catalogVersion" type="CatalogVersion">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" />
+					</attribute>
 				</attributes>
 			</itemtype>
 
@@ -228,6 +233,19 @@
 						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="discription" type="localized:java.lang.String">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.DataRange">
+				<description>This item represents a date range from a start to an end date</description>
+				<deployment table="DateRange" typecode="30009" />
+				<attributes>
+					<attribute type="java.util.Date" qualifier="startingDate">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="endingDate">
 						<persistence type="property" />
 					</attribute>
 				</attributes>
