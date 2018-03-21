@@ -261,15 +261,15 @@ UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
 
 ##### jinwei creates start ####
 UPDATE TicketProduct;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
-;h001; 1 pieces = 175 USD N
-;h002; 1 pieces = 200 USD N
-;h003; 1 pieces = 175 USD N
-;a001; 1 pieces = 175 USD N
-;a002; 1 pieces = 200 USD N
-;a003; 1 pieces = 175 USD N
-;b001; 1 pieces = 70 USD N
-;b002; 1 pieces = 95 USD N
-;b003; 1 pieces = 70 USD N
+;h001; 1 pieces = 175 RMB N
+;h002; 1 pieces = 200 RMB N
+;h003; 1 pieces = 175 RMB N
+;a001; 1 pieces = 175 RMB N
+;a002; 1 pieces = 200 RMB N
+;a003; 1 pieces = 175 RMB N
+;b001; 1 pieces = 70 RMB N
+;b002; 1 pieces = 95 RMB N
+;b003; 1 pieces = 70 RMB N
 
 #INSERT_UPDATE PriceRow;productId[unique=true];$catalogVersion;unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];minqtd;unitFactor;net;startTime[dateformat='yyyy-MM-dd'][unique=true];endTime[dateformat='yyyy-MM-dd'][unique=true];price;&priceRowRef
 #;h001;;pieces;USD;1;1;false;2018-03-01;2032-12-31;175; priceRow-h001-1

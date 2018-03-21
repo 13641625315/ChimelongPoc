@@ -28,6 +28,7 @@ UPDATE Currency;isocode[unique=true];name[lang=$lang]
 ;CAD;加拿大元;
 ;EUR;欧元;
 ;USD;美元;
+;RMB;人民币;
 
 
 # Titles
