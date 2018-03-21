@@ -47,6 +47,8 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;cl1
 ;cl2
 ;cl11
+;cl12
+;cl13
 ;cl21
 #CRIS end
 
@@ -75,6 +77,8 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;1731;1355
 #CRIS start
 ;cl11;cl1
+;cl12;cl1
+;cl13;cl1
 ;cl21;cl2
 #CRIS end
 

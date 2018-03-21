@@ -888,3 +888,47 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  ;6100521;MS75002;;
  
  
+ #### jinwei creates start ####
+ INSERT_UPDATE DateRange; startingDate[dateformat='yyyy-MM-dd'][unique=true]; endingDate[dateformat='yyyy-MM-dd'][unique=true]; &dateRangeRef
+ ; 2018-01-01 ; 2032-12-31; dateRange1
+ 
+ INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); dateRanges(&dateRangeRef); customerType(code); unit(code)[default=pieces];$catalogVersion
+ ; h001; cl11; ENTRANCETICKET ; dateRange1 ; CHILD ; ;
+ ; h002; cl11; ENTRANCETICKET ; dateRange1 ; ADULT ; ;
+ ; h003; cl11; ENTRANCETICKET ; dateRange1 ; ELDER ; ;
+ ; a001; cl12; ENTRANCETICKET ; dateRange1 ; CHILD ; ;
+ ; a002; cl12; ENTRANCETICKET ; dateRange1 ; ADULT ; ;
+ ; a003; cl12; ENTRANCETICKET ; dateRange1 ; ELDER ; ;
+ ; b001; cl13; ENTRANCETICKET ; dateRange1 ; CHILD ; ;
+ ; b002; cl13; ENTRANCETICKET ; dateRange1 ; ADULT ; ;
+ ; b003; cl13; ENTRANCETICKET ; dateRange1 ; ELDER ; ;
+ 
+ #INSERT_UPDATE CombinedProductEntry;product(code, $catalogVersion)[unique=true];$catalogVersion, quantity;europe1Prices(&priceRowRef);&combinedProductEntry
+ #;h001;; 1 ; priceRow-h001-1
+ #;h002;; 1 ; priceRow-h002-1
+ #;h003;; 1 ; priceRow3
+ #;a001;; 1 ; priceRow3
+ #;a002;; 1 ; priceRow4
+ #;a003;; 1 ; priceRow3
+ #;b001;; 1 ; priceRow1
+ #;b002;; 1 ; priceRow2
+ #;b003;; 1 ; priceRow1
+ 
+ #INSERT_UPDATE CombinedVariantProduct;code[unique=true]; $catalogVersion; $supercategories; combinedProductEntries(&combinedProductEntry); totalPrice
+ #;ha001  ; ; cl11,cl12 ; h001,a001 ; 310
+ #;ha002  ; ; cl11,cl12 ; h002,a002 ; 445
+ #;ha003  ; ; cl11,cl12 ; h003,a003 ; 310
+ #;hb001  ; ; cl11,cl13 ; h001,b001 ; 230
+ #;hb002  ; ; cl11,cl13 ; h002,b002 ; 330
+ #;hb003  ; ; cl11,cl13 ; h003,b003 ; 230
+ #;ab001  ; ; cl12,cl13 ; a001,b001 ; 200
+ #;ab002  ; ; cl12,cl13 ; a002,b002 ; 295
+ #;ab003  ; ; cl12,cl13 ; a003,b003 ; 200
+ #;hab001 ; ; cl11,cl12,cl13 ; h001,a001,b001; 360
+ #;hab002 ; ; cl11,cl12,cl13 ; h002,a002,b002; 505
+ #;hab003 ; ; cl11,cl12,cl13 ; h003,a003,b003; 360
+ 
+ 
+ #### jinwei creates end ####
+ 
+ 
