@@ -903,16 +903,16 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  ; b002; cl13; ENTRANCETICKET ; dateRange1 ; ADULT ; ;
  ; b003; cl13; ENTRANCETICKET ; dateRange1 ; ELDER ; ;
  
- #INSERT_UPDATE CombinedProductEntry;product(code, $catalogVersion)[unique=true];$catalogVersion, quantity;europe1Prices(&priceRowRef);&combinedProductEntry
- #;h001;; 1 ; priceRow-h001-1
- #;h002;; 1 ; priceRow-h002-1
- #;h003;; 1 ; priceRow3
- #;a001;; 1 ; priceRow3
- #;a002;; 1 ; priceRow4
- #;a003;; 1 ; priceRow3
- #;b001;; 1 ; priceRow1
- #;b002;; 1 ; priceRow2
- #;b003;; 1 ; priceRow1
+ #INSERT_UPDATE CombinedProductEntry;product(code, $catalogVersion)[unique=true];$catalogVersion; quantity;europe1Prices(&priceRowRef);&combinedProductEntry
+ #;h001; ; 1 ; priceRow-h001-1 ; combineProductEntry-h001
+ #;h002; ; 1 ; priceRow-h002-1 ; combineProductEntry-h002 
+ #;h003; ; 1 ; priceRow-h003-1 ; combineProductEntry-h003
+ #;a001; ; 1 ; priceRow-a001-1 ; combineProductEntry-a001
+ #;a002; ; 1 ; priceRow-a002-1 ; combineProductEntry-a002
+ #;a003; ; 1 ; priceRow-a003-1 ; combineProductEntry-a003
+ #;b001; ; 1 ; priceRow-b001-1 ; combineProductEntry-b001
+ #;b002; ; 1 ; priceRow-b002-1 ; combineProductEntry-b002
+ #;b003; ; 1 ; priceRow-b003-1 ; combineProductEntry-b003
  
  #INSERT_UPDATE CombinedVariantProduct;code[unique=true]; $catalogVersion; $supercategories; combinedProductEntries(&combinedProductEntry); totalPrice
  #;ha001  ; ; cl11,cl12 ; h001,a001 ; 310
