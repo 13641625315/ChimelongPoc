@@ -248,6 +248,10 @@ INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=d
 ;desktop;Powertools_960x70_Brands_EN_01_960W.jpg;$siteResource/images/banners/homepage/responsive/Powertools_960x70_Brands_EN_01_960W.jpg;Powertools_960x70_Brands_EN_01_960W.jpg;"Bosch | Black & Decker | Einhall | Skil | Hitachi";
 #CRIS start
 ;widescreen;Chimelong_1080x447_EN_BigSplash.jpg;$siteResource/images/banners/homepage/responsive/Chimelong_1080x447_EN_BigSplash.jpg;Chimelong_1080x447_EN_BigSplash.jpg;"The Chimelongs activity";
+;desktop;chimelonghappyworldenbanner.png;$siteResource/images/banners/homepage/responsive/chimelonghappyworldenbanner.png;chimelonghappyworldenbanner.png;"The Chimelongs banner";
+;desktop;chimelonganimalworldenbanner.png;$siteResource/images/banners/homepage/responsive/chimelonganimalworldenbanner.png;chimelonganimalworldenbanner.png;"The Chimelongs banner";
+;desktop;chimelongwaterworldenbanner.png;$siteResource/images/banners/homepage/responsive/chimelongwaterworldenbanner.png;chimelongwaterworldenbanner.png;"The Chimelongs banner";
+;desktop;chimelongbighotelenbanner.png;$siteResource/images/banners/homepage/responsive/chimelongbighotelenbanner.png;chimelongbighotelenbanner.png;"The Chimelongs banner";
 #CRIS end
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
@@ -275,6 +279,10 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 ;;PowertoolsHompageSplashBannerComponent;powertools-homepage-spalsh-en
 #CRIS start
 ;;ChimelongHompageSplashBannerComponent;chimelong-homepage-spalsh-en
+;;ChimelongHompageHappyBannerComponent;chimelong-homepage-happy-banner-en
+;;ChimelongHompageAnimalBannerComponent;chimelong-homepage-animal-banner-en
+;;ChimelongHompageWaterBannerComponent;chimelong-homepage-water-en
+;;ChimelongHompageBigHotelBannerComponent;chimelong-homepage-bighotel-banner-en
 #CRIS end
 
 # Powertools Search Results Page
@@ -325,6 +333,10 @@ INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=tr
 ;powertools-errorpage-pagenotfound-en;Powertools_480x170_ErrorPage_EN_480W.svg,Powertools_770x221_ErrorPage_EN_770W.svg,Powertools_960x275_ErrorPage_EN_960W.svg,Powertools_1400x401_ErrorPage_EN_1400W.svg
 #CRIS start
 ;chimelong-homepage-spalsh-en;Chimelong_1080x447_EN_BigSplash.jpg
+;chimelong-homepage-happy-banner-en;chimelonghappyworldenbanner.png
+;chimelong-homepage-animal-banner-en;chimelonganimalworldenbanner.png
+;chimelong-homepage-water-en;chimelongwaterworldenbanner.png
+;chimelong-homepage-bighotel-banner-en;chimelongbighotelenbanner.png
 #CRIS end
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$mediaContainer
 ;;PowertoolstronicsErrorpageBannerComponent;Powertoolstronics Error Page Banner Component;PowertoolstronicsErrorpageBannerComponent;powertools-errorpage-pagenotfound-en

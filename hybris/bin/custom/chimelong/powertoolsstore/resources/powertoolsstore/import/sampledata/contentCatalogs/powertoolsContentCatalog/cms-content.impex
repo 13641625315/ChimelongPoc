@@ -290,9 +290,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 ;;GuangZhouChimelongHappyWorldCategoryNavLink;GuangZhouChimelongHappyWorldCategoryNavLink;/HappyWorld/c/cl11;GuangZhouChimelongHappyWorldCategoryNavLink;
 ;;GuangZhouChimelongAnimalWorldCategoryNavLink;GuangZhouChimelongAnimalWorldCategoryNavLink;/AnimalWorld/c/cl12;GuangZhouChimelongAnimalWorldCategoryNavLink;
-;;GuangZhouChimelongWaterWorldCategoryNavLink;GuangZhouChimelongWaterWorldCategoryNavLink;/;GuangZhouChimelongWaterWorldCategoryNavLink;
+;;GuangZhouChimelongWaterWorldCategoryNavLink;GuangZhouChimelongWaterWorldCategoryNavLink;/WaterWorld/c/cl13;GuangZhouChimelongWaterWorldCategoryNavLink;
 ;;GuangZhouChimelongBigCircusCategoryNavLink;GuangZhouChimelongBigCircusCategoryNavLink;/;GuangZhouChimelongBigCircusCategoryNavLink;
-;;GuangZhouChimelongBirdWorldCategoryNavLink;GuangZhouChimelongBirdWorldCategoryNavLink;/BirdWorld/c/cl13;GuangZhouChimelongBirdWorldCategoryNavLink;
+;;GuangZhouChimelongBirdWorldCategoryNavLink;GuangZhouChimelongBirdWorldCategoryNavLink;/;GuangZhouChimelongBirdWorldCategoryNavLink;
 ;;GuangZhouChimelongBigHotelCategoryNavLink;GuangZhouChimelongBigHotelCategoryNavLink;/;GuangZhouChimelongBigHotelCategoryNavLink;
 ;;GuangZhouChimelongPandaHotelCategoryNavLink;GuangZhouChimelongPandaHotelCategoryNavLink;/;GuangZhouChimelongPandaHotelCategoryNavLink;
 ;;GuangZhouChimelongXiangJiangHotelCategoryNavLink;GuangZhouChimelongXiangJiangHotelCategoryNavLink;/;GuangZhouChimelongXiangJiangHotelCategoryNavLink;
@@ -511,10 +511,12 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
 #CRIS start
 #;;Section1-Homepage;Section1;;Section1Slot-Homepage
+#;;Section2A-Homepage;Section2A;;Section2ASlot-Homepage
+#;;Section2B-Homepage;Section2B;;Section2BSlot-Homepage
 ;;Section1-Homepage;Section1;;Section1CLSlot-Homepage
+;;Section2A-Homepage;Section2A;;Section2ACLSlot-Homepage
+;;Section2B-Homepage;Section2B;;Section2BCLSlot-Homepage
 #CRIS end
-;;Section2A-Homepage;Section2A;;Section2ASlot-Homepage
-;;Section2B-Homepage;Section2B;;Section2BSlot-Homepage
 ;;Section3-Homepage;Section3;;Section3Slot-Homepage
 ;;Section4-Homepage;Section4;;Section4Slot-Homepage
 ;;Section5-Homepage;Section5;;Section5Slot-Homepage
@@ -526,8 +528,14 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 #CRIS end
 ;;Section2ASlot-Homepage;Section2A Slot for Homepage;true;PowertoolsHompagePowerDrillsBannerComponent,PowertoolsHompageAngleGrindersBannerComponent
 ;;Section2BSlot-Homepage;Section2B Slot for Homepage;true;PowertoolsHompageScrewdriversBannerComponent,PowertoolsHompageSandersBannerComponent
-;;Section3Slot-Homepage;Section3 Slot for Homepage;true;PowertoolsHomepageNewProductCarouselComponent,PowertoolsHomepageProductCarouselComponent
-;;Section4Slot-Homepage;Section4 Slot for Homepage;true;PowertoolsHompage25%BannerComponent,PowertoolsHompage30dayBannerComponent,PowertoolsHompage6pmBannerComponent,PowertoolsHompage24/7BannerComponent
+#;;Section3Slot-Homepage;Section3 Slot for Homepage;true;PowertoolsHomepageNewProductCarouselComponent,PowertoolsHomepageProductCarouselComponent
+#;;Section4Slot-Homepage;Section4 Slot for Homepage;true;PowertoolsHompage25%BannerComponent,PowertoolsHompage30dayBannerComponent,PowertoolsHompage6pmBannerComponent,PowertoolsHompage24/7BannerComponent
+#CRIS start
+;;Section2ACLSlot-Homepage;Section2A Slot for Homepage;true;ChimelongHompageHappyBannerComponent,ChimelongHompageAnimalBannerComponent
+;;Section2BCLSlot-Homepage;Section2B Slot for Homepage;true;ChimelongHompageWaterBannerComponent,ChimelongHompageBigHotelBannerComponent
+;;Section3Slot-Homepage;Section3 Slot for Homepage;true;
+;;Section4Slot-Homepage;Section4 Slot for Homepage;true;
+#CRIS end
 
 ## slot 2C and 5: nothing to display ##
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
@@ -545,6 +553,10 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 ;;PowertoolsHompageAngleGrindersBannerComponent;Powertools Homepage Angle Grinders Banner Component;/Open-Catalogue/Tools/Angle-Grinders/c/1595;PowertoolsHompageAngleGrindersBannerComponent
 #CRIS start
 ;;ChimelongHompageSplashBannerComponent;Chimelong Homepage Splash Banner Component;/;ChimelongHompageSplashBannerComponent
+;;ChimelongHompageHappyBannerComponent;Chimelong Homepage Happy Banner Component;/HappyWorld/c/cl11;ChimelongHompageHappyBannerComponent
+;;ChimelongHompageAnimalBannerComponent;Chimelong Homepage Animal Banner Component;/AnimalWorld/c/cl12;ChimelongHompageAnimalBannerComponent
+;;ChimelongHompageWaterBannerComponent;Chimelong Homepage Water Banner Component;/WaterWorld/c/cl13;ChimelongHompageWaterBannerComponent
+;;ChimelongHompageBigHotelBannerComponent;Chimelong Homepage BigHotel Banner Component;/;ChimelongHompageBigHotelBannerComponent
 #CRIS end
 
 ## components in slot 2B ##

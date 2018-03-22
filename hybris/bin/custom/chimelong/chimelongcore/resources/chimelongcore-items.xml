@@ -16,10 +16,8 @@
 		<collectiontype code="CombinedProductEntryList"
 			elementtype="CombinedProductEntry" autocreate="true" generate="true"
 			type="list" />
-		<!-- <collectiontype code="DateRangeList"
-			elementtype="de.hybris.platform.util.StandardDateRange" autocreate="true"
-			generate="true" type="list" /> -->
-			<collectiontype elementtype="DateRange" code="DateRangeList" type="list"/>
+		<collectiontype elementtype="DateRange" code="DateRangeList"
+			type="list" />
 	</collectiontypes>
 
 	<enumtypes>
@@ -56,8 +54,7 @@
 			<value code="OTA" />
 		</enumtype>
 
-		<enumtype generate="true" code="ClDiscountGroup"
-			autocreate="true">
+		<enumtype generate="true" code="ClDiscountGroup" autocreate="true">
 			<value code="TA" />
 			<value code="OTA" />
 			<value code="VIP1" />
@@ -83,11 +80,10 @@
 		<relation code="ClDiscountGroup2RuleRel" generate="true"
 			localized="false" autocreate="true">
 			<deployment table="ClDiscountGroup2RuleRel" typecode="31002" />
-			<sourceElement qualifier="clDiscountGroups"
-				type="ClDiscountGroup" cardinality="many" collectiontype="list" />
-			<targetElement qualifier="clDiscountGroupRules"
-				type="ClDiscountGroupRule" cardinality="many" collectiontype="list"
-				ordered="true" />
+			<sourceElement qualifier="clDiscountGroups" type="ClDiscountGroup"
+				cardinality="many" collectiontype="list" />
+			<targetElement qualifier="clDiscountGroupRules" type="ClDiscountGroupRule"
+				cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
 
 		<relation code="Accommo2FacilityRel" generate="true"
@@ -144,13 +140,11 @@
 					<attribute qualifier="quantity" type="java.lang.Long">
 						<persistence type="property" />
 					</attribute>
-					<attribute autocreate="true" qualifier="europe1Prices"
-						type="PriceRowCollectionType">
-						<persistence type="dynamic" />
+					<attribute qualifier="europe1Prices" type="PriceRowCollectionType">
+						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="catalogVersion" type="CatalogVersion">
 						<persistence type="property" />
-						<modifiers read="true" write="true" search="true" optional="true" />
 					</attribute>
 				</attributes>
 			</itemtype>
@@ -237,7 +231,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 			<itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.DataRange">
 				<description>This item represents a date range from a start to an end date</description>
 				<deployment table="DateRange" typecode="30009" />
