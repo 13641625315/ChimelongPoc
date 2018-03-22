@@ -260,27 +260,29 @@ UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
 
 
 ##### jinwei creates start ####
-UPDATE TicketProduct;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
-;h001; 1 pieces = 175 RMB N
-;h002; 1 pieces = 200 RMB N
-;h003; 1 pieces = 175 RMB N
-;a001; 1 pieces = 175 RMB N
-;a002; 1 pieces = 200 RMB N
-;a003; 1 pieces = 175 RMB N
-;b001; 1 pieces = 70 RMB N
-;b002; 1 pieces = 95 RMB N
-;b003; 1 pieces = 70 RMB N
 
-#INSERT_UPDATE PriceRow;productId[unique=true];$catalogVersion;unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];minqtd;unitFactor;net;startTime[dateformat='yyyy-MM-dd'][unique=true];endTime[dateformat='yyyy-MM-dd'][unique=true];price;&priceRowRef
-#;h001;;pieces;USD;1;1;false;2018-03-01;2032-12-31;175; priceRow-h001-1
-#;h002;;pieces;USD;1;1;false;2018-03-01;2032-12-31;200; priceRow-h002-1
-#;h003;;pieces;USD;1;1;false;2018-03-01;2032-12-31;175; priceRow-h003-1
-#;a001;;pieces;USD;1;1;false;2018-03-01;2032-12-31;175; priceRow-a001-1
-#;a002;;pieces;USD;1;1;false;2018-03-01;2032-12-31;200; priceRow-a002-1
-#;a003;;pieces;USD;1;1;false;2018-03-01;2032-12-31;175; priceRow-a003-1
-#;b001;;pieces;USD;1;1;false;2018-03-01;2032-12-31;70 ; priceRow-b001-1
-#;b002;;pieces;USD;1;1;false;2018-03-01;2032-12-31;95 ; priceRow-b002-1
-#;b003;;pieces;USD;1;1;false;2018-03-01;2032-12-31;70 ; priceRow-b003-1
+INSERT_UPDATE PriceRow;product(code[unique=true], $catalogVersion)[unique=true];$catalogVersion;unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];minqtd;unitFactor;startTime[dateformat='yyyy-MM-dd'][unique=true];endTime[dateformat='yyyy-MM-dd'][unique=true];price; &priceRowRef
+;h001;;pieces;USD;1;1;2018-03-01;2032-12-31;175; priceRow-h001-1
+;h002;;pieces;USD;1;1;2018-03-01;2032-12-31;200; priceRow-h002-1
+;h003;;pieces;USD;1;1;2018-03-01;2032-12-31;175; priceRow-h003-1
+;a001;;pieces;USD;1;1;2018-03-01;2032-12-31;175; priceRow-a001-1
+;a002;;pieces;USD;1;1;2018-03-01;2032-12-31;200; priceRow-a002-1
+;a003;;pieces;USD;1;1;2018-03-01;2032-12-31;175; priceRow-a003-1
+;b001;;pieces;USD;1;1;2018-03-01;2032-12-31;70 ; priceRow-b001-1
+;b002;;pieces;USD;1;1;2018-03-01;2032-12-31;95 ; priceRow-b002-1
+;b003;;pieces;USD;1;1;2018-03-01;2032-12-31;70 ; priceRow-b003-1
+
+UPDATE TicketProduct;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogVersion;$taxGroup
+;h001; priceRow-h001-1
+;h002; priceRow-h002-1
+;h003; priceRow-h003-1
+;a001; priceRow-a001-1
+;a002; priceRow-a002-1
+;a003; priceRow-a003-1
+;b001; priceRow-b001-1
+;b002; priceRow-b002-1
+;b003; priceRow-b003-1
+
 
 ##### jinwei creates end ####
 
