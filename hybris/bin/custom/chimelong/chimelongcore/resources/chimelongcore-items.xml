@@ -146,10 +146,10 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CombinedTicketVariantProduct" extends="Product"
+			<itemtype code="CombinedTicketProduct" extends="Product"
 				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.CombinedTicketVariantProduct">
-				<deployment table="CombinedTicketVariantProduct" typecode="30004"></deployment>
+				jaloclass="com.chimelong.core.jalo.CombinedTicketProduct">
+				<deployment table="CombinedTicketProduct" typecode="30004"></deployment>
 				<attributes>
 					<attribute qualifier="combinedProductEntries" type="CombinedProductEntryList">
 						<persistence type="property" />
@@ -164,10 +164,10 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CircusTicket" extends="VariantProduct"
+			<itemtype code="CircusVariantTicket" extends="VariantProduct"
 				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.CircusTicketVariantProduct">
-				<deployment table="CircusTicket" typecode="30005"></deployment>
+				jaloclass="com.chimelong.core.jalo.CircusVariantTicket">
+				<deployment table="CircusVariantTicket" typecode="30005"></deployment>
 				<attributes>
 					<attribute qualifier="showTime" type="java.lang.String">
 						<persistence type="property" />
@@ -242,10 +242,10 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CombinedHotelVariantProduct" extends="VariantProduct"
+			<itemtype code="CombinedHotelProduct" extends="VariantProduct"
 				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.CombinedHotelVariantProduct">
-				<deployment table="CombinedHotelVariantProduct" typecode="30010"></deployment>
+				jaloclass="com.chimelong.core.jalo.CombinedHotelProduct">
+				<deployment table="CombinedHotelProduct" typecode="30010"></deployment>
 				<attributes>
 					<attribute qualifier="combinedProductEntries" type="CombinedProductEntryList">
 						<persistence type="property" />
