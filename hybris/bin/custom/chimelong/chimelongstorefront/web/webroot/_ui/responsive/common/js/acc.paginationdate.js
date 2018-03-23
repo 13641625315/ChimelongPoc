@@ -14,7 +14,6 @@ ACC.paginationdate = {
     {
         dateForm.change(function ()
         {
-            console.log("changed");
             this.submit();
         });
     }

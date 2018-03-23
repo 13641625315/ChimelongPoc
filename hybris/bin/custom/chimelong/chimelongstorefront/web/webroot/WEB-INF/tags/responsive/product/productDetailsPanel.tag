@@ -26,6 +26,17 @@
 						</ycommerce:testId>
 						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>
 					</div>
+                    <%--MALCOLM START--%>
+					<div>
+                        <label class="control-label" for="pdDateForm">
+                            <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
+                            Ticket Date:
+                        </label>
+                        <form id="pdDateForm" action="#" method="get">
+                            <input type="date" id="ticketDate" name="ticketDate" class="form-control">
+                        </form>
+                    </div>
+                    <%--MALCOLM END--%>
 				</div>
 
 				<div class="col-sm-12 col-md-9 col-lg-6">
