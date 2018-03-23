@@ -43,49 +43,63 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group">
-                                <label class="control-label " for="sortForm${top ? '1' : '2'}">
-                                    <spring:theme code="${themeMsgKey}.sortTitle"/>
-                                </label>
+                                <div class="col-xs-12 col-sm-12">
+                                    <%--<label class="control-label " for="sortForm${top ? '1' : '2'}">--%>
+                                        <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
+                                    <%--</label>--%>
 
-                                <form id="sortForm${top ? '1' : '2'}" name="sortForm${top ? '1' : '2'}" method="get"
-                                      action="#">
-                                    <select id="sortOptions${top ? '1' : '2'}" name="sort" class="form-control">
-                                        <option disabled><spring:theme code="${themeMsgKey}.sortTitle"/></option>
-                                        <c:forEach items="${searchPageData.sorts}" var="sort">
-                                            <option value="${fn:escapeXml(sort.code)}" ${sort.selected? 'selected="selected"' : ''}>
-                                                <c:choose>
-                                                    <c:when test="${not empty sort.name}">
-                                                        ${fn:escapeXml(sort.name)}
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <spring:theme code="${themeMsgKey}.sort.${sort.code}"/>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </option>
-                                        </c:forEach>
-                                    </select>
-                                    <c:catch var="errorException">
-                                        <spring:eval expression="searchPageData.currentQuery.query"
-                                                     var="dummyVar"/><%-- This will throw an exception is it is not supported --%>
-                                        <input type="hidden" name="q" value="${searchPageData.currentQuery.query.value}"/>
-                                    </c:catch>
-										
-                                    <c:if test="${supportShowAll}">
-                                        <ycommerce:testId code="searchResults_showAll_link">
-                                            <input type="hidden" name="show" value="Page"/>
-                                        </ycommerce:testId>
-                                    </c:if>
-                                    <c:if test="${supportShowPaged}">
-                                        <ycommerce:testId code="searchResults_showPage_link">
-                                            <input type="hidden" name="show" value="All"/>
-                                        </ycommerce:testId>
-                                    </c:if>
-                                    <c:if test="${not empty additionalParams}">
-                                        <c:forEach items="${additionalParams}" var="entry">
-                                            <input type="hidden" name="${fn:escapeXml(entry.key)}" value="${fn:escapeXml(entry.value)}"/>
-                                        </c:forEach>
-                                    </c:if>
-                                </form>
+                                    <%--<form id="sortForm${top ? '1' : '2'}" name="sortForm${top ? '1' : '2'}" method="get"--%>
+                                          <%--action="#">--%>
+                                        <%--<select id="sortOptions${top ? '1' : '2'}" name="sort" class="form-control">--%>
+                                            <%--<option disabled><spring:theme code="${themeMsgKey}.sortTitle"/></option>--%>
+                                            <%--<c:forEach items="${searchPageData.sorts}" var="sort">--%>
+                                                <%--<option value="${fn:escapeXml(sort.code)}" ${sort.selected? 'selected="selected"' : ''}>--%>
+                                                    <%--<c:choose>--%>
+                                                        <%--<c:when test="${not empty sort.name}">--%>
+                                                            <%--${fn:escapeXml(sort.name)}--%>
+                                                        <%--</c:when>--%>
+                                                        <%--<c:otherwise>--%>
+                                                            <%--<spring:theme code="${themeMsgKey}.sort.${sort.code}"/>--%>
+                                                        <%--</c:otherwise>--%>
+                                                    <%--</c:choose>--%>
+                                                <%--</option>--%>
+                                            <%--</c:forEach>--%>
+                                        <%--</select>--%>
+                                        <%--<c:catch var="errorException">--%>
+                                            <%--<spring:eval expression="searchPageData.currentQuery.query"--%>
+                                                         <%--var="dummyVar"/>&lt;%&ndash; This will throw an exception is it is not supported &ndash;%&gt;--%>
+                                            <%--<input type="hidden" name="q"--%>
+                                                   <%--value="${searchPageData.currentQuery.query.value}"/>--%>
+                                        <%--</c:catch>--%>
+
+                                        <%--<c:if test="${supportShowAll}">--%>
+                                            <%--<ycommerce:testId code="searchResults_showAll_link">--%>
+                                                <%--<input type="hidden" name="show" value="Page"/>--%>
+                                            <%--</ycommerce:testId>--%>
+                                        <%--</c:if>--%>
+                                        <%--<c:if test="${supportShowPaged}">--%>
+                                            <%--<ycommerce:testId code="searchResults_showPage_link">--%>
+                                                <%--<input type="hidden" name="show" value="All"/>--%>
+                                            <%--</ycommerce:testId>--%>
+                                        <%--</c:if>--%>
+                                        <%--<c:if test="${not empty additionalParams}">--%>
+                                            <%--<c:forEach items="${additionalParams}" var="entry">--%>
+                                                <%--<input type="hidden" name="${fn:escapeXml(entry.key)}"--%>
+                                                       <%--value="${fn:escapeXml(entry.value)}"/>--%>
+                                            <%--</c:forEach>--%>
+                                        <%--</c:if>--%>
+                                    <%--</form>--%>
+
+                                        <%--MALCOLM START--%>
+                                    <label class="control-label" for="dateForm${top ? '1' : '2'}">
+                                            <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
+                                        Ticket Date:
+                                    </label>
+                                    <form id="dateForm${top ? '1' : '2'}" action="#" method="get">
+                                        <input type="date" id="ticketDate${top ? '1' : '2'}" name="ticketDate" class="form-control">
+                                    </form>
+                                        <%--MALCOLM END--%>
+                                </div>
                             </div>
                         </div>
 

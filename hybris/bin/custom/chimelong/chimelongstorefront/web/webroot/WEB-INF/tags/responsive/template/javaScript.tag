@@ -59,6 +59,7 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.navigation.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.order.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.paginationsort.js"></script>
+		<script type="text/javascript" src="${commonResourcePath}/js/acc.paginationdate.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.payment.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.paymentDetails.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.pickupinstore.js"></script>
