@@ -101,13 +101,10 @@
 		<!-- Add your item definitions here -->
 		<typegroup name="Chimelong">
 			<itemtype code="TicketProduct" extends="Product" autocreate="true"
-				generate="true" jaloclass="com.chimelong.core.jalo.CombinedTicketVariantProduct">
+				generate="true" jaloclass="com.chimelong.core.jalo.TicketProduct">
 				<deployment table="TicketProduct" typecode="30001"></deployment>
 				<attributes>
 					<attribute qualifier="ticketType" type="TicketType">
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="dateRanges" type="DateRangeList">
 						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="packageCode" type="java.lang.String">
@@ -149,10 +146,10 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CombinedVariantProduct" extends="VariantProduct"
+			<itemtype code="CombinedTicketVariantProduct" extends="Product"
 				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.CombinedVariantProduct">
-				<deployment table="CombinedVariantProduct" typecode="30004"></deployment>
+				jaloclass="com.chimelong.core.jalo.CombinedTicketVariantProduct">
+				<deployment table="CombinedTicketVariantProduct" typecode="30004"></deployment>
 				<attributes>
 					<attribute qualifier="combinedProductEntries" type="CombinedProductEntryList">
 						<persistence type="property" />
@@ -241,6 +238,24 @@
 					</attribute>
 					<attribute type="java.util.Date" qualifier="endingDate">
 						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="CombinedHotelVariantProduct" extends="VariantProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.CombinedHotelVariantProduct">
+				<deployment table="CombinedHotelVariantProduct" typecode="30010"></deployment>
+				<attributes>
+					<attribute qualifier="combinedProductEntries" type="CombinedProductEntryList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="totalPrice" type="java.lang.Double">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
 					</attribute>
 				</attributes>
 			</itemtype>
