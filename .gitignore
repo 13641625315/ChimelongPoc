@@ -81,6 +81,7 @@ pom.xml
 
 
 hybris/bin/custom/chimelong/chimelongstorefront/web/commonwebsrc
+hybris/bin/custom/chimelong/chimelongstorefront/web/webroot/_ui
 
 #remove jrebel nature from git.
 rebel.xml
