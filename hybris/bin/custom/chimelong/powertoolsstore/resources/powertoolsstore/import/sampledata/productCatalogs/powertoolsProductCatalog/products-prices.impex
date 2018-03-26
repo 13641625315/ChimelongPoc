@@ -289,6 +289,13 @@ INSERT_UPDATE PriceRow;product(code[unique=true], $catalogVersion)[unique=true];
 ;b003;;pieces;RMB;1;1;2018-05-01;2018-05-07;190 ; priceRow-b003-2
 ;b003;;pieces;RMB;1;1;2018-05-08;2018-12-31;70; priceRow-b003-3
 
+;ha002;;pieces;RMB;1;1;2018-03-01;2018-04-30;400; priceRow-ha002-1
+;ha002;;pieces;RMB;1;1;2018-05-01;2018-05-07;800; priceRow-ha002-2
+;ha002;;pieces;RMB;1;1;2018-05-08;2018-12-31;400; priceRow-ha002-3
+;hb002;;pieces;RMB;1;1;2018-03-01;2018-04-30;295; priceRow-hb002-1
+;hb002;;pieces;RMB;1;1;2018-05-01;2018-05-07;590; priceRow-hb002-2
+;hb002;;pieces;RMB;1;1;2018-05-08;2018-12-31;295; priceRow-hb002-3
+
 UPDATE TicketProduct;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogVersion;$taxGroup
 ;h001; priceRow-h001-1,priceRow-h001-2,priceRow-h001-3
 ;h002; priceRow-h002-1,priceRow-h002-2,priceRow-h002-3
@@ -311,9 +318,9 @@ UPDATE TicketProduct;code[unique=true];europe1Prices(&priceRowRef);$approved;$ca
  ;b002; ; 1 ; priceRow-b002-1 ; combineProductEntry-b002
  ;b003; ; 1 ; priceRow-b003-1 ; combineProductEntry-b003
  
- INSERT_UPDATE CombinedTicketProduct;code[unique=true]; combinedProductEntries(&combinedProductEntry);totalPrice;$catalogVersion;$approved;
- ;ha002  ; combineProductEntry-h002,combineProductEntry-a002; 400;
- ;hb002  ; combineProductEntry-h002,combineProductEntry-b002; 295;
+ INSERT_UPDATE CombinedTicketProduct;code[unique=true];combinedProductEntries(&combinedProductEntry);europe1Prices(&priceRowRef);$catalogVersion;$approved;
+ ;ha002  ; combineProductEntry-h002,combineProductEntry-a002; priceRow-ha002-1, priceRow-ha002-2, priceRow-ha002-3;
+ ;hb002  ; combineProductEntry-h002,combineProductEntry-b002; priceRow-hb002-1, priceRow-hb002-2, priceRow-hb002-3;
 ##### jinwei creates end ####
 
 
