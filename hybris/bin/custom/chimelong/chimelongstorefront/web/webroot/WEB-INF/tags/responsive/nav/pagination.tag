@@ -96,7 +96,7 @@
                                         Ticket Date:
                                     </label>
                                     <form id="dateForm${top ? '1' : '2'}" action="#" method="get">
-                                        <input type="date" id="ticketDate${top ? '1' : '2'}" name="ticketDate" class="form-control">
+                                        <input type="date" id="productDate${top ? '1' : '2'}" name="productDate" value="${productDate}" class="form-control">
                                     </form>
                                         <%--MALCOLM END--%>
                                 </div>

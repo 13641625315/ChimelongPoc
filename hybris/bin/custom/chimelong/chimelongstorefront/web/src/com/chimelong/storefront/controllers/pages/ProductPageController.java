@@ -42,6 +42,7 @@ import de.hybris.platform.util.Config;
 import com.chimelong.storefront.controllers.ControllerConstants;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -120,6 +121,7 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
+                                @RequestParam(value = "productDate", required = false) final String productDate,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
@@ -147,6 +149,16 @@ public class ProductPageController extends AbstractPageController
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
 		setUpMetaData(model, metaKeywords, metaDescription);
+		//MALCOLM START
+		String dateString;
+		if (productDate == null) {
+			dateString = LocalDate.now().toString();
+		} else {
+			dateString = productDate;
+		}
+		model.addAttribute("productDate", dateString);
+		//TODO use "productDate" to filter result
+		//MALCOLM END
 		return getViewForPage(model);
 	}
 

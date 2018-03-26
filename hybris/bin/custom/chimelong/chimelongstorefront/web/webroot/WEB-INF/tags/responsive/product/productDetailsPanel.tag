@@ -33,7 +33,7 @@
                             Ticket Date:
                         </label>
                         <form id="pdDateForm" action="#" method="get">
-                            <input type="date" id="ticketDate" name="ticketDate" class="form-control">
+                            <input type="date" id="productDate" name="productDate" value="${productDate}" class="form-control">
                         </form>
                     </div>
                     <%--MALCOLM END--%>

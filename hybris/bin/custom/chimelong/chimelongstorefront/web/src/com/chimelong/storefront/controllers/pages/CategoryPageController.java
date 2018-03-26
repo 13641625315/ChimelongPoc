@@ -17,6 +17,8 @@ import de.hybris.platform.commercefacades.search.data.SearchStateData;
 import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,8 +44,19 @@ public class CategoryPageController extends AbstractCategoryPageController {
                            @RequestParam(value = "q", required = false) final String searchQuery,
                            @RequestParam(value = "page", defaultValue = "0") final int page,
                            @RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
-                           @RequestParam(value = "sort", required = false) final String sortCode, final Model model,
+                           @RequestParam(value = "sort", required = false) final String sortCode,
+                           @RequestParam(value = "productDate", required = false) final String productDate,final Model model,
                            final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException {
+        //MALCOLM START
+        String dateString;
+        if (productDate == null) {
+            dateString = LocalDate.now().toString();
+        } else {
+            dateString = productDate;
+        }
+        model.addAttribute("productDate", dateString);
+        //TODO use "productDate" to filter result
+        //MALCOLM END
         return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
     }
 
