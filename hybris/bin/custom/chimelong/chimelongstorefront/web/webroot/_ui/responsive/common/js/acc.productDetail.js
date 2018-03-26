@@ -129,9 +129,6 @@ ACC.productDetail = {
         ACC.productDetail.bindCurrentStyle();
         ACC.productDetail.bindCurrentSize();
         ACC.productDetail.bindCurrentType();
-        //MALCOLM START
-        ACC.productDetail.bindDateForm($('#pdDateForm'));
-        //MALCOLM END
     },
 
     bindCurrentStyle: function () {
@@ -156,14 +153,5 @@ ACC.productDetail = {
         if (currentSize != null) {
             sizeSpan.text(": " + currentSize);
         }
-    },
-    //MALCOLM START
-    bindDateForm: function (dateForm)
-    {
-        dateForm.change(function ()
-        {
-            this.submit();
-        });
     }
-    //MALCOLM END
 };

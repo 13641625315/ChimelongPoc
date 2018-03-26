@@ -907,6 +907,8 @@ INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,de
 ;b001; pw_warehouse_s ; 9999 ;notSpecified
 ;b002; pw_warehouse_s ; 9999 ;notSpecified
 ;b003; pw_warehouse_s ; 9999 ;notSpecified
+;ha002; pw_warehouse_s ; 9999 ;notSpecified
+;hb003; pw_warehouse_s ; 9999 ;notSpecified
 
 #### jinwei created end #####
 

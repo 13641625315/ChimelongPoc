@@ -463,6 +463,9 @@ UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];description[la
  ;b002; ; 成人票 ; 长隆水上乐园成人票    ; 成人票当日票
  ;b003; ; 老人票 ; 长隆水上乐园老人票   ; 老人票当日票
  
+  UPDATE CombinedTicketProduct;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang];summary[lang=$lang]
+ ;ha002; ;  长隆欢乐世界+野生动物世界套票; 长隆欢乐世界+野生动物世界套票;  成人票, 当日票
+ ;hb002; ;  长隆欢乐世界+水上世界套票;  长隆欢乐世界+水上世界套票;  成人票, 当日票
  #### jinwei creates end #####
  
  
