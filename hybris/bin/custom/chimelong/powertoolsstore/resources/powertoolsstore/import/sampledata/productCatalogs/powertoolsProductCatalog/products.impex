@@ -892,31 +892,31 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  INSERT_UPDATE DateRange; startingDate[dateformat='yyyy-MM-dd'][unique=true]; endingDate[dateformat='yyyy-MM-dd'][unique=true]; &dateRangeRef
  ; 2018-01-01 ; 2032-12-31; dateRange1
  
- INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); dateRanges(&dateRangeRef); customerType(code); variantType(code);unit(code)[default=pieces];$catalogVersion
- ; h001; cl11; ENTRANCETICKET ; dateRange1 ; CHILD ; CombinedVariantProduct ; ;
- ; h002; cl11; ENTRANCETICKET ; dateRange1 ; ADULT ; CombinedVariantProduct ; ;
- ; h003; cl11; ENTRANCETICKET ; dateRange1 ; ELDER ; CombinedVariantProduct ; ;
- ; a001; cl12; ENTRANCETICKET ; dateRange1 ; CHILD ; CombinedVariantProduct ; ;
- ; a002; cl12; ENTRANCETICKET ; dateRange1 ; ADULT ; CombinedVariantProduct ; ;
- ; a003; cl12; ENTRANCETICKET ; dateRange1 ; ELDER ; CombinedVariantProduct ; ;
- ; b001; cl13; ENTRANCETICKET ; dateRange1 ; CHILD ; CombinedVariantProduct ; ;
- ; b002; cl13; ENTRANCETICKET ; dateRange1 ; ADULT ; CombinedVariantProduct ; ;
- ; b003; cl13; ENTRANCETICKET ; dateRange1 ; ELDER ; CombinedVariantProduct ; ;
+ INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); customerType(code); variantType(code);unit(code)[default=pieces];$catalogVersion
+ ; h001; cl11; ENTRANCETICKET ;  CHILD ;  ; ;
+ ; h002; cl11; ENTRANCETICKET ;  ADULT ;  ; ;
+ ; h003; cl11; ENTRANCETICKET ;  ELDER ;  ; ;
+ ; a001; cl12; ENTRANCETICKET ;  CHILD ;  ; ;
+ ; a002; cl12; ENTRANCETICKET ;  ADULT ;  ; ;
+ ; a003; cl12; ENTRANCETICKET ;  ELDER ;  ; ;
+ ; b001; cl13; ENTRANCETICKET ;  CHILD ;  ; ;
+ ; b002; cl13; ENTRANCETICKET ;  ADULT ;  ; ;
+ ; b003; cl13; ENTRANCETICKET ;  ELDER ;  ; ;
  
 
- INSERT_UPDATE CombinedVariantProduct;code[unique=true]; $baseProduct;$catalogVersion; $supercategories; totalPrice
- ;ha001  ;h001 ; ; cl11,cl12 ; 310
- ;ha002  ;h002 ; ; cl11,cl12 ; 445
- ;ha003  ;h003 ; ; cl11,cl12 ; 310
- ;hb001  ;h001 ; ; cl11,cl13 ; 230
- ;hb002  ;h002 ; ; cl11,cl13 ; 330
- ;hb003  ;h003 ; ; cl11,cl13 ; 230
- ;ab001  ;a001 ; ; cl12,cl13 ; 200
- ;ab002  ;a002 ; ; cl12,cl13 ; 295
- ;ab003  ;b003 ; ; cl12,cl13 ; 200
- ;hab001 ;h001 ; ; cl11,cl12,cl13 ; 360
- ;hab002 ;h002 ; ; cl11,cl12,cl13 ; 505
- ;hab003 ;h003 ; ; cl11,cl12,cl13 ; 360
+ INSERT_UPDATE CombinedTicketProduct;code[unique=true];$catalogVersion; $supercategories; totalPrice
+ #;ha001  ;  ; cl11,cl12 ; 310
+ ;ha002  ;  ; cl11,cl12 ; 445
+ #;ha003  ;  ; cl11,cl12 ; 310
+ #;hb001  ;  ; cl11,cl13 ; 230
+ ;hb002  ;  ; cl11,cl13 ; 330
+ #;hb003  ;  ; cl11,cl13 ; 230
+ #;ab001  ;  ; cl12,cl13 ; 200
+ #;ab002  ;  ; cl12,cl13 ; 295
+ #;ab003  ;  ; cl12,cl13 ; 200
+ #;hab001 ;  ; cl11,cl12,cl13 ; 360
+ #;hab002 ;  ; cl11,cl12,cl13 ; 505
+ #;hab003 ;  ; cl11,cl12,cl13 ; 360
  #### jinwei creates end ####
  
  

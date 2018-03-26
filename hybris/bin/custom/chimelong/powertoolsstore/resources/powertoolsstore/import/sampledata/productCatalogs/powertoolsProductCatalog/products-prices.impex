@@ -311,19 +311,19 @@ UPDATE TicketProduct;code[unique=true];europe1Prices(&priceRowRef);$approved;$ca
  ;b002; ; 1 ; priceRow-b002-1 ; combineProductEntry-b002
  ;b003; ; 1 ; priceRow-b003-1 ; combineProductEntry-b003
  
- INSERT_UPDATE CombinedVariantProduct;code[unique=true]; combinedProductEntries(&combinedProductEntry);$catalogVersion
- ;ha001  ;combineProductEntry-h001,combineProductEntry-a001
+ INSERT_UPDATE CombinedTicketProduct;code[unique=true]; combinedProductEntries(&combinedProductEntry);$catalogVersion;$approved
+ #;ha001  ;combineProductEntry-h001,combineProductEntry-a001
  ;ha002  ;combineProductEntry-h002,combineProductEntry-a002
- ;ha003  ;combineProductEntry-h003,combineProductEntry-a003
- ;hb001  ;combineProductEntry-h001,combineProductEntry-b001
+ #;ha003  ;combineProductEntry-h003,combineProductEntry-a003
+ #;hb001  ;combineProductEntry-h001,combineProductEntry-b001
  ;hb002  ;combineProductEntry-h002,combineProductEntry-b002
- ;hb003  ;combineProductEntry-h003,combineProductEntry-b003
- ;ab001  ;combineProductEntry-a001,combineProductEntry-b001
- ;ab002  ;combineProductEntry-a002,combineProductEntry-b002
- ;ab003  ;combineProductEntry-a003,combineProductEntry-b003
- ;hab001 ;combineProductEntry-h001,combineProductEntry-a001,combineProductEntry-b001
- ;hab002 ;combineProductEntry-h002,combineProductEntry-a002,combineProductEntry-b002
- ;hab003 ;combineProductEntry-h003,combineProductEntry-a003,combineProductEntry-b003
+ #;hb003  ;combineProductEntry-h003,combineProductEntry-b003
+ #;ab001  ;combineProductEntry-a001,combineProductEntry-b001
+ #;ab002  ;combineProductEntry-a002,combineProductEntry-b002
+ #;ab003  ;combineProductEntry-a003,combineProductEntry-b003
+ #;hab001 ;combineProductEntry-h001,combineProductEntry-a001,combineProductEntry-b001
+ #;hab002 ;combineProductEntry-h002,combineProductEntry-a002,combineProductEntry-b002
+ #;hab003 ;combineProductEntry-h003,combineProductEntry-a003,combineProductEntry-b003
 ##### jinwei creates end ####
 
 
