@@ -51,7 +51,7 @@ INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit
 ;standardPermissions;Standard Permissions;Rustic;Rustic 5K USD ORDER:Rustic,Rustic 15K USD MONTH:Rustic;
 ;limitedPermissions;Limited Permissions;Rustic;Rustic 0K USD ORDER:Rustic,Rustic 25K USD MONTH:Rustic;
 
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='USD'];password[default=$defaultPassword];
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='RMB'];password[default=$defaultPassword];
 ;Admin A;linda.wolf@rustic-hw.com;linda.wolf@rustic-hw.com;linda.wolf@rustic-hw.com;Linda Wolf;ms;Rustic,b2badmingroup;;;;;
 ;AdminB;lars.bauer@rustic-hw.com;lars.bauer@rustic-hw.com;lars.bauer@rustic-hw.com;Lars Bauer;mr;Rustic Services, b2badmingroup;;;;;;
 ;Approver A;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;Hanna Schmidt;ms;Rustic, b2bapprovergroup;;;;;;

@@ -892,7 +892,7 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  INSERT_UPDATE DateRange; startingDate[dateformat='yyyy-MM-dd'][unique=true]; endingDate[dateformat='yyyy-MM-dd'][unique=true]; &dateRangeRef
  ; 2018-01-01 ; 2032-12-31; dateRange1
  
- INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); customerType(code); variantType(code);unit(code)[default=pieces];$catalogVersion
+ INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); customerType(code); variantType(code); unit(code)[default=pieces]; $catalogVersion
  ; h001; cl11; ENTRANCETICKET ;  CHILD ;  ; ;
  ; h002; cl11; ENTRANCETICKET ;  ADULT ;  ; ;
  ; h003; cl11; ENTRANCETICKET ;  ELDER ;  ; ;
@@ -904,9 +904,9 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  ; b003; cl13; ENTRANCETICKET ;  ELDER ;  ; ;
  
 
- INSERT_UPDATE CombinedTicketProduct;code[unique=true];$catalogVersion; $supercategories; totalPrice
- ;ha002  ;  ; cl11,cl12 ; 445
- ;hb002  ;  ; cl11,cl13 ; 330
+ INSERT_UPDATE CombinedTicketProduct;code[unique=true];$catalogVersion; $supercategories; unit(code)[default=pieces]
+ ;ha002  ;  ; cl11,cl12 ; 
+ ;hb002  ;  ; cl11,cl13 ; 
  #### jinwei creates end ####
  
  
