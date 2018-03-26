@@ -10,7 +10,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:theme code="text.addToCart" var="addToCartText"/>
-<c:url value="${product.url}?productDate=${productDate}" var="productUrl"/>
+<c:url value="${product.url}?ticketBookDate=${ticketBookDate}" var="productUrl"/>
 <c:set value="${not empty product.potentialPromotions}" var="hasPromotion"/>
 <div class="product-item">
 	<ycommerce:testId code="product_wholeProduct">

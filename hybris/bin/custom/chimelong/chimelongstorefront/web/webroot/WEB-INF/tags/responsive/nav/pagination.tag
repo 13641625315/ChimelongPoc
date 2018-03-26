@@ -1,3 +1,4 @@
+<%@ tag language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="searchUrl" required="true" %>
 <%@ attribute name="searchPageData" required="true"
@@ -90,15 +91,17 @@
                                         <%--</c:if>--%>
                                     <%--</form>--%>
 
-                                        <%--MALCOLM START--%>
+                                    <%--MALCOLM START--%>
+                                    <c:if test="${top}">
                                     <label class="control-label" for="dateForm${top ? '1' : '2'}">
                                             <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
-                                        Ticket Date:
+                                        门票日期:
                                     </label>
                                     <form id="dateForm${top ? '1' : '2'}" action="#" method="get">
-                                        <input type="date" id="productDate${top ? '1' : '2'}" name="productDate" value="${productDate}" class="form-control">
+                                        <input type="date" id="ticketBookDate${top ? '1' : '2'}" name="ticketBookDate" value="${ticketBookDate}" class="form-control">
                                     </form>
-                                        <%--MALCOLM END--%>
+                                    </c:if>
+                                    <%--MALCOLM END--%>
                                 </div>
                             </div>
                         </div>

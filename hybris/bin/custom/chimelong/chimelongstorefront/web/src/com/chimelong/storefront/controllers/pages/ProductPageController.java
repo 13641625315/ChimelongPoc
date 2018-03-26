@@ -39,7 +39,6 @@ import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
-import com.chimelong.storefront.controllers.ControllerConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
@@ -70,6 +69,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.chimelong.storefront.controllers.ControllerConstants;
 import com.google.common.collect.Maps;
 
 
@@ -121,9 +121,8 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
-                                @RequestParam(value = "productDate", required = false) final String productDate,
-			final HttpServletRequest request, final HttpServletResponse response)
-			throws CMSItemNotFoundException, UnsupportedEncodingException
+			@RequestParam(value = "ticketBookDate", required = false) final String ticketBookDate, final HttpServletRequest request,
+			final HttpServletResponse response) throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE, ProductOption.VARIANT_MATRIX_URL,
@@ -151,10 +150,13 @@ public class ProductPageController extends AbstractPageController
 		setUpMetaData(model, metaKeywords, metaDescription);
 		//MALCOLM START
 		String dateString;
-		if (productDate == null) {
+		if (ticketBookDate == null)
+		{
 			dateString = LocalDate.now().toString();
-		} else {
-			dateString = productDate;
+		}
+		else
+		{
+			dateString = ticketBookDate;
 		}
 		model.addAttribute("productDate", dateString);
 		//TODO use "productDate" to filter result

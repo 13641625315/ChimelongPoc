@@ -18,11 +18,11 @@ import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,46 +37,61 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/**/c")
-public class CategoryPageController extends AbstractCategoryPageController {
+public class CategoryPageController extends AbstractCategoryPageController
+{
 
-    @RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-    public String category(@PathVariable("categoryCode") final String categoryCode, // NOSONAR
-                           @RequestParam(value = "q", required = false) final String searchQuery,
-                           @RequestParam(value = "page", defaultValue = "0") final int page,
-                           @RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
-                           @RequestParam(value = "sort", required = false) final String sortCode,
-                           @RequestParam(value = "productDate", required = false) final String productDate,final Model model,
-                           final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException {
-        //MALCOLM START
-        String dateString;
-        if (productDate == null) {
-            dateString = LocalDate.now().toString();
-        } else {
-            dateString = productDate;
-        }
-        model.addAttribute("productDate", dateString);
-        //TODO use "productDate" to filter result
-        //MALCOLM END
-        return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
-    }
+	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	public String category(@PathVariable("categoryCode") final String categoryCode, // NOSONAR
+			@RequestParam(value = "q", required = false) final String searchQuery,
+			@RequestParam(value = "page", defaultValue = "0") final int page,
+			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
+			@RequestParam(value = "sort", required = false) final String sortCode,
+			@RequestParam(value = "ticketBookDate", required = false) String ticketBookDate, final Model model,
+			final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException
+	{
+		//MALCOLM START
+		if (StringUtils.isNotEmpty(ticketBookDate))
+		{
+			ticketBookDate = LocalDate.now().toString();
+		}
 
-    @ResponseBody
-    @RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN + "/facets", method = RequestMethod.GET)
-    public FacetRefinement<SearchStateData> getFacets(@PathVariable("categoryCode") final String categoryCode,
-                                                      @RequestParam(value = "q", required = false) final String searchQuery,
-                                                      @RequestParam(value = "page", defaultValue = "0") final int page,
-                                                      @RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
-                                                      @RequestParam(value = "sort", required = false) final String sortCode) throws UnsupportedEncodingException {
-        return performSearchAndGetFacets(categoryCode, searchQuery, page, showMode, sortCode);
-    }
+		if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl1"))//Ticket Category
+		{
+			//
+		}
+		else if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl2"))
+		{
+			//
+		}
+		else
+		{
+			//
+		}
+		model.addAttribute("ticketBookDate", ticketBookDate);
+		//TODO use "productDate" to filter result
+		//MALCOLM END
+		return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
+	}
 
-    @ResponseBody
-    @RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN + "/results", method = RequestMethod.GET)
-    public SearchResultsData<ProductData> getResults(@PathVariable("categoryCode") final String categoryCode,
-                                                     @RequestParam(value = "q", required = false) final String searchQuery,
-                                                     @RequestParam(value = "page", defaultValue = "0") final int page,
-                                                     @RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
-                                                     @RequestParam(value = "sort", required = false) final String sortCode) throws UnsupportedEncodingException {
-        return performSearchAndGetResultsData(categoryCode, searchQuery, page, showMode, sortCode);
-    }
+	@ResponseBody
+	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN + "/facets", method = RequestMethod.GET)
+	public FacetRefinement<SearchStateData> getFacets(@PathVariable("categoryCode") final String categoryCode,
+			@RequestParam(value = "q", required = false) final String searchQuery,
+			@RequestParam(value = "page", defaultValue = "0") final int page,
+			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
+			@RequestParam(value = "sort", required = false) final String sortCode) throws UnsupportedEncodingException
+	{
+		return performSearchAndGetFacets(categoryCode, searchQuery, page, showMode, sortCode);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN + "/results", method = RequestMethod.GET)
+	public SearchResultsData<ProductData> getResults(@PathVariable("categoryCode") final String categoryCode,
+			@RequestParam(value = "q", required = false) final String searchQuery,
+			@RequestParam(value = "page", defaultValue = "0") final int page,
+			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
+			@RequestParam(value = "sort", required = false) final String sortCode) throws UnsupportedEncodingException
+	{
+		return performSearchAndGetResultsData(categoryCode, searchQuery, page, showMode, sortCode);
+	}
 }

@@ -11,8 +11,9 @@
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
 
 	<extension abstractclassprefix="Generated" classprefix="ChimelongStorefront" name="chimelongstorefront" usemaven="false">		
-        <requires-extension name="commerceorgaddon"/>
-<requires-extension name="b2bacceleratoraddon"/>
+        <requires-extension name="b2bacceleratoraddon"/>
+<requires-extension name="commerceorgaddon"/>
+
 <requires-extension name="personalizationsearchsamplesaddon"/>
 <requires-extension name="pcmbackofficesamplesaddon"/>
 <requires-extension name="multicountrysampledataaddon"/>

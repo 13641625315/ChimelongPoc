@@ -9,6 +9,7 @@ encoding//web/webroot/WEB-INF/messages/site-apparel-uk.properties=UTF-8
 encoding//web/webroot/WEB-INF/messages/site-electronics.properties=UTF-8
 encoding//web/webroot/WEB-INF/messages/site-electronics_de.properties=UTF-8
 encoding//web/webroot/WEB-INF/messages/site-electronics_ja.properties=UTF-8
-
+encoding//web/webroot/WEB-INF/tags/responsive/nav/pagination.tag=UTF-8
+encoding//web/webroot/WEB-INF/tags/responsive/product/productDetailsPanel.tag=UTF-8
+encoding//web/webroot/WEB-INF/views/responsive/cms/productgridcomponent.jsp=UTF-8
 encoding/<project>=UTF-8
-

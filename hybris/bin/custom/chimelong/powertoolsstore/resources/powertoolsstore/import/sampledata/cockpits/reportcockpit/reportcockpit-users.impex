@@ -19,4 +19,4 @@ INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
 ;analyticsperspectivegroup;cockpitgroup,employeegroup
 
 INSERT_UPDATE Employee;UID[unique=true];password[default=$defaultPassword];description;name;groups(uid)[mode=append];sessionLanguage(isocode);sessionCurrency(isocode)
-;analyticsmanager;;Analytics manager;Analytics Manager;analyticsperspectivegroup,employeegroup;en;USD
+;analyticsmanager;;Analytics manager;Analytics Manager;analyticsperspectivegroup,employeegroup;en;RMB

@@ -9,7 +9,7 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 $storeUid=powertools
-$defaultCurrency=USD
+$defaultCurrency=RMB
 $defaultLanguage=en
 $googleHost=setthethirdpartyhost
 $googleUserName=setgoogleusername

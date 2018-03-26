@@ -1,3 +1,4 @@
+<%@ tag language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
@@ -30,10 +31,10 @@
 					<div>
                         <label class="control-label" for="pdDateForm">
                             <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
-                            Ticket Date:
+                            门票日期:
                         </label>
                         <form id="pdDateForm" action="#" method="get">
-                            <input type="date" id="productDate" name="productDate" value="${productDate}" class="form-control">
+                            <input type="date" id="ticketBookDate" name="ticketBookDate" value="${ticketBookDate}" class="form-control">
                         </form>
                     </div>
                     <%--MALCOLM END--%>
