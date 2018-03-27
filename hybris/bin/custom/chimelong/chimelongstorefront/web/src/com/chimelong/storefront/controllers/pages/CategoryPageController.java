@@ -55,7 +55,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 			@RequestParam(value = "ticketBookDate", required = false) String ticketBookDate, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException
 	{
-		if (StringUtils.isNotEmpty(ticketBookDate))
+		if (StringUtils.isEmpty(ticketBookDate))
 		{
 			ticketBookDate = LocalDate.now().toString();
 		}

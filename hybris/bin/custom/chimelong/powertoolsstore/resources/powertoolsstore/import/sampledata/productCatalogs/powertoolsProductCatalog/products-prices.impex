@@ -275,15 +275,15 @@ INSERT_UPDATE PriceRow;product(code[unique=true], $catalogVersion)[unique=true];
 ;hb002;;pieces;RMB;1;1;2018-01-01;2018-12-31;295; priceRow-hb002
 
 UPDATE TicketProduct;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogVersion;$taxGroup
-;h001; priceRow-h001-1
-;h002; priceRow-h002-1
-;h003; priceRow-h003-1
-;a001; priceRow-a001-1
-;a002; priceRow-a002-1
-;a003; priceRow-a003-1
-;b001; priceRow-b001-1
-;b002; priceRow-b002-1
-;b003; priceRow-b003-1
+;h001; priceRow-h001
+;h002; priceRow-h002
+;h003; priceRow-h003
+;a001; priceRow-a001
+;a002; priceRow-a002
+;a003; priceRow-a003
+;b001; priceRow-b001
+;b002; priceRow-b002
+;b003; priceRow-b003
 
  INSERT_UPDATE CombinedProductEntry;product(code, $catalogVersion)[unique=true];$catalogVersion; quantity;europe1Prices(&priceRowRef);&combinedProductEntry
  ;h001; ; 1 ; priceRow-h001 ; combineProductEntry-h001

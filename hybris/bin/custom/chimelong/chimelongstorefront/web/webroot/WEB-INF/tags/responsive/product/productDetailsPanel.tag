@@ -28,15 +28,15 @@
 						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>
 					</div>
                     <%--MALCOLM START--%>
-					<div>
+					<%-- <div>
                         <label class="control-label" for="pdDateForm">
-                            <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
+                            <spring:theme code="${themeMsgKey}.sortTitle"/>
                             门票日期:
                         </label>
                         <form id="pdDateForm" action="#" method="get">
                             <input type="date" id="ticketBookDate" name="ticketBookDate" value="${ticketBookDate}" class="form-control">
                         </form>
-                    </div>
+                    </div> --%>
                     <%--MALCOLM END--%>
 				</div>
 

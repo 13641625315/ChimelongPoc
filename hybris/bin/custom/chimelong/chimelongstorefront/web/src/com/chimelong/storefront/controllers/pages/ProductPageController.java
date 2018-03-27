@@ -41,7 +41,6 @@ import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -121,8 +120,8 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			@RequestParam(value = "ticketBookDate", required = false) final String ticketBookDate, final HttpServletRequest request,
-			final HttpServletResponse response) throws CMSItemNotFoundException, UnsupportedEncodingException
+			final HttpServletRequest request, final HttpServletResponse response)
+			throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE, ProductOption.VARIANT_MATRIX_URL,
@@ -148,19 +147,6 @@ public class ProductPageController extends AbstractPageController
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
 		setUpMetaData(model, metaKeywords, metaDescription);
-		//MALCOLM START
-		String dateString;
-		if (ticketBookDate == null)
-		{
-			dateString = LocalDate.now().toString();
-		}
-		else
-		{
-			dateString = ticketBookDate;
-		}
-		model.addAttribute("productDate", dateString);
-		//TODO use "productDate" to filter result
-		//MALCOLM END
 		return getViewForPage(model);
 	}
 
