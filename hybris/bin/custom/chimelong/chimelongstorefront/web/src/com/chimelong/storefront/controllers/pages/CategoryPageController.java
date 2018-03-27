@@ -17,12 +17,14 @@ import de.hybris.platform.commercefacades.search.data.SearchStateData;
 import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +42,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CategoryPageController extends AbstractCategoryPageController
 {
 
+	private static String DATE_PATTERN = "yyyy-MM-dd";
+	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	private static final Logger LOG = Logger.getLogger(CategoryPageController.class);
+
 	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String category(@PathVariable("categoryCode") final String categoryCode, // NOSONAR
 			@RequestParam(value = "q", required = false) final String searchQuery,
@@ -49,27 +55,19 @@ public class CategoryPageController extends AbstractCategoryPageController
 			@RequestParam(value = "ticketBookDate", required = false) String ticketBookDate, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException
 	{
-		//MALCOLM START
 		if (StringUtils.isNotEmpty(ticketBookDate))
 		{
 			ticketBookDate = LocalDate.now().toString();
 		}
-
+		model.addAttribute("ticketBookDate", ticketBookDate);
 		if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl1"))//Ticket Category
 		{
-			//
+			return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
 		}
-		else if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl2"))
+		else if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl2"))//Hotel Category
 		{
-			//
+			return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
 		}
-		else
-		{
-			//
-		}
-		model.addAttribute("ticketBookDate", ticketBookDate);
-		//TODO use "productDate" to filter result
-		//MALCOLM END
 		return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
 	}
 

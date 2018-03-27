@@ -261,66 +261,44 @@ UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
 
 ##### jinwei creates start ####
 INSERT_UPDATE PriceRow;product(code[unique=true], $catalogVersion)[unique=true];$catalogVersion;unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];minqtd;unitFactor;startTime[dateformat='yyyy-MM-dd'][unique=true];endTime[dateformat='yyyy-MM-dd'][unique=true];price; &priceRowRef
-;h001;;pieces;RMB;1;1;2018-03-01;2018-04-30;175; priceRow-h001-1
-;h001;;pieces;RMB;1;1;2018-05-01;2018-05-07;350; priceRow-h001-2
-;h001;;pieces;RMB;1;1;2018-05-08;2018-12-31;175; priceRow-h001-3
-;h002;;pieces;RMB;1;1;2018-03-01;2018-04-30;200; priceRow-h002-1
-;h002;;pieces;RMB;1;1;2018-05-01;2018-05-07;400; priceRow-h002-2
-;h002;;pieces;RMB;1;1;2018-05-08;2018-12-31;200; priceRow-h002-3
-;h003;;pieces;RMB;1;1;2018-03-01;2018-04-30;175; priceRow-h003-1
-;h003;;pieces;RMB;1;1;2018-05-01;2018-05-07;300; priceRow-h003-2
-;h003;;pieces;RMB;1;1;2018-05-08;2018-12-31;175; priceRow-h003-3
-;a001;;pieces;RMB;1;1;2018-03-01;2018-04-30;175; priceRow-a001-1
-;a001;;pieces;RMB;1;1;2018-05-01;2018-05-07;300; priceRow-a001-2
-;a001;;pieces;RMB;1;1;2018-05-08;2018-12-31;175; priceRow-a001-3
-;a002;;pieces;RMB;1;1;2018-03-01;2018-04-30;200; priceRow-a002-1
-;a002;;pieces;RMB;1;1;2018-05-01;2018-05-07;400; priceRow-a002-2
-;a002;;pieces;RMB;1;1;2018-05-08;2018-12-31;200; priceRow-a002-3
-;a003;;pieces;RMB;1;1;2018-03-01;2018-04-30;175; priceRow-a003-1
-;a003;;pieces;RMB;1;1;2018-05-01;2018-05-07;300; priceRow-a003-2
-;a003;;pieces;RMB;1;1;2018-05-08;2018-12-31;175; priceRow-a003-3
-;b001;;pieces;RMB;1;1;2018-03-01;2018-04-30;70 ; priceRow-b001-1
-;b001;;pieces;RMB;1;1;2018-05-01;2018-05-07;140 ; priceRow-b001-2
-;b001;;pieces;RMB;1;1;2018-05-08;2018-12-31;70; priceRow-b001-3
-;b002;;pieces;RMB;1;1;2018-03-01;2018-04-30;95 ; priceRow-b002-1
-;b002;;pieces;RMB;1;1;2018-05-01;2018-05-07;190 ; priceRow-b002-2
-;b002;;pieces;RMB;1;1;2018-05-08;2018-12-31;95; priceRow-b002-3
-;b003;;pieces;RMB;1;1;2018-03-01;2018-04-30;70 ; priceRow-b003-1
-;b003;;pieces;RMB;1;1;2018-05-01;2018-05-07;190 ; priceRow-b003-2
-;b003;;pieces;RMB;1;1;2018-05-08;2018-12-31;70; priceRow-b003-3
+;h001;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-h001
+;h002;;pieces;RMB;1;1;2018-01-01;2018-12-31;200; priceRow-h002
+;h003;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-h003
+;a001;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-a001
+;a002;;pieces;RMB;1;1;2018-01-01;2018-12-31;200; priceRow-a002
+;a003;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-a003
+;b001;;pieces;RMB;1;1;2018-01-01;2018-12-31;70 ; priceRow-b001
+;b002;;pieces;RMB;1;1;2018-01-01;2018-12-31;95 ; priceRow-b002
+;b003;;pieces;RMB;1;1;2018-01-01;2018-12-31;70 ; priceRow-b003
 
-;ha002;;pieces;RMB;1;1;2018-03-01;2018-04-30;400; priceRow-ha002-1
-;ha002;;pieces;RMB;1;1;2018-05-01;2018-05-07;800; priceRow-ha002-2
-;ha002;;pieces;RMB;1;1;2018-05-08;2018-12-31;400; priceRow-ha002-3
-;hb002;;pieces;RMB;1;1;2018-03-01;2018-04-30;295; priceRow-hb002-1
-;hb002;;pieces;RMB;1;1;2018-05-01;2018-05-07;590; priceRow-hb002-2
-;hb002;;pieces;RMB;1;1;2018-05-08;2018-12-31;295; priceRow-hb002-3
+;ha002;;pieces;RMB;1;1;2018-01-01;2018-12-31;400; priceRow-ha002
+;hb002;;pieces;RMB;1;1;2018-01-01;2018-12-31;295; priceRow-hb002
 
 UPDATE TicketProduct;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogVersion;$taxGroup
-;h001; priceRow-h001-1,priceRow-h001-2,priceRow-h001-3
-;h002; priceRow-h002-1,priceRow-h002-2,priceRow-h002-3
-;h003; priceRow-h003-1,priceRow-h003-2,priceRow-h003-3
-;a001; priceRow-a001-1,priceRow-a001-2,priceRow-a001-3
-;a002; priceRow-a002-1,priceRow-a002-2,priceRow-a002-3
-;a003; priceRow-a003-1,priceRow-a003-2,priceRow-a003-3
-;b001; priceRow-b001-1,priceRow-b001-2,priceRow-b001-3
-;b002; priceRow-b002-1,priceRow-b002-2,priceRow-b002-3
-;b003; priceRow-b003-1,priceRow-b003-2,priceRow-b003-3
+;h001; priceRow-h001-1
+;h002; priceRow-h002-1
+;h003; priceRow-h003-1
+;a001; priceRow-a001-1
+;a002; priceRow-a002-1
+;a003; priceRow-a003-1
+;b001; priceRow-b001-1
+;b002; priceRow-b002-1
+;b003; priceRow-b003-1
 
  INSERT_UPDATE CombinedProductEntry;product(code, $catalogVersion)[unique=true];$catalogVersion; quantity;europe1Prices(&priceRowRef);&combinedProductEntry
- ;h001; ; 1 ; priceRow-h001-1 ; combineProductEntry-h001
- ;h002; ; 1 ; priceRow-h002-1 ; combineProductEntry-h002 
- ;h003; ; 1 ; priceRow-h003-1 ; combineProductEntry-h003
- ;a001; ; 1 ; priceRow-a001-1 ; combineProductEntry-a001
- ;a002; ; 1 ; priceRow-a002-1 ; combineProductEntry-a002
- ;a003; ; 1 ; priceRow-a003-1 ; combineProductEntry-a003
- ;b001; ; 1 ; priceRow-b001-1 ; combineProductEntry-b001
- ;b002; ; 1 ; priceRow-b002-1 ; combineProductEntry-b002
- ;b003; ; 1 ; priceRow-b003-1 ; combineProductEntry-b003
+ ;h001; ; 1 ; priceRow-h001 ; combineProductEntry-h001
+ ;h002; ; 1 ; priceRow-h002 ; combineProductEntry-h002 
+ ;h003; ; 1 ; priceRow-h003 ; combineProductEntry-h003
+ ;a001; ; 1 ; priceRow-a001 ; combineProductEntry-a001
+ ;a002; ; 1 ; priceRow-a002 ; combineProductEntry-a002
+ ;a003; ; 1 ; priceRow-a003 ; combineProductEntry-a003
+ ;b001; ; 1 ; priceRow-b001 ; combineProductEntry-b001
+ ;b002; ; 1 ; priceRow-b002 ; combineProductEntry-b002
+ ;b003; ; 1 ; priceRow-b003 ; combineProductEntry-b003
  
  INSERT_UPDATE CombinedTicketProduct;code[unique=true];combinedProductEntries(&combinedProductEntry);europe1Prices(&priceRowRef);$catalogVersion;$approved;
- ;ha002  ; combineProductEntry-h002,combineProductEntry-a002; priceRow-ha002-1, priceRow-ha002-2, priceRow-ha002-3;
- ;hb002  ; combineProductEntry-h002,combineProductEntry-b002; priceRow-hb002-1, priceRow-hb002-2, priceRow-hb002-3;
+ ;ha002  ; combineProductEntry-h002,combineProductEntry-a002; priceRow-ha002
+ ;hb002  ; combineProductEntry-h002,combineProductEntry-b002; priceRow-hb002
 ##### jinwei creates end ####
 
 
