@@ -28,7 +28,7 @@ UPDATE Currency;isocode[unique=true];name[lang=$lang]
 ;CAD;Canadian Dollar;
 ;EUR;Euro;
 ;USD;USD;
-;RMB;RMB;
+;CNY;CNY;
 
 
 # Titles

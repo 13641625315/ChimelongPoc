@@ -11,15 +11,36 @@
 package com.chimelong.storefront.controllers.pages;
 
 
+import de.hybris.platform.acceleratorservices.controllers.page.PageType;
+import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractCategoryPageController;
+import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
+import de.hybris.platform.category.model.CategoryModel;
+import de.hybris.platform.cms2.model.pages.CategoryPageModel;
+import de.hybris.platform.commercefacades.product.converters.populator.ProductPricePopulator;
+import de.hybris.platform.commercefacades.product.converters.populator.ProductPromotionsPopulator;
+import de.hybris.platform.commercefacades.product.data.CategoryData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.search.data.SearchStateData;
 import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
+import de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData;
+import de.hybris.platform.converters.Populator;
+import de.hybris.platform.core.model.product.ProductModel;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,6 +54,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chimelong.core.model.CombinedTicketProductModel;
+import com.chimelong.core.model.DateRangeModel;
+import com.chimelong.core.model.TicketProductModel;
+
 
 /**
  * Controller for a category page
@@ -41,13 +66,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/**/c")
 public class CategoryPageController extends AbstractCategoryPageController
 {
-
 	private static String DATE_PATTERN = "yyyy-MM-dd";
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static final Logger LOG = Logger.getLogger(CategoryPageController.class);
 
+	@Resource
+	private Populator<ProductModel, ProductData> productPrimaryImagePopulator;
+	@Resource
+	private ProductPromotionsPopulator<ProductModel, ProductData> productPromotionsPopulator;
+	@Resource
+	private ProductPricePopulator<ProductModel, ProductData> productPricePopulator;
+
 	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String category(@PathVariable("categoryCode") final String categoryCode, // NOSONAR
+	public String category(@PathVariable(value = "categoryCode", required = true) final String categoryCode, // NOSONAR
 			@RequestParam(value = "q", required = false) final String searchQuery,
 			@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
@@ -60,11 +91,48 @@ public class CategoryPageController extends AbstractCategoryPageController
 			ticketBookDate = LocalDate.now().toString();
 		}
 		model.addAttribute("ticketBookDate", ticketBookDate);
-		if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl1"))//Ticket Category
+		final Date ticketBookDateD = convertStringDateToDate(ticketBookDate, DATE_PATTERN);
+		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
+		final CategoryPageModel categoryPage = getCategoryPage(category);
+		if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.startsWith("cl1"))//Ticket Category
 		{
-			return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
+			if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.startsWith("cl14"))//Circus Ticket
+			{
+				return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
+			}
+			else//Normal Ticket
+			{
+				final List<ProductData> productDatas = new ArrayList<>();
+				final List<ProductModel> products = category.getProducts();
+				for (final ProductModel product : products)
+				{
+					if ((product instanceof TicketProductModel || product instanceof CombinedTicketProductModel)
+							&& isBookingDateTicket(product, ticketBookDateD))
+					{
+						final ProductData productData = populateTicketProduct(product, ticketBookDateD);
+						productDatas.add(productData);
+					}
+				}
+				storeCmsPageInModel(model, categoryPage);
+				storeContinueUrl(request);
+				final ProductCategorySearchPageData<SearchStateData, ProductData, CategoryData> searchPageData = new ProductCategorySearchPageData();
+				searchPageData.setResults(productDatas);
+				model.addAttribute("searchPageData", searchPageData);
+				model.addAttribute(WebConstants.BREADCRUMBS_KEY,
+						getSearchBreadcrumbBuilder().getBreadcrumbs(categoryCode, searchPageData));
+				model.addAttribute("categoryName", category.getName());
+				model.addAttribute("pageType", PageType.CATEGORY.name());
+				model.addAttribute("userLocation", getCustomerLocationService().getUserLocation());
+				updatePageTitle(category, model);
+
+				final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(
+						category.getKeywords().stream().map(keywordModel -> keywordModel.getKeyword()).collect(Collectors.toSet()));
+				final String metaDescription = MetaSanitizerUtil.sanitizeDescription(category.getDescription());
+				setUpMetaData(model, metaKeywords, metaDescription);
+				return getViewPage(categoryPage);
+			}
 		}
-		else if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.contains("cl2"))//Hotel Category
+		else if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.startsWith("cl2"))//Hotel Category
 		{
 			return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
 		}
@@ -91,5 +159,59 @@ public class CategoryPageController extends AbstractCategoryPageController
 			@RequestParam(value = "sort", required = false) final String sortCode) throws UnsupportedEncodingException
 	{
 		return performSearchAndGetResultsData(categoryCode, searchQuery, page, showMode, sortCode);
+	}
+
+	//////////////////////////////////////////////
+	private Date convertStringDateToDate(final String date, final String pattern)
+	{
+		try
+		{
+			return Date.from(
+					LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern)).atStartOfDay(ZoneId.systemDefault()).toInstant());
+		}
+		catch (final DateTimeParseException e)
+		{
+			LOG.error("Unable to parse String to Date:", e);
+		}
+		return null;
+	}
+
+	private boolean isBookingDateTicket(final ProductModel product, final Date date)
+	{
+		for (final DateRangeModel dateRange : product.getDateRanges())
+		{
+			if (!(date.before(dateRange.getStartingDate())) && !date.after(dateRange.getEndingDate()))
+			{
+				if (product.getIsWeekend().equals(dateIsWeekends(date)))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private Boolean dateIsWeekends(final Date date)
+	{
+		final Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+		{
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
+	}
+
+	private ProductData populateTicketProduct(final ProductModel product, final Date date)
+	{
+		final ProductData productData = new ProductData();
+		productData.setCode(product.getCode());
+		productData.setName(product.getName(Locale.CHINESE));
+		//
+		productPrimaryImagePopulator.populate(product, productData);
+		productPromotionsPopulator.populate(product, productData);
+		productPricePopulator.populate(product, productData);
+		//
+		return productData;
 	}
 }

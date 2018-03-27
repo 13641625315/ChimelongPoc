@@ -27,9 +27,9 @@ INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append];password[d
 # Rustic Hardware ORGANIZATION (Hierarchy)
 
 INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
-;Monthly40KAlert10Percent;PERCENTAGE:B2BRateType;10;40000;RMB;MONTH:B2BPeriodRange;;
-;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;RMB;MONTH:B2BPeriodRange;;
-;Monthly15KAlert3K;CURRENCY:B2BRateType;3000;15000;RMB;MONTH:B2BPeriodRange;;
+;Monthly40KAlert10Percent;PERCENTAGE:B2BRateType;10;40000;CNY;MONTH:B2BPeriodRange;;
+;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;CNY;MONTH:B2BPeriodRange;;
+;Monthly15KAlert3K;CURRENCY:B2BRateType;3000;15000;CNY;MONTH:B2BPeriodRange;;
 
 INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
 ;Hierarchical;Rustic;Rustic;Rustic;;Rustic;RusticAddrID1;RusticID1;acctmgra;Monthly40KAlert10Percent;accApproval;
@@ -51,7 +51,7 @@ INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit
 ;standardPermissions;Standard Permissions;Rustic;Rustic 5K USD ORDER:Rustic,Rustic 15K USD MONTH:Rustic;
 ;limitedPermissions;Limited Permissions;Rustic;Rustic 0K USD ORDER:Rustic,Rustic 25K USD MONTH:Rustic;
 
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='RMB'];password[default=$defaultPassword];
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='CNY'];password[default=$defaultPassword];
 ;Admin A;linda.wolf@rustic-hw.com;linda.wolf@rustic-hw.com;linda.wolf@rustic-hw.com;Linda Wolf;ms;Rustic,b2badmingroup;;;;;
 ;AdminB;lars.bauer@rustic-hw.com;lars.bauer@rustic-hw.com;lars.bauer@rustic-hw.com;Lars Bauer;mr;Rustic Services, b2badmingroup;;;;;;
 ;Approver A;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;Hanna Schmidt;ms;Rustic, b2bapprovergroup;;;;;;
@@ -73,7 +73,7 @@ INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;ti
 ;Manager B;anil.gupta@rustic-hw.com;anil.gupta@rustic-hw.com;anil.gupta@rustic-hw.com;Anil Gupta;mr;Rustic Retail, b2bmanagergroup, b2bcustomergroup, premiumPermissions;;;;;;
 ;Manager C;salome.levi@rustic-hw.com;salome.levi@rustic-hw.com;salome.levi@rustic-hw.com;Salome Levi;ms;Rustic Services, b2bmanagergroup;;;;;;
 
-INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='RMB']
+INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='CNY']
 ;Rustic Global;Rustic Global;Rustic;Monthly 50K USD;
 ;Rustic Retail;Retail;Rustic Retail;Monthly 2.5K USD;
 ;Custom Retail;Custom Retail;Custom Retail;Monthly 4K USD;
@@ -81,13 +81,13 @@ INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(co
 ;Services West;Services West;Services West;Monthly 20K USD;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];;
-;Monthly 50K USD;Rustic;50000;RMB;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 50K USD;
-;Monthly 20K USD;Services West;20000;RMB;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 20K USD;
-;Monthly 4K USD;Custom Retail;4000;RMB;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K USD;
-;Monthly 2.5K USD;Rustic Retail;2500;RMB;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 2.5K USD;
-;Weekly 2.5K USD;Services East;2500;RMB;01.01.2010 00:00:00,12.31.2032 12:59:59;Weekly 2.5K USD;
+;Monthly 50K USD;Rustic;50000;CNY;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 50K USD;
+;Monthly 20K USD;Services West;20000;CNY;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 20K USD;
+;Monthly 4K USD;Custom Retail;4000;CNY;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K USD;
+;Monthly 2.5K USD;Rustic Retail;2500;CNY;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 2.5K USD;
+;Weekly 2.5K USD;Services East;2500;CNY;01.01.2010 00:00:00,12.31.2032 12:59:59;Weekly 2.5K USD;
 
-INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode)[default='RMB'];
+INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode)[default='CNY'];
 ;Rustic 0K USD ORDER;Rustic;0;
 ;Rustic 1K USD ORDER;Rustic;1000;
 ;Rustic 2K USD ORDER;Rustic;2000;
@@ -98,12 +98,12 @@ INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;
 ;Rustic 20K USD ORDER;Rustic;20000;
 
 INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
-;Rustic 3K USD MONTH;Rustic;3000;RMB;MONTH:B2BPeriodRange;
-;Rustic 10K USD MONTH;Rustic;10000;RMB;MONTH:B2BPeriodRange;
-;Rustic 15K USD MONTH;Rustic;15000;RMB;MONTH:B2BPeriodRange;
-;Rustic 20K USD MONTH;Rustic;20000;RMB;MONTH:B2BPeriodRange;
-;Rustic 25K USD MONTH;Rustic;25000;RMB;MONTH:B2BPeriodRange;
-;Rustic Unlimited Timespan;Rustic;999999999;RMB;MONTH:B2BPeriodRange;
+;Rustic 3K USD MONTH;Rustic;3000;CNY;MONTH:B2BPeriodRange;
+;Rustic 10K USD MONTH;Rustic;10000;CNY;MONTH:B2BPeriodRange;
+;Rustic 15K USD MONTH;Rustic;15000;CNY;MONTH:B2BPeriodRange;
+;Rustic 20K USD MONTH;Rustic;20000;CNY;MONTH:B2BPeriodRange;
+;Rustic 25K USD MONTH;Rustic;25000;CNY;MONTH:B2BPeriodRange;
+;Rustic Unlimited Timespan;Rustic;999999999;CNY;MONTH:B2BPeriodRange;
 
 INSERT_UPDATE B2BBudgetExceededPermission;code[unique=true];Unit(uid);
 ;Rustic Budget Exceeded;Rustic;
@@ -129,7 +129,7 @@ UPDATE B2BCustomer;originalUid[unique=true];uid[unique=true];permissions(code,Un
 #  Pronto Hardware ORGANIZATION (KIS)
 
 INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
-;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;RMB;MONTH:B2BPeriodRange;;
+;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;CNY;MONTH:B2BPeriodRange;;
 
 INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);accountManagerGroups(uid);creditLimit(code);approvalProcessCode;
 ;KIS;Pronto;Pronto;Pronto;;Pronto;ProntoAddrID1;ProntoID1;acctmgrd;SuperAccountMangers;Monthly30KAlert3K;accApproval;
@@ -145,7 +145,7 @@ INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit
 ;enhancedPermissions;Enhanced Permissions;Pronto;Pronto 12K USD ORDER:Pronto,Pronto 15K USD MONTH:Pronto;
 ;commonPermissions;Common Permissions;Pronto;Pronto 6K USD ORDER:Pronto,Pronto 12K USD MONTH:Pronto;
 
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='RMB'];password[default=$defaultPassword]
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='CNY'];password[default=$defaultPassword]
 ;Admin A;linda.wolf@pronto-hw.com;linda.wolf@pronto-hw.com;Linda Wolf;ms;Pronto, b2badmingroup;
 ;Approver A;hanna.schmidt@pronto-hw.com;hanna.schmidt@pronto-hw.com;Hanna Schmidt;ms;Pronto, b2bapprovergroup;
 ;Approver B;james.bell@pronto-hw.com;james.bell@pronto-hw.com;James Bell;mr;Pronto Services, b2bapprovergroup;
@@ -157,23 +157,23 @@ INSERT_UPDATE B2BCustomer;description;uid[unique=true];email;name;title(code);gr
 ;Manager B;anil.gupta@pronto-hw.com;anil.gupta@pronto-hw.com;Anil Gupta;mr;Pronto Goods, b2bmanagergroup;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];
-;30K USD/MONTH;Pronto;30000;RMB;01.01.2010 00:00:00,12.31.2021 12:59:59;30K USD/MONTH;
-;20K USD/MONTH;Pronto;20000;RMB;01.01.2010 00:00:00,12.31.2021 12:59:59;20K USD/MONTH;
+;30K USD/MONTH;Pronto;30000;CNY;01.01.2010 00:00:00,12.31.2021 12:59:59;30K USD/MONTH;
+;20K USD/MONTH;Pronto;20000;CNY;01.01.2010 00:00:00,12.31.2021 12:59:59;20K USD/MONTH;
 
 INSERT_UPDATE B2BCostCenter;code[unique=true];Unit(uid);currency(isocode);budgets(code);name[lang=en];
-;Pronto Goods;Pronto Goods;RMB;30K USD/MONTH;Pronto Goods;
-;Pronto Services;Pronto Services;RMB;20K USD/MONTH;Pronto Services;
+;Pronto Goods;Pronto Goods;CNY;30K USD/MONTH;Pronto Goods;
+;Pronto Services;Pronto Services;CNY;20K USD/MONTH;Pronto Services;
 
 INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode);
-;Pronto 5K USD ORDER;Pronto;5000;RMB; -
-;Pronto 6K USD ORDER;Pronto;6000;RMB; -
-;Pronto 10K USD ORDER;Pronto;10000;RMB; -
-;Pronto 12K USD ORDER;Pronto;12000;RMB; -
+;Pronto 5K USD ORDER;Pronto;5000;CNY; -
+;Pronto 6K USD ORDER;Pronto;6000;CNY; -
+;Pronto 10K USD ORDER;Pronto;10000;CNY; -
+;Pronto 12K USD ORDER;Pronto;12000;CNY; -
 
 INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
-;Pronto 15K USD MONTH;Pronto;15000;RMB;MONTH:B2BPeriodRange;
-;Pronto 12K USD MONTH;Pronto;12000;RMB;MONTH:B2BPeriodRange;
-;Pronto Unlimited Threshold Timespan;Pronto;999999999;RMB;MONTH:B2BPeriodRange;
+;Pronto 15K USD MONTH;Pronto;15000;CNY;MONTH:B2BPeriodRange;
+;Pronto 12K USD MONTH;Pronto;12000;CNY;MONTH:B2BPeriodRange;
+;Pronto Unlimited Threshold Timespan;Pronto;999999999;CNY;MONTH:B2BPeriodRange;
 
 UPDATE B2BUnit;uid[unique=true];creditLimit(code);accountManager(uid);approvers(uid)
 ;Pronto;Monthly30KAlert3K;acctmgrd;hanna.schmidt@pronto-hw.com;

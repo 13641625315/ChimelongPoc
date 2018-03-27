@@ -14,10 +14,10 @@
 
 $productCatalog=powertoolsProductCatalog
 $classificationCatalog=PowertoolsClassification
-$currencies=USD,RMB
+$currencies=USD,CNY
 $net=true
 $storeUid=powertools
-$defaultCurrency=RMB
+$defaultCurrency=CNY
 $languages=ja,en,de,zh
 $defaultLanguage=zh
 $unitedKingdom=GB,GG,IM,JE

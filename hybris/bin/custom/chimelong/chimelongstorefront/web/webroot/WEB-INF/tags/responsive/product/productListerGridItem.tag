@@ -40,7 +40,7 @@
 					<product:productListerItemPrice product="${product}" />
 				</div>
 			</ycommerce:testId>
-			<c:forEach var="variantOption" items="${product.variantOptions}">
+			<%-- <c:forEach var="variantOption" items="${product.variantOptions}">
 				<c:forEach items="${variantOption.variantOptionQualifiers}"
 					var="variantOptionQualifier">
 					<c:if
@@ -59,7 +59,7 @@
 				</c:forEach>
 				<img style="width: 32px; height: 32px;" src="${imageUrl}"
 					title="${variantName}" alt="${variantName}" />
-			</c:forEach>
+			</c:forEach> --%>
 		</div>
 
 

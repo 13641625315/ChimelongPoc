@@ -261,36 +261,36 @@ UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
 
 ##### jinwei creates start ####
 INSERT_UPDATE PriceRow;product(code[unique=true], $catalogVersion)[unique=true];$catalogVersion;unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];minqtd;unitFactor;startTime[dateformat='yyyy-MM-dd'][unique=true];endTime[dateformat='yyyy-MM-dd'][unique=true];price; &priceRowRef
-;h001;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-h001
-;h002;;pieces;RMB;1;1;2018-01-01;2018-12-31;200; priceRow-h002
-;h003;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-h003
-;a001;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-a001
-;a002;;pieces;RMB;1;1;2018-01-01;2018-12-31;200; priceRow-a002
-;a003;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-a003
-;b001;;pieces;RMB;1;1;2018-01-01;2018-12-31;70 ; priceRow-b001
-;b002;;pieces;RMB;1;1;2018-01-01;2018-12-31;95 ; priceRow-b002
-;b003;;pieces;RMB;1;1;2018-01-01;2018-12-31;70 ; priceRow-b003
-;cv001a;;pieces;RMB;1;1;2018-01-01;2018-12-31;230 ; priceRow-cv001a
-;cv001b;;pieces;RMB;1;1;2018-01-01;2018-12-31;230 ; priceRow-cv001b
-;cv002a;;pieces;RMB;1;1;2018-01-01;2018-12-31;300 ; priceRow-cv002a
-;cv002b;;pieces;RMB;1;1;2018-01-01;2018-12-31;300 ; priceRow-cv002b
-;h0011;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-h0011
-;h0021;;pieces;RMB;1;1;2018-01-01;2018-12-31;200; priceRow-h0021
-;h0031;;pieces;RMB;1;1;2018-01-01;2018-12-31;175; priceRow-h0031
-;a0011;;pieces;RMB;1;1;2018-01-01;2018-12-31;350; priceRow-a0011
-;a0021;;pieces;RMB;1;1;2018-01-01;2018-12-31;400; priceRow-a0021
-;a0031;;pieces;RMB;1;1;2018-01-01;2018-12-31;350; priceRow-a0031
-;b0011;;pieces;RMB;1;1;2018-01-01;2018-12-31;140 ; priceRow-b0011
-;b0021;;pieces;RMB;1;1;2018-01-01;2018-12-31;190 ; priceRow-b0021
-;b0031;;pieces;RMB;1;1;2018-01-01;2018-12-31;140 ; priceRow-b0031
-;cv0011a;;pieces;RMB;1;1;2018-01-01;2018-12-31;460 ; priceRow-cv0011a
-;cv0011b;;pieces;RMB;1;1;2018-01-01;2018-12-31;460 ; priceRow-cv0011b
-;cv0021a;;pieces;RMB;1;1;2018-01-01;2018-12-31;600 ; priceRow-cv0021a
-;cv0021b;;pieces;RMB;1;1;2018-01-01;2018-12-31;600 ; priceRow-cv0021b
-;ha002;;pieces;RMB;1;1;2018-01-01;2018-12-31;400; priceRow-ha002
-;hb002;;pieces;RMB;1;1;2018-01-01;2018-12-31;295; priceRow-hb002
-;ha0021;;pieces;RMB;1;1;2018-01-01;2018-12-31;800; priceRow-ha0021
-;hb0021;;pieces;RMB;1;1;2018-01-01;2018-12-31;590; priceRow-hb0021
+;h001;;pieces;CNY;1;1;2018-01-01;2018-12-31;175; priceRow-h001
+;h002;;pieces;CNY;1;1;2018-01-01;2018-12-31;200; priceRow-h002
+;h003;;pieces;CNY;1;1;2018-01-01;2018-12-31;175; priceRow-h003
+;a001;;pieces;CNY;1;1;2018-01-01;2018-12-31;175; priceRow-a001
+;a002;;pieces;CNY;1;1;2018-01-01;2018-12-31;200; priceRow-a002
+;a003;;pieces;CNY;1;1;2018-01-01;2018-12-31;175; priceRow-a003
+;b001;;pieces;CNY;1;1;2018-01-01;2018-12-31;70 ; priceRow-b001
+;b002;;pieces;CNY;1;1;2018-01-01;2018-12-31;95 ; priceRow-b002
+;b003;;pieces;CNY;1;1;2018-01-01;2018-12-31;70 ; priceRow-b003
+;cv001a;;pieces;CNY;1;1;2018-01-01;2018-12-31;230 ; priceRow-cv001a
+;cv001b;;pieces;CNY;1;1;2018-01-01;2018-12-31;230 ; priceRow-cv001b
+;cv002a;;pieces;CNY;1;1;2018-01-01;2018-12-31;300 ; priceRow-cv002a
+;cv002b;;pieces;CNY;1;1;2018-01-01;2018-12-31;300 ; priceRow-cv002b
+;h0011;;pieces;CNY;1;1;2018-01-01;2018-12-31;350; priceRow-h0011
+;h0021;;pieces;CNY;1;1;2018-01-01;2018-12-31;400; priceRow-h0021
+;h0031;;pieces;CNY;1;1;2018-01-01;2018-12-31;350; priceRow-h0031
+;a0011;;pieces;CNY;1;1;2018-01-01;2018-12-31;350; priceRow-a0011
+;a0021;;pieces;CNY;1;1;2018-01-01;2018-12-31;400; priceRow-a0021
+;a0031;;pieces;CNY;1;1;2018-01-01;2018-12-31;350; priceRow-a0031
+;b0011;;pieces;CNY;1;1;2018-01-01;2018-12-31;140 ; priceRow-b0011
+;b0021;;pieces;CNY;1;1;2018-01-01;2018-12-31;190 ; priceRow-b0021
+;b0031;;pieces;CNY;1;1;2018-01-01;2018-12-31;140 ; priceRow-b0031
+;cv0011a;;pieces;CNY;1;1;2018-01-01;2018-12-31;460 ; priceRow-cv0011a
+;cv0011b;;pieces;CNY;1;1;2018-01-01;2018-12-31;460 ; priceRow-cv0011b
+;cv0021a;;pieces;CNY;1;1;2018-01-01;2018-12-31;600 ; priceRow-cv0021a
+;cv0021b;;pieces;CNY;1;1;2018-01-01;2018-12-31;600 ; priceRow-cv0021b
+;ha002;;pieces;CNY;1;1;2018-01-01;2018-12-31;400; priceRow-ha002
+;hb002;;pieces;CNY;1;1;2018-01-01;2018-12-31;295; priceRow-hb002
+;ha0021;;pieces;CNY;1;1;2018-01-01;2018-12-31;800; priceRow-ha0021
+;hb0021;;pieces;CNY;1;1;2018-01-01;2018-12-31;590; priceRow-hb0021
 
 UPDATE Product;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogVersion;$taxGroup
 ;h001; priceRow-h001
