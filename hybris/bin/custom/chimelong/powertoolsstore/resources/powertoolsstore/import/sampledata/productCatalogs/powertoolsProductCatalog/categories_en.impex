@@ -46,5 +46,6 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[l
  ;cl11;;ChimelongHappyWorld;;
  ;cl12;;ChimelongAnimalWorld;;
  ;cl13;;ChimelongWaterWorld;;
+ ;cl13;;ChimelongBigCircus;;
  ;cl21;;ChimelongBigHotel;;
  #CRIS end

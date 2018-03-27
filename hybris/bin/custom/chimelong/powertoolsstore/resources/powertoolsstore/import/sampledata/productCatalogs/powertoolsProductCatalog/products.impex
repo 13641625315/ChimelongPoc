@@ -892,21 +892,50 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  INSERT_UPDATE DateRange; startingDate[dateformat='yyyy-MM-dd'][unique=true]; endingDate[dateformat='yyyy-MM-dd'][unique=true]; &dateRangeRef
  ; 2018-01-01 ; 2032-12-31; dateRange1
  
- INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); customerType(code); variantType(code); unit(code)[default=pieces]; $catalogVersion
- ; h001; cl11; ENTRANCETICKET ;  CHILD ;  ; ;
- ; h002; cl11; ENTRANCETICKET ;  ADULT ;  ; ;
- ; h003; cl11; ENTRANCETICKET ;  ELDER ;  ; ;
- ; a001; cl12; ENTRANCETICKET ;  CHILD ;  ; ;
- ; a002; cl12; ENTRANCETICKET ;  ADULT ;  ; ;
- ; a003; cl12; ENTRANCETICKET ;  ELDER ;  ; ;
- ; b001; cl13; ENTRANCETICKET ;  CHILD ;  ; ;
- ; b002; cl13; ENTRANCETICKET ;  ADULT ;  ; ;
- ; b003; cl13; ENTRANCETICKET ;  ELDER ;  ; ;
- 
+ INSERT_UPDATE TicketProduct;code[unique=true]; $supercategories; ticketType(code); customerType(code); dateRanges(&dateRangeRef); isWeekend; variantType(code); unit(code)[default=pieces]; $catalogVersion
+ ; h001; cl11; ENTRANCETICKET; CHILD; dateRange1; false;
+ ; h002; cl11; ENTRANCETICKET; ADULT; dateRange1; false;
+ ; h003; cl11; ENTRANCETICKET; ELDER; dateRange1; false;
+ ; a001; cl12; ENTRANCETICKET; CHILD; dateRange1; false;
+ ; a002; cl12; ENTRANCETICKET; ADULT; dateRange1; false;
+ ; a003; cl12; ENTRANCETICKET; ELDER; dateRange1; false;
+ ; b001; cl13; ENTRANCETICKET; CHILD; dateRange1; false;
+ ; b002; cl13; ENTRANCETICKET; ADULT; dateRange1; false;
+ ; b003; cl13; ENTRANCETICKET; ELDER; dateRange1; false;
+ ; c001; cl14; CIRCUSTICKET; ADULT; dateRange1; false; CircusVariantTicket
+ ; c002; cl14; CIRCUSTICKET; ADULT; dateRange1; false; CircusVariantTicket
+ ; h0011; cl11; ENTRANCETICKET; CHILD; dateRange1; true;
+ ; h0021; cl11; ENTRANCETICKET; ADULT; dateRange1; true;
+ ; h0031; cl11; ENTRANCETICKET; ELDER; dateRange1; true;
+ ; a0011; cl12; ENTRANCETICKET; CHILD; dateRange1; true;
+ ; a0021; cl12; ENTRANCETICKET; ADULT; dateRange1; true;
+ ; a0031; cl12; ENTRANCETICKET; ELDER; dateRange1; true;
+ ; b0011; cl13; ENTRANCETICKET; CHILD; dateRange1; true;
+ ; b0021; cl13; ENTRANCETICKET; ADULT; dateRange1; true;
+ ; b0031; cl13; ENTRANCETICKET; ELDER; dateRange1; true;
+ ; c0011; cl14; CIRCUSTICKET; ADULT; dateRange1; true; CircusVariantTicket
+ ; c0021; cl14; CIRCUSTICKET; ADULT; dateRange1; true; CircusVariantTicket
 
- INSERT_UPDATE CombinedTicketProduct;code[unique=true];$catalogVersion; $supercategories; unit(code)[default=pieces]
- ;ha002  ;  ; cl11,cl12 ; 
- ;hb002  ;  ; cl11,cl13 ; 
+ INSERT_UPDATE CombinedTicketProduct;code[unique=true];$catalogVersion; $supercategories; dateRanges(&dateRangeRef); isWeekend; unit(code)[default=pieces]
+ ;ha002  ;  ; cl11,cl12; dateRange1; false; 
+ ;hb002  ;  ; cl11,cl13; dateRange1; false;
+ ;ha0021  ;  ; cl11,cl12; dateRange1; true; 
+ ;hb0021  ;  ; cl11,cl13; dateRange1; true;
+ 
+ INSERT_UPDATE CircusShowTime;showCode[unique=true];showTime;isDisabled;&circusShowTimeRef
+ ;cst1730;17:30~18:50;false;CircusShowTime1730
+ ;cst1930;19:30~20:50;false;CircusShowTime1930
+ 
+ INSERT_UPDATE CircusVariantTicket;code[unique=true];$catalogVersion; $supercategories; $baseProduct; showTime(&circusShowTimeRef)
+ ;cv001a  ;  ; cl14; c001; CircusShowTime1730
+ ;cv001b  ;  ; cl14; c001; CircusShowTime1930
+ ;cv002a  ;  ; cl14; c002; CircusShowTime1730
+ ;cv002b  ;  ; cl14; c002; CircusShowTime1930
+ ;cv0011a  ;  ; cl14; c0011; CircusShowTime1730
+ ;cv0011b  ;  ; cl14; c0011; CircusShowTime1930
+ ;cv0021a  ;  ; cl14; c0021; CircusShowTime1730
+ ;cv0021b  ;  ; cl14; c0021; CircusShowTime1930
+ 
  #### jinwei creates end ####
  
  

@@ -100,6 +100,18 @@
 	<itemtypes>
 		<!-- Add your item definitions here -->
 		<typegroup name="Chimelong">
+			<itemtype code="Product" autocreate="false" generate="false">
+				<description>Extending the Product type from core with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="dateRanges" type="DateRangeList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="isWeekend" type="java.lang.Boolean">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
 			<itemtype code="TicketProduct" extends="Product" autocreate="true"
 				generate="true" jaloclass="com.chimelong.core.jalo.TicketProduct">
 				<deployment table="TicketProduct" typecode="30001"></deployment>
@@ -172,10 +184,11 @@
 				jaloclass="com.chimelong.core.jalo.CircusShowTime">
 				<deployment table="CircusShowTime" typecode="30006"></deployment>
 				<attributes>
-					<attribute qualifier="showName" type="java.lang.String">
+					<attribute qualifier="showCode" type="java.lang.String">
+						<modifiers unique="true" />
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="showStartTime" type="java.lang.String">
+					<attribute qualifier="showTime" type="java.lang.String">
 						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="isDisabled" type="java.lang.Boolean">
