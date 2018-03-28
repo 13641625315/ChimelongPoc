@@ -174,7 +174,7 @@
 				jaloclass="com.chimelong.core.jalo.CircusVariantTicket">
 				<deployment table="CircusVariantTicket" typecode="30005"></deployment>
 				<attributes>
-					<attribute qualifier="showTime" type="java.lang.String">
+					<attribute qualifier="showTime" type="CircusShowTime">
 						<persistence type="property" />
 					</attribute>
 				</attributes>

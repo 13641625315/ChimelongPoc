@@ -922,19 +922,19 @@ UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summar
  ;ha0021  ;  ; cl11,cl12; dateRange1; true; 
  ;hb0021  ;  ; cl11,cl13; dateRange1; true;
  
- INSERT_UPDATE CircusShowTime;showCode[unique=true];showTime;isDisabled;&circusShowTimeRef
- ;cst1730;17:30~18:50;false;CircusShowTime1730
- ;cst1930;19:30~20:50;false;CircusShowTime1930
+ INSERT_UPDATE CircusShowTime;showCode[unique=true];showTime;isDisabled;
+ ;cst1730;17:30~18:50;false;
+ ;cst1930;19:30~20:50;false;
  
- INSERT_UPDATE CircusVariantTicket;code[unique=true];$catalogVersion; $supercategories; $baseProduct; showTime(&circusShowTimeRef)
- ;cv001a  ;  ; cl14; c001; CircusShowTime1730
- ;cv001b  ;  ; cl14; c001; CircusShowTime1930
- ;cv002a  ;  ; cl14; c002; CircusShowTime1730
- ;cv002b  ;  ; cl14; c002; CircusShowTime1930
- ;cv0011a  ;  ; cl14; c0011; CircusShowTime1730
- ;cv0011b  ;  ; cl14; c0011; CircusShowTime1930
- ;cv0021a  ;  ; cl14; c0021; CircusShowTime1730
- ;cv0021b  ;  ; cl14; c0021; CircusShowTime1930
+ INSERT_UPDATE CircusVariantTicket;code[unique=true];$catalogVersion; $supercategories; $baseProduct; showTime(showCode)
+ ;cv001a  ;  ; cl14; c001; cst1730
+ ;cv001b  ;  ; cl14; c001; cst1930
+ ;cv002a  ;  ; cl14; c002; cst1730
+ ;cv002b  ;  ; cl14; c002; cst1930
+ ;cv0011a  ;  ; cl14; c0011; cst1730
+ ;cv0011b  ;  ; cl14; c0011; cst1930
+ ;cv0021a  ;  ; cl14; c0021; cst1730
+ ;cv0021b  ;  ; cl14; c0021; cst1930
  
  #### jinwei creates end ####
  

@@ -552,4 +552,11 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+	
+	<bean id="circusShowTimeDao" class="com.chimelong.core.product.dao.impl.DefaultCircusShowTimeDao"/>
+	
+	<bean id="circusShowTimeService" class="com.chimelong.core.product.service.impl.DefaultCircusShowTimeService">
+	<property name="circusShowTimeDao" ref="circusShowTimeDao"/>
+	</bean>
+	
 </beans>

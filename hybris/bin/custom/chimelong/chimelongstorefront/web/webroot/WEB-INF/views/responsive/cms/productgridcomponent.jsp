@@ -11,10 +11,22 @@
 <label class="control-label" for="dateForm${top ? '1' : '2'}"> <%--<spring:theme code="${themeMsgKey}.sortTitle"/>--%>
 	门票日期:
 </label>
-<form id="dateForm${top ? '1' : '2'}" action="#" method="get">
-	<input type="date" id="ticketBookDate${top ? '1' : '2'}"
-		name="ticketBookDate" value="${ticketBookDate}" class="form-control">
-</form>
+<div>
+	<form id="dateForm${top ? '1' : '2'}" action="#"
+		method="get">
+		<input type="date" id="ticketBookDate${top ? '1' : '2'}"
+			name="ticketBookDate" value="${ticketBookDate}" class="form-control">
+		<c:if test="${categoryCode eq 'cl14'}">
+			<select name="showTime">
+				<c:forEach items="${showTimes}" var="showTimeEntry"
+					varStatus="status">
+					<option value="${showTimeEntry.showCode}"
+						<c:if test="${showTimeEntry.showCode eq showTime}">selected="selected"</c:if>>${showTimeEntry.showTime}</option>
+				</c:forEach>
+			</select>
+		</c:if>
+	</form>
+</div>
 
 <div class="product__listing product__grid">
 	<c:forEach items="${searchPageData.results}" var="product"

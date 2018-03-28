@@ -190,4 +190,9 @@
 	</bean>
 
 	<bean id="genderData" class="com.chimelong.facades.product.data.GenderData" scope="prototype"/>
+	
+	<bean id="circusShowTimeFacade" class="com.chimelong.facades.product.impl.DefaultCircusShowTimeFacade">
+		<property name="circusShowTimeService" ref="circusShowTimeService"/>
+	</bean>
+	
 </beans>

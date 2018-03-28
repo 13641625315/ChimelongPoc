@@ -26,6 +26,7 @@ import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
 import de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.variants.model.VariantProductModel;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -54,9 +55,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chimelong.core.model.CircusVariantTicketModel;
+import com.chimelong.core.model.CombinedProductEntryModel;
 import com.chimelong.core.model.CombinedTicketProductModel;
 import com.chimelong.core.model.DateRangeModel;
 import com.chimelong.core.model.TicketProductModel;
+import com.chimelong.facades.product.CircusShowTimeFacade;
 
 
 /**
@@ -76,20 +80,25 @@ public class CategoryPageController extends AbstractCategoryPageController
 	private ProductPromotionsPopulator<ProductModel, ProductData> productPromotionsPopulator;
 	@Resource
 	private ProductPricePopulator<ProductModel, ProductData> productPricePopulator;
+	@Resource
+	private CircusShowTimeFacade circusShowTimeFacade;
 
 	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String category(@PathVariable(value = "categoryCode", required = true) final String categoryCode, // NOSONAR
+	public String category(@PathVariable(value = "categoryCode", required = true) final String categoryCode,
 			@RequestParam(value = "q", required = false) final String searchQuery,
 			@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
 			@RequestParam(value = "sort", required = false) final String sortCode,
-			@RequestParam(value = "ticketBookDate", required = false) String ticketBookDate, final Model model,
+			@RequestParam(value = "ticketBookDate", required = false) String ticketBookDate,
+			@RequestParam(value = "showTime", required = false) final String showTime, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException
 	{
 		if (StringUtils.isEmpty(ticketBookDate))
 		{
 			ticketBookDate = LocalDate.now().toString();
 		}
+		model.addAttribute("showTime", showTime);
+		model.addAttribute("showTimes", circusShowTimeFacade.findAllCircusShowTimes());
 		model.addAttribute("ticketBookDate", ticketBookDate);
 		final Date ticketBookDateD = convertStringDateToDate(ticketBookDate, DATE_PATTERN);
 		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
@@ -98,7 +107,50 @@ public class CategoryPageController extends AbstractCategoryPageController
 		{
 			if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.startsWith("cl14"))//Circus Ticket
 			{
-				return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
+				final List<ProductData> productDatas = new ArrayList<>();
+				final List<ProductModel> products = category.getProducts();
+				for (final ProductModel product : products)
+				{
+					if (isBookingDateTicket(product, ticketBookDateD))
+					{
+						if (product instanceof CircusVariantTicketModel)
+						{
+							if (StringUtils.isEmpty(showTime) || (StringUtils.isNotEmpty(showTime)
+									&& showTime.equals(((CircusVariantTicketModel) product).getShowTime().getShowCode())))
+							{
+								final ProductData productData = populateTicketProduct(product, ticketBookDateD);
+								productDatas.add(productData);
+							}
+						}
+						else if (product instanceof CombinedTicketProductModel)
+						{
+							if (StringUtils.isEmpty(showTime)
+									|| (StringUtils.isNotEmpty(showTime) && hasShowInCombined(product, showTime)))
+							{
+								final ProductData productData = populateTicketProduct(product, ticketBookDateD);
+								productDatas.add(productData);
+							}
+						}
+					}
+				}
+				storeCmsPageInModel(model, categoryPage);
+				storeContinueUrl(request);
+				final ProductCategorySearchPageData<SearchStateData, ProductData, CategoryData> searchPageData = new ProductCategorySearchPageData();
+				searchPageData.setResults(productDatas);
+				model.addAttribute("searchPageData", searchPageData);
+				model.addAttribute(WebConstants.BREADCRUMBS_KEY,
+						getSearchBreadcrumbBuilder().getBreadcrumbs(categoryCode, searchPageData));
+				model.addAttribute("categoryName", category.getName());
+				model.addAttribute("categoryCode", category.getCode());
+				model.addAttribute("pageType", PageType.CATEGORY.name());
+				model.addAttribute("userLocation", getCustomerLocationService().getUserLocation());
+				updatePageTitle(category, model);
+
+				final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(
+						category.getKeywords().stream().map(keywordModel -> keywordModel.getKeyword()).collect(Collectors.toSet()));
+				final String metaDescription = MetaSanitizerUtil.sanitizeDescription(category.getDescription());
+				setUpMetaData(model, metaKeywords, metaDescription);
+				return getViewPage(categoryPage);
 			}
 			else//Normal Ticket
 			{
@@ -121,6 +173,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 				model.addAttribute(WebConstants.BREADCRUMBS_KEY,
 						getSearchBreadcrumbBuilder().getBreadcrumbs(categoryCode, searchPageData));
 				model.addAttribute("categoryName", category.getName());
+				model.addAttribute("categoryCode", category.getCode());
 				model.addAttribute("pageType", PageType.CATEGORY.name());
 				model.addAttribute("userLocation", getCustomerLocationService().getUserLocation());
 				updatePageTitle(category, model);
@@ -178,13 +231,29 @@ public class CategoryPageController extends AbstractCategoryPageController
 
 	private boolean isBookingDateTicket(final ProductModel product, final Date date)
 	{
-		for (final DateRangeModel dateRange : product.getDateRanges())
+		if (product instanceof VariantProductModel && null != ((VariantProductModel) product).getBaseProduct())
 		{
-			if (!(date.before(dateRange.getStartingDate())) && !date.after(dateRange.getEndingDate()))
+			for (final DateRangeModel dateRange : ((VariantProductModel) product).getBaseProduct().getDateRanges())
 			{
-				if (product.getIsWeekend().equals(dateIsWeekends(date)))
+				if (!(date.before(dateRange.getStartingDate())) && !date.after(dateRange.getEndingDate()))
 				{
-					return true;
+					if (((VariantProductModel) product).getBaseProduct().getIsWeekend().equals(dateIsWeekends(date)))
+					{
+						return true;
+					}
+				}
+			}
+		}
+		else
+		{
+			for (final DateRangeModel dateRange : product.getDateRanges())
+			{
+				if (!(date.before(dateRange.getStartingDate())) && !date.after(dateRange.getEndingDate()))
+				{
+					if (product.getIsWeekend().equals(dateIsWeekends(date)))
+					{
+						return true;
+					}
 				}
 			}
 		}
@@ -214,4 +283,21 @@ public class CategoryPageController extends AbstractCategoryPageController
 		//
 		return productData;
 	}
+
+	private boolean hasShowInCombined(final ProductModel product, final String showTime)
+	{
+		final CombinedTicketProductModel combinedTicketProduct = (CombinedTicketProductModel) product;
+		for (final CombinedProductEntryModel combinedProductEntry : combinedTicketProduct.getCombinedProductEntries())
+		{
+			if (combinedProductEntry.getProduct() instanceof CircusVariantTicketModel)
+			{
+				if (showTime.equals(((CircusVariantTicketModel) combinedProductEntry.getProduct()).getShowTime()))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }
