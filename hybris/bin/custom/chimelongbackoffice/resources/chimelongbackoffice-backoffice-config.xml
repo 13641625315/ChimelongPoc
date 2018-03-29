@@ -160,7 +160,6 @@
     <context component="explorer-tree" merge-by="module">
         <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
             <n:navigation-node id="hmc_treenode_chimelongcustom">
-            <!--<n:navigation-node id="hmc_treenode_catalog">-->
                 <n:type-node id="AccommodationFacility" code="AccommodationFacility" />
             </n:navigation-node>
         </n:explorer-tree>
@@ -179,7 +178,7 @@
             <wz:prepare id="accommodationFacilityPrepare">
                 <wz:initialize property="newAccommodationFacility" type="AccommodationFacility"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.accommodationFacility.general.label">
+            <wz:step id="step1" label="create.necessary.label">
                 <wz:content id="step1.content">
                     <wz:property-list root="newAccommodationFacility">
                         <wz:property qualifier="code"/>
@@ -217,5 +216,58 @@
         </advanced-search:advanced-search>
     </context>
     <!--AccommodationFacility END-->
+
+    <!--DateRange START-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="DateRange" code="DateRange" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="DateRange" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="startingDate"/>
+            <list:column qualifier="endingDate"/>
+        </list:list-view>
+    </context>
+
+    <context component="create-wizard" type="DateRange">
+        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="DateRangeWizard" title="create.dateRange.title">
+            <wz:prepare id="dateRangePrepare">
+                <wz:initialize property="newDateRange" type="DateRange"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.necessary.label">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newDateRange">
+                        <wz:property qualifier="startingDate" type="java.util.Date"/>
+                        <wz:property qualifier="endingDate" type="java.util.Date"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done visible="newDateRange.startingDate != null AND newDateRange.endingDate != null">
+                        <wz:save property="newDateRange"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="DateRange" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="startingDate"
+                        selected="true" operator="greaterOrEquals" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="endingDate"
+                        selected="true" operator="lessOrEquals" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+    <!--DateRange END-->
 
 </config>
