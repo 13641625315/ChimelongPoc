@@ -41,8 +41,8 @@ public class DefaultCircusShowTimeFacade implements CircusShowTimeFacade
 		for (final CircusShowTimeModel circusShowTimeModel : circusShowTimeModels)
 		{
 			circusShowTimeData = new CircusShowTimeData();
-			circusShowTimeData.setShowCode(circusShowTimeModel.getShowCode());
-			circusShowTimeData.setShowTime(circusShowTimeModel.getShowTime());
+			circusShowTimeData.setShowCode(circusShowTimeModel.getCode());
+			circusShowTimeData.setShowTime(circusShowTimeModel.getStartTime() + "-" + circusShowTimeModel.getEndTime());
 			circusShowTimeDatas.add(circusShowTimeData);
 		}
 		return circusShowTimeDatas;

@@ -10,13 +10,20 @@
 
 	<collectiontypes>
 		<collectiontype code="GenderList" elementtype="Gender"
-			autocreate="true" generate="true" type="list" />
-		<collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum"
-			autocreate="true" generate="true" type="set" />
-		<collectiontype code="CombinedProductEntryList"
-			elementtype="CombinedProductEntry" autocreate="true" generate="true"
 			type="list" />
+		<collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum"
+			type="set" />
+		<collectiontype code="BundleProductEntryList"
+			elementtype="BundleProductEntry" type="list" />
 		<collectiontype elementtype="DateRange" code="DateRangeList"
+			type="list" />
+		<collectiontype elementtype="SalesChannel" code="SalesChannelList"
+			type="list" />
+		<collectiontype elementtype="AccommodationFacility"
+			code="AccommodationFacilityList" type="list" />
+		<collectiontype elementtype="Product" code="ProductList"
+			type="list" />
+		<collectiontype elementtype="Membership" code="MembershipList"
 			type="list" />
 	</collectiontypes>
 
@@ -49,51 +56,70 @@
 			<value code="ELDER" />
 		</enumtype>
 
-		<enumtype generate="true" code="SalesChannel" autocreate="true">
-			<value code="TA" />
-			<value code="OTA" />
-		</enumtype>
-
-		<enumtype generate="true" code="ClDiscountGroup" autocreate="true">
-			<value code="TA" />
-			<value code="OTA" />
-			<value code="VIP1" />
-		</enumtype>
-
 		<enumtype generate="true" code="BedType" autocreate="true">
-			<value code="TA" />
-			<value code="OTA" />
-			<value code="VIP1" />
+			<value code="BIGBED" />
+			<value code="ONEBED" />
+			<value code="TWOBED" />
+		</enumtype>
+
+		<enumtype generate="true" code="AddonType" autocreate="true">
+			<value code="SWIMPOOL" />
+		</enumtype>
+
+		<enumtype generate="true" code="ClDiscountType" autocreate="true">
+			<value code="SALESCHANNEL" />
+			<value code="MEMBERLEVEL" />
 		</enumtype>
 	</enumtypes>
 
 	<relations>
-		<relation code="SalesChannel2ProductRel" generate="true"
+		<relation code="DateStra2DateRange" generate="true"
 			localized="false" autocreate="true">
-			<deployment table="SalesChannel2ProductRel" typecode="31001" />
+			<sourceElement qualifier="dateStrategy" type="DateStrategy"
+				cardinality="one" />
+			<targetElement qualifier="dateRanges" type="DateRange"
+				cardinality="many" collectiontype="list" ordered="true" />
+		</relation>
+
+		<relation code="ParkBundle2BundleEntryRel" generate="true"
+			localized="false" autocreate="true">
+			<sourceElement qualifier="parkBundleProduct" type="ParkBundleProduct"
+				cardinality="one" />
+			<targetElement qualifier="bundleProductEntries" type="BundleProductEntry"
+				cardinality="many" collectiontype="list" ordered="true" />
+		</relation>
+
+		<relation code="HotelBundle2BundleEntryRel" generate="true"
+			localized="false" autocreate="true">
+			<sourceElement qualifier="hotelBundleProduct" type="HotelBundleProduct"
+				cardinality="one" />
+			<targetElement qualifier="bundleProductEntries" type="BundleProductEntry"
+				cardinality="many" collectiontype="list" ordered="true" />
+		</relation>
+
+		<relation code="SalesChannel2ClDisGro" generate="true"
+			localized="false" autocreate="true">
 			<sourceElement qualifier="salesChannels" type="SalesChannel"
-				cardinality="many" collectiontype="list" />
-			<targetElement qualifier="products" type="Product"
 				cardinality="many" collectiontype="list" ordered="true" />
+			<targetElement qualifier="clDiscountGroup" type="ClDiscountGroup"
+				cardinality="one" />
 		</relation>
 
-		<relation code="ClDiscountGroup2RuleRel" generate="true"
+		<relation code="Membership2ClDisGro" generate="true"
 			localized="false" autocreate="true">
-			<deployment table="ClDiscountGroup2RuleRel" typecode="31002" />
-			<sourceElement qualifier="clDiscountGroups" type="ClDiscountGroup"
-				cardinality="many" collectiontype="list" />
-			<targetElement qualifier="clDiscountGroupRules" type="ClDiscountGroupRule"
+			<sourceElement qualifier="memberships" type="Membership"
 				cardinality="many" collectiontype="list" ordered="true" />
+			<targetElement qualifier="clDiscountGroup" type="ClDiscountGroup"
+				cardinality="one" />
 		</relation>
 
-		<relation code="Accommo2FacilityRel" generate="true"
+		<relation code="ClDiscountRow2ClDisGro" generate="true"
 			localized="false" autocreate="true">
-			<deployment table="Accommo2FacilityRel" typecode="31003" />
-			<sourceElement qualifier="accommodationProducts" type="AccommodationProduct"
-				cardinality="many" collectiontype="list" />
-			<targetElement qualifier="accommodationFacilities"
-				type="AccommodationFacility" cardinality="many" collectiontype="list"
-				ordered="true" />
+			<deployment table="ClDiscountRow2ClDisGro" typecode="31001" />
+			<sourceElement qualifier="clDiscountRows" type="ClDiscountRow"
+				cardinality="many" collectiontype="list" ordered="true" />
+			<targetElement qualifier="clDiscountGroups" type="ClDiscountGroup"
+				cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
 	</relations>
 
@@ -103,15 +129,24 @@
 			<itemtype code="Product" autocreate="false" generate="false">
 				<description>Extending the Product type from core with additional attributes.</description>
 				<attributes>
-					<attribute qualifier="dateRanges" type="DateRangeList">
+					<attribute qualifier="customerType" type="CustomerType">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="isWeekend" type="java.lang.Boolean">
+					<attribute qualifier="salesChannels" type="SalesChannelList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="dateStrategy" type="DateStrategy">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="exclusiveDateStrategy" type="DateStrategy">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="packageCode" type="java.lang.String">
 						<persistence type="property" />
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 			<itemtype code="TicketProduct" extends="Product" autocreate="true"
 				generate="true" jaloclass="com.chimelong.core.jalo.TicketProduct">
 				<deployment table="TicketProduct" typecode="30001"></deployment>
@@ -119,29 +154,12 @@
 					<attribute qualifier="ticketType" type="TicketType">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="packageCode" type="java.lang.String">
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="customerType" type="CustomerType">
-						<persistence type="property" />
-					</attribute>
 				</attributes>
 			</itemtype>
 
-			<itemtype code="AccommodationProduct" extends="Product"
-				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.AccommodationProduct">
-				<deployment table="AccommodationProduct" typecode="30002"></deployment>
-				<attributes>
-					<attribute qualifier="bedType" type="BedType">
-						<persistence type="property" />
-					</attribute>
-				</attributes>
-			</itemtype>
-
-			<itemtype code="CombinedProductEntry" autocreate="true"
-				generate="true" jaloclass="com.chimelong.core.jalo.CombinedProductEntry">
-				<deployment table="CombinedProductEntry" typecode="30003"></deployment>
+			<itemtype code="BundleProductEntry" autocreate="true"
+				generate="true" jaloclass="com.chimelong.core.jalo.BundleProductEntry">
+				<deployment table="BundleProductEntry" typecode="30002"></deployment>
 				<attributes>
 					<attribute qualifier="product" type="Product">
 						<persistence type="property" />
@@ -152,19 +170,26 @@
 					<attribute qualifier="europe1Prices" type="PriceRowCollectionType">
 						<persistence type="property" />
 					</attribute>
+					<attribute qualifier="discount" type="Discount">
+						<persistence type="property" />
+					</attribute>
 					<attribute qualifier="catalogVersion" type="CatalogVersion">
 						<persistence type="property" />
 					</attribute>
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CombinedTicketProduct" extends="Product"
+			<itemtype code="ParkBundleProduct" extends="Product"
 				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.CombinedTicketProduct">
-				<deployment table="CombinedTicketProduct" typecode="30004"></deployment>
+				jaloclass="com.chimelong.core.jalo.ParkBundleProduct">
+				<deployment table="ParkBundleProduct" typecode="30003"></deployment>
 				<attributes>
-					<attribute qualifier="combinedProductEntries" type="CombinedProductEntryList">
-						<persistence type="property" />
+					<attribute qualifier="totalPrice" type="java.lang.Double">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
 					</attribute>
 				</attributes>
 			</itemtype>
@@ -172,7 +197,7 @@
 			<itemtype code="CircusVariantTicket" extends="VariantProduct"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.CircusVariantTicket">
-				<deployment table="CircusVariantTicket" typecode="30005"></deployment>
+				<deployment table="CircusVariantTicket" typecode="30004"></deployment>
 				<attributes>
 					<attribute qualifier="showTime" type="CircusShowTime">
 						<persistence type="property" />
@@ -182,29 +207,19 @@
 
 			<itemtype code="CircusShowTime" autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.CircusShowTime">
-				<deployment table="CircusShowTime" typecode="30006"></deployment>
+				<deployment table="CircusShowTime" typecode="30005"></deployment>
 				<attributes>
-					<attribute qualifier="showCode" type="java.lang.String">
+					<attribute qualifier="code" type="java.lang.String">
 						<modifiers unique="true" />
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="showTime" type="java.lang.String">
+					<attribute qualifier="name" type="localized:java.lang.String">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="isDisabled" type="java.lang.Boolean">
+					<attribute qualifier="startTime" type="java.lang.String">
 						<persistence type="property" />
 					</attribute>
-				</attributes>
-			</itemtype>
-
-			<itemtype code="ClDiscountGroupRule" autocreate="true"
-				generate="true" jaloclass="com.chimelong.core.jalo.ChimelongDiscountGroupRule">
-				<deployment table="ClDiscountGroupRule" typecode="30007"></deployment>
-				<attributes>
-					<attribute qualifier="dateRanges" type="DateRangeList">
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="discountRows" type="DiscountRowCollectionType">
+					<attribute qualifier="endTime" type="java.lang.String">
 						<persistence type="property" />
 					</attribute>
 				</attributes>
@@ -218,9 +233,58 @@
 				</attributes>
 			</itemtype>
 
+			<itemtype code="Restaurant" autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.Restaurant">
+				<deployment table="Restaurant" typecode="30006"></deployment>
+				<attributes>
+					<attribute qualifier="code" type="java.lang.String">
+						<modifiers unique="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="name" type="localized:java.lang.String">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ParkMealProduct" extends="Product"
+				autocreate="true" generate="true" jaloclass="com.chimelong.core.jalo.ParkMealProduct">
+				<deployment table="ParkMealProduct" typecode="30007"></deployment>
+				<attributes>
+					<attribute qualifier="restaurant" type="Restaurant">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ParkAddonProduct" extends="Product"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ParkAddonProduct">
+				<deployment table="ParkAddonProduct" typecode="30008"></deployment>
+				<attributes>
+					<attribute qualifier="addonType" type="AddonType">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="AccommodationProduct" extends="Product"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.AccommodationProduct">
+				<deployment table="AccommodationProduct" typecode="30009"></deployment>
+				<attributes>
+					<attribute qualifier="bedType" type="BedType">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="accommodationFacilities" type="AccommodationFacilityList">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
 			<itemtype code="AccommodationFacility" autocreate="true"
 				generate="true" jaloclass="com.chimelong.core.jalo.AccommodationFacility">
-				<deployment table="AccommodationFacility" typecode="30008"></deployment>
+				<deployment table="AccommodationFacility" typecode="30010"></deployment>
 				<attributes>
 					<attribute qualifier="code" type="java.lang.String">
 						<modifiers unique="true" />
@@ -235,9 +299,46 @@
 				</attributes>
 			</itemtype>
 
+			<itemtype code="HotelBundleProduct" extends="VariantProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.HotelBundleProduct">
+				<deployment table="HotelBundleProduct" typecode="30011"></deployment>
+				<attributes>
+					<attribute qualifier="totalPrice" type="java.lang.Double">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="HotelMealProduct" extends="Product"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.HotelMealProduct">
+				<deployment table="HotelMealProduct" typecode="30012"></deployment>
+				<attributes>
+					<attribute qualifier="restaurant" type="Restaurant">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="HotelAddonProduct" extends="Product"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.HotelAddonProduct">
+				<deployment table="HotelAddonProduct" typecode="30013"></deployment>
+				<attributes>
+					<attribute qualifier="addonType" type="AddonType">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
 			<itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.DataRange">
 				<description>This item represents a date range from a start to an end date</description>
-				<deployment table="DateRange" typecode="30009" />
+				<deployment table="DateRange" typecode="30014" />
 				<attributes>
 					<attribute type="java.util.Date" qualifier="startingDate">
 						<persistence type="property" />
@@ -248,20 +349,122 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="CombinedHotelProduct" extends="VariantProduct"
-				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.CombinedHotelProduct">
-				<deployment table="CombinedHotelProduct" typecode="30010"></deployment>
+			<itemtype code="DateStrategy" autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.DateStrategy">
+				<deployment table="DateStrategy" typecode="30015"></deployment>
 				<attributes>
-					<attribute qualifier="combinedProductEntries" type="CombinedProductEntryList">
+					<attribute qualifier="code" type="java.lang.String">
+						<modifiers unique="true" />
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="totalPrice" type="java.lang.Double">
+					<attribute qualifier="name" type="localized:java.lang.String">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="dayOfWeeks" type="DayOfWeekList">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="Customer" autocreate="false" generate="false">
+				<attributes>
+					<attribute qualifier="phoneNum" type="java.lang.String">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="B2BCustomer" autocreate="false" generate="false">
+				<attributes>
+					<attribute qualifier="salesChannels" type="SalesChannelList">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="B2CCustomer" extends="Customer" autocreate="true"
+				generate="true" jaloclass="com.chimelong.core.jalo.B2CCustomer">
+				<deployment table="B2CCustomer" typecode="30016"></deployment>
+				<attributes>
+					<attribute qualifier="memberships" type="MembershipList">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="SalesChannel" autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.SalesChannel">
+				<deployment table="SalesChannel" typecode="30017"></deployment>
+				<attributes>
+					<attribute qualifier="code" type="java.lang.String">
+						<modifiers unique="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="name" type="localized:java.lang.String">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="Membership" autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.Membership">
+				<deployment table="Membership" typecode="30018"></deployment>
+				<attributes>
+					<attribute qualifier="code" type="java.lang.String">
+						<modifiers unique="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="name" type="localized:java.lang.String">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ClDiscountGroup" autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ClDiscountGroup">
+				<deployment table="ClDiscountGroup" typecode="30019"></deployment>
+				<attributes>
+					<attribute qualifier="code" type="java.lang.String">
+						<modifiers unique="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="name" type="localized:java.lang.String">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="discountType" type="ClDiscountType">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ClDiscountRow" autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ClDiscountRow">
+				<deployment table="ClDiscountRow" typecode="30020"></deployment>
+				<attributes>
+					<attribute qualifier="currency" type="Currency">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="categories" type="CategoryList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="exclusiveCategories" type="CategoryList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="products" type="ProductList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="exclusiveProducts" type="ProductList">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="price" type="java.lang.Double">
 						<persistence type="property">
 							<columntype>
 								<value>java.math.BigDecimal</value>
 							</columntype>
 						</persistence>
+					</attribute>
+					<attribute qualifier="discount" type="Discount">
+						<persistence type="property" />
 					</attribute>
 				</attributes>
 			</itemtype>
