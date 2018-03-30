@@ -307,6 +307,138 @@
         </advanced-search:advanced-search>
     </context>
     <!--DateRange END-->
+    
+    <context merge-by="module" parent="auto" component="explorer-tree">
+		<explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
+			<explorer-tree:navigation-node id="hmc.Circus" merge-mode="append">
+					<explorer-tree:type-node code="CircusVariantTicket" id="hmc_type_tree_circusvariantticket" />
+					<explorer-tree:type-node code="CircusShowTime" id="hmc_type_tree_circusshowtime" />
+			</explorer-tree:navigation-node>
+					<explorer-tree:type-node code="ClDiscountGroupRule" id="hmc_type_tree_cldiscountgrouprule" />
+		</explorer-tree:explorer-tree>
+	</context>
+	<context type="CircusVariantTicket" component="editor-area">
+		<editorArea:editorArea name=""
+			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="code" />
+					<editorArea:attribute qualifier="name" />
+					<editorArea:attribute qualifier="catalogVersion" />
+					<editorArea:attribute qualifier="approvalStatus" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.tab.product.properties"
+				position="1">
+				<editorArea:section name="hmc.section.CircusVariantTicket.description">
+					<editorArea:attribute qualifier="description"
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+					<editorArea:panel colspan="2"
+						name="panel.showTime" rowspan="2">
+						<editorArea:attribute qualifier="showTime">
+						</editorArea:attribute>
+					</editorArea:panel>
+					<editorArea:panel colspan="2" name="panel.dateRanges"
+						rowspan="2">
+						<editorArea:attribute qualifier="dateRanges"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							type="MultiReference-LIST(DateRange)">
+						</editorArea:attribute>
+					</editorArea:panel>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.tab.product.categories"
+				position="2">
+				<editorArea:section name="hmc.section.product.productincategory">
+					<editorArea:attribute qualifier="supercategories">
+						<editorArea:editor-parameter>
+							<editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+							<editorArea:value>true</editorArea:value>
+						</editorArea:editor-parameter>
+					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	
+	<context type="CircusShowTime" component="editor-area">
+		<editorArea:editorArea name=""
+			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="showCode" />
+					<editorArea:attribute qualifier="showTime" />
+					<editorArea:attribute qualifier="isDisabled" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	
+	<context type="CircusShowTime" component="base">
+		<y:base>
+			<y:labels>
+				<y:label>showCode + '[' + showTime + ']'</y:label>
+			</y:labels>
+		</y:base>
+	</context>
+	
+	<context type="ClDiscountGroupRule" component="editor-area">
+		<editorArea:editorArea name=""
+			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:panel colspan="2"
+						name="panel.showTime" rowspan="2">
+						<editorArea:attribute qualifier="dateRanges"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							type="MultiReference-LIST(DateRange)">
+						</editorArea:attribute>
+					</editorArea:panel>
+					<editorArea:panel colspan="2" name="panel.dateRanges"
+						rowspan="2">
+						<editorArea:attribute qualifier="discountRows"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							type="MultiReference-LIST(DiscountRowCollectionType)">
+						</editorArea:attribute>
+					</editorArea:panel>
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
 
 	<context component="explorer-tree" merge-by="module">
 		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
