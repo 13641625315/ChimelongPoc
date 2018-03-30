@@ -33,19 +33,20 @@
 			</editorArea:essentials>
 			<editorArea:tab name="hmc.tab.product.properties"
 				position="1">
-				<editorArea:section name="hmc.section.CombinedTicketProduct.description">
+				<editorArea:section name="hmc.product.descriptions">
 					<editorArea:attribute qualifier="description"
 						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
 				</editorArea:section>
-				<editorArea:section columns="2"
-					name="hmc.section.CombinedTicketProduct.productlist">
-					<editorArea:panel colspan="2"
-						name="panel.combinedProductEntries" rowspan="2">
+				<editorArea:section columns="3" name="">
+					<editorArea:panel colspan="3"
+						name="panel.combinedproductentries" rowspan="2">
 						<editorArea:attribute qualifier="combinedProductEntries"
 							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
 							type="MultiReference-LIST(CombinedProductEntry)">
 						</editorArea:attribute>
 					</editorArea:panel>
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
 					<editorArea:panel colspan="2" name="panel.dateRanges"
 						rowspan="2">
 						<editorArea:attribute qualifier="dateRanges"
@@ -56,15 +57,50 @@
 				</editorArea:section>
 			</editorArea:tab>
 
-			<editorArea:tab name="hmc.tab.product.categories"
+			<editorArea:tab name="hmc.tab.product.categorysystem"
 				position="2">
-				<editorArea:section name="hmc.section.CombinedTicketProduct.category">
+				<editorArea:section name="hmc.section.product.productincategory">
 					<editorArea:attribute qualifier="supercategories">
 						<editorArea:editor-parameter>
 							<editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
 							<editorArea:value>true</editorArea:value>
 						</editorArea:editor-parameter>
 					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.tab.product.prices"
+				position="3">
+				<editorArea:section name="hmc.section.product.pricesdiscounts">
+					<editorArea:panel colspan="2" name="panel.europe1Prices"
+						rowspan="2">
+						<editorArea:attribute description="hmc.text.product.pg"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							qualifier="europe1Prices">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1PricesListView</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+					</editorArea:panel>
+				</editorArea:section>
+				<editorArea:section columns="2"
+					name="hmc.section.product.discounts">
+					<editorArea:panel colspan="2" name="panel.europe1Discounts"
+						rowspan="2">
+						<editorArea:attribute
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							qualifier="europe1Discounts">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1DiscountsListView</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+					</editorArea:panel>
 				</editorArea:section>
 			</editorArea:tab>
 
@@ -93,6 +129,8 @@
 						<wz:property qualifier="code" />
 						<wz:property qualifier="name" />
 						<wz:property qualifier="catalogVersion" />
+						<wz:property qualifier="combinedProductEntries" />
+						<wz:property qualifier="dateRanges" />
 					</wz:property-list>
 				</wz:content>
 				<wz:navigation id="step1.navigation">
@@ -154,5 +192,120 @@
 			</y:labels>
 		</y:base>
 	</context>
+
+
+    <!--AccommodationFacility START-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="AccommodationFacility" code="AccommodationFacility" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="AccommodationFacility" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="code"/>
+            <list:column qualifier="name"/>
+            <list:column qualifier="discription"/>
+        </list:list-view>
+    </context>
+
+    <context component="create-wizard" type="AccommodationFacility">
+        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="AccommodationFacilityWizard" title="create.accommodationFacility.title">
+            <wz:prepare id="accommodationFacilityPrepare">
+                <wz:initialize property="newAccommodationFacility" type="AccommodationFacility"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.necessary.label">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newAccommodationFacility">
+                        <wz:property qualifier="code"/>
+                        <wz:property qualifier="name"/>
+                        <wz:property qualifier="discription"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done visible="!#empty(newAccommodationFacility.code)">
+                        <wz:save property="newAccommodationFacility"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="AccommodationFacility" component="simple-search">
+        <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+            <yss:field name="code"/>
+            <yss:sort-field name="code" asc="true"/>
+        </yss:simple-search>
+    </context>
+    <context type="AccommodationFacility" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="code"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="name"
+                        selected="true" operator="contains" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+    <!--AccommodationFacility END-->
+
+    <!--DateRange START-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="DateRange" code="DateRange" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="DateRange" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="startingDate"/>
+            <list:column qualifier="endingDate"/>
+        </list:list-view>
+    </context>
+
+    <context component="create-wizard" type="DateRange">
+        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="DateRangeWizard" title="create.dateRange.title">
+            <wz:prepare id="dateRangePrepare">
+                <wz:initialize property="newDateRange" type="DateRange"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.necessary.label">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newDateRange">
+                        <wz:property qualifier="startingDate" type="java.util.Date"/>
+                        <wz:property qualifier="endingDate" type="java.util.Date"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done visible="newDateRange.startingDate != null AND newDateRange.endingDate != null">
+                        <wz:save property="newDateRange"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="DateRange" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="startingDate"
+                        selected="true" operator="greaterOrEquals" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="endingDate"
+                        selected="true" operator="lessOrEquals" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+    <!--DateRange END-->
 
 </config>
