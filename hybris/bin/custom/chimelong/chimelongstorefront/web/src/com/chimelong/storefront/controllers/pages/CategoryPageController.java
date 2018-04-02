@@ -12,6 +12,8 @@ package com.chimelong.storefront.controllers.pages;
 
 
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractCategoryPageController;
+import de.hybris.platform.category.model.CategoryModel;
+import de.hybris.platform.cms2.model.pages.CategoryPageModel;
 import de.hybris.platform.commercefacades.product.converters.populator.ProductPricePopulator;
 import de.hybris.platform.commercefacades.product.converters.populator.ProductPromotionsPopulator;
 import de.hybris.platform.commercefacades.product.data.ProductData;
@@ -32,6 +34,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,20 +73,20 @@ public class CategoryPageController extends AbstractCategoryPageController
 			@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
 			@RequestParam(value = "sort", required = false) final String sortCode,
-			@RequestParam(value = "ticketBookDate", required = false) final String ticketBookDate,
+			@RequestParam(value = "ticketBookDate", required = false) String ticketBookDate,
 			@RequestParam(value = "showTime", required = false) final String showTime, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws UnsupportedEncodingException
 	{
-		//		if (StringUtils.isEmpty(ticketBookDate))
-		//		{
-		//			ticketBookDate = LocalDate.now().toString();
-		//		}
-		//		model.addAttribute("showTime", showTime);
-		//		model.addAttribute("showTimes", circusShowTimeFacade.findAllCircusShowTimes());
-		//		model.addAttribute("ticketBookDate", ticketBookDate);
-		//		final Date ticketBookDateD = convertStringDateToDate(ticketBookDate, DATE_PATTERN);
-		//		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
-		//		final CategoryPageModel categoryPage = getCategoryPage(category);
+		if (StringUtils.isEmpty(ticketBookDate))
+		{
+			ticketBookDate = LocalDate.now().toString();
+		}
+		model.addAttribute("showTime", showTime);
+		model.addAttribute("showTimes", circusShowTimeFacade.findAllCircusShowTimes());
+		model.addAttribute("ticketBookDate", ticketBookDate);
+		final Date ticketBookDateD = convertStringDateToDate(ticketBookDate, DATE_PATTERN);
+		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
+		final CategoryPageModel categoryPage = getCategoryPage(category);
 		//		if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.startsWith("cl1"))//Ticket Category
 		//		{
 		//			if (StringUtils.isNotEmpty(ticketBookDate) && categoryCode.startsWith("cl14"))//Circus Ticket
