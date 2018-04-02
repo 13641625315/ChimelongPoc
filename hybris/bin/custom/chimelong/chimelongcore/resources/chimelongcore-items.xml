@@ -167,10 +167,13 @@
 					<attribute qualifier="quantity" type="java.lang.Long">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="europe1Prices" type="PriceRowCollectionType">
+					<attribute qualifier="bundlePrice" type="java.lang.Double">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="discount" type="Discount">
+					<attribute qualifier="currency" type="Currency">
+						<persistence type="property" />
+					</attribute>					
+					<attribute qualifier="discount" type="java.lang.Double">
 						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="catalogVersion" type="CatalogVersion">
@@ -178,7 +181,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-
+ 
 			<itemtype code="ParkBundleProduct" extends="Product"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.ParkBundleProduct">
