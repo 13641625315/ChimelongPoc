@@ -20,7 +20,7 @@
 	<!--Please check documentation for code snippets for specific components -->
 	<!--</context> -->
 
-	<context type="CombinedTicketProduct" component="editor-area">
+	<context type="ParkBundleProduct" component="editor-area">
 		<editorArea:editorArea name=""
 			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
 			<editorArea:essentials columns="4">
@@ -40,20 +40,108 @@
 				<editorArea:section columns="3" name="">
 					<editorArea:panel colspan="3"
 						name="panel.combinedproductentries" rowspan="2">
-						<editorArea:attribute qualifier="combinedProductEntries"
+						<editorArea:attribute qualifier="bundleProductEntries"
 							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							type="MultiReference-LIST(CombinedProductEntry)">
+							type="MultiReference-LIST(BundleProductEntry)">
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
 						</editorArea:attribute>
 					</editorArea:panel>
 				</editorArea:section>
 				<editorArea:section columns="2" name="">
-					<editorArea:panel colspan="2" name="panel.dateRanges"
-						rowspan="2">
-						<editorArea:attribute qualifier="dateRanges"
-							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							type="MultiReference-LIST(DateRange)">
-						</editorArea:attribute>
-					</editorArea:panel>
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.tab.product.categorysystem"
+				position="2">
+				<editorArea:section name="hmc.section.product.productincategory">
+					<editorArea:attribute qualifier="supercategories">
+						<editorArea:editor-parameter>
+							<editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+							<editorArea:value>true</editorArea:value>
+						</editorArea:editor-parameter>
+					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<!-- <editorArea:tab name="hmc.tab.product.prices" -->
+			<!-- position="3"> -->
+			<!-- <editorArea:section name="hmc.section.product.pricesdiscounts"> -->
+			<!-- <editorArea:panel colspan="2" name="panel.europe1Prices" -->
+			<!-- rowspan="2"> -->
+			<!-- <editorArea:attribute description="hmc.text.product.pg" -->
+			<!-- editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor" -->
+			<!-- qualifier="europe1Prices"> -->
+			<!-- <editorArea:editor-parameter> -->
+			<!-- <editorArea:name>listConfigContext</editorArea:name> -->
+			<!-- <editorArea:value>europe1PricesListView</editorArea:value> -->
+			<!-- </editorArea:editor-parameter> -->
+			<!-- <editorArea:editor-parameter> -->
+			<!-- <editorArea:name>configurableFlowConfigCtx</editorArea:name> -->
+			<!-- <editorArea:value>create-wizard-no-save</editorArea:value> -->
+			<!-- </editorArea:editor-parameter> -->
+			<!-- </editorArea:attribute> -->
+
+			<!-- <editorArea:attribute qualifier="totalPrice" /> -->
+			<!-- </editorArea:panel> -->
+			<!-- </editorArea:section> -->
+			<!-- <editorArea:section columns="2" -->
+			<!-- name="hmc.section.product.discounts"> -->
+			<!-- <editorArea:panel colspan="2" name="panel.europe1Discounts" -->
+			<!-- rowspan="2"> -->
+			<!-- <editorArea:attribute -->
+			<!-- editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor" -->
+			<!-- qualifier="europe1Discounts"> -->
+			<!-- <editorArea:editor-parameter> -->
+			<!-- <editorArea:name>listConfigContext</editorArea:name> -->
+			<!-- <editorArea:value>europe1DiscountsListView</editorArea:value> -->
+			<!-- </editorArea:editor-parameter> -->
+			<!-- </editorArea:attribute> -->
+			<!-- </editorArea:panel> -->
+			<!-- </editorArea:section> -->
+			<!-- </editorArea:tab> -->
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+
+	<context type="TicketProduct" component="editor-area">
+		<editorArea:editorArea name=""
+			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="code" />
+					<editorArea:attribute qualifier="name" />
+					<editorArea:attribute qualifier="catalogVersion" />
+					<editorArea:attribute qualifier="approvalStatus" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.tab.product.properties"
+				position="1">
+				<editorArea:section name="hmc.product.descriptions">
+					<editorArea:attribute qualifier="description"
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
+					<editorArea:attribute qualifier="customerType" />
+					<editorArea:attribute qualifier="ticketType" />
 				</editorArea:section>
 			</editorArea:tab>
 
@@ -86,20 +174,7 @@
 								<editorArea:value>create-wizard-no-save</editorArea:value>
 							</editorArea:editor-parameter>
 						</editorArea:attribute>
-					</editorArea:panel>
-				</editorArea:section>
-				<editorArea:section columns="2"
-					name="hmc.section.product.discounts">
-					<editorArea:panel colspan="2" name="panel.europe1Discounts"
-						rowspan="2">
-						<editorArea:attribute
-							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							qualifier="europe1Discounts">
-							<editorArea:editor-parameter>
-								<editorArea:name>listConfigContext</editorArea:name>
-								<editorArea:value>europe1DiscountsListView</editorArea:value>
-							</editorArea:editor-parameter>
-						</editorArea:attribute>
+
 					</editorArea:panel>
 				</editorArea:section>
 			</editorArea:tab>
@@ -117,7 +192,80 @@
 		</editorArea:editorArea>
 	</context>
 
-	<context type="CombinedTicketProduct" component="create-wizard">
+	<context type="ParkMealProduct" component="editor-area">
+		<editorArea:editorArea name=""
+			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="code" />
+					<editorArea:attribute qualifier="name" />
+					<editorArea:attribute qualifier="catalogVersion" />
+					<editorArea:attribute qualifier="approvalStatus" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.tab.product.properties"
+				position="1">
+				<editorArea:section name="hmc.product.descriptions">
+					<editorArea:attribute qualifier="description"
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="restaurant" />
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.tab.product.categorysystem"
+				position="2">
+				<editorArea:section name="hmc.section.product.productincategory">
+					<editorArea:attribute qualifier="supercategories">
+						<editorArea:editor-parameter>
+							<editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+							<editorArea:value>true</editorArea:value>
+						</editorArea:editor-parameter>
+					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.tab.product.prices"
+				position="3">
+				<editorArea:section name="hmc.section.product.pricesdiscounts">
+					<editorArea:panel colspan="2" name="panel.europe1Prices"
+						rowspan="2">
+						<editorArea:attribute description="hmc.text.product.pg"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							qualifier="europe1Prices">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1PricesListView</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+
+					</editorArea:panel>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+
+
+	<context type="ParkBundleProduct" component="create-wizard">
 		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:prepare id="productPrepare">
 				<wz:initialize property="newObject" type="ctx.TYPE_CODE" />
@@ -129,8 +277,6 @@
 						<wz:property qualifier="code" />
 						<wz:property qualifier="name" />
 						<wz:property qualifier="catalogVersion" />
-						<wz:property qualifier="combinedProductEntries" />
-						<wz:property qualifier="dateRanges" />
 					</wz:property-list>
 				</wz:content>
 				<wz:navigation id="step1.navigation">
@@ -143,7 +289,80 @@
 		</wz:flow>
 	</context>
 
-	<context merge-by="type" type="CombinedProductEntry" component="listview">
+	<context type="TicketProduct" component="create-wizard">
+		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+			<wz:prepare id="productPrepare">
+				<wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+			</wz:prepare>
+			<wz:step id="step1" label="create.product.essential.label"
+				sublabel="create.product.essential.sublabel">
+				<wz:content id="step1.content">
+					<wz:property-list root="newObject">
+						<wz:property qualifier="code" />
+						<wz:property qualifier="name" />
+						<wz:property qualifier="catalogVersion" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:done>
+						<wz:save property="newObject" />
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context type="ParkMealProduct" component="create-wizard">
+		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+			<wz:prepare id="productPrepare">
+				<wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+			</wz:prepare>
+			<wz:step id="step1" label="create.product.essential.label"
+				sublabel="create.product.essential.sublabel">
+				<wz:content id="step1.content">
+					<wz:property-list root="newObject">
+						<wz:property qualifier="code" />
+						<wz:property qualifier="name" />
+						<wz:property qualifier="catalogVersion" />
+						<wz:property qualifier="restaurant" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:done>
+						<wz:save property="newObject" />
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context type="BundleProductEntry" component="create-wizard-no-save">
+		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+			<wz:prepare id="productPrepare">
+				<wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+				<wz:assign property="newObject.parkBundleProduct" value="ctx.parentObject" />
+			</wz:prepare>
+			<wz:step id="step1" label="create.product.essential.label"
+				sublabel="create.product.essential.sublabel">
+				<wz:content id="step1.content">
+					<wz:property-list root="newObject">
+						<wz:property qualifier="parkBundleProduct" readonly="true" />
+						<wz:property qualifier="catalogVersion" />
+						<wz:property qualifier="product" />
+						<wz:property qualifier="quantity" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:done />
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context merge-by="type" type="BundleProductEntry" component="listview">
 		<list-view:list-view>
 			<list-view:column qualifier="product" position="1" />
 			<list-view:column qualifier="quantity" position="2" />
@@ -157,7 +376,7 @@
 		</list-view:list-view>
 	</context>
 
-	<context type="CombinedTicketProduct" component="advanced-search">
+	<context type="ParkBundleProduct" component="advanced-search">
 		<advanced-search:advanced-search
 			xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
 			<advanced-search:field-list>
@@ -171,7 +390,7 @@
 					xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="catalogVersion"
 					selected="true" operator="equals" />
 				<advanced-search:field
-					xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="combinedProductEntries"
+					xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="bundleProductEntries"
 					selected="true" operator="contains" />
 			</advanced-search:field-list>
 		</advanced-search:advanced-search>

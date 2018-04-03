@@ -26,6 +26,7 @@ import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
 import de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.cronjob.enums.DayOfWeek;
 import de.hybris.platform.variants.model.VariantProductModel;
 
 import java.io.UnsupportedEncodingException;
@@ -45,7 +46,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,10 +56,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chimelong.core.model.BundleProductEntryModel;
 import com.chimelong.core.model.CircusVariantTicketModel;
-import com.chimelong.core.model.CombinedProductEntryModel;
-import com.chimelong.core.model.CombinedTicketProductModel;
 import com.chimelong.core.model.DateRangeModel;
+import com.chimelong.core.model.DateStrategyModel;
+import com.chimelong.core.model.ParkBundleProductEntryModel;
+import com.chimelong.core.model.ParkBundleProductModel;
 import com.chimelong.core.model.TicketProductModel;
 import com.chimelong.facades.product.CircusShowTimeFacade;
 
@@ -116,13 +119,13 @@ public class CategoryPageController extends AbstractCategoryPageController
 						if (product instanceof CircusVariantTicketModel)
 						{
 							if (StringUtils.isEmpty(showTime) || (StringUtils.isNotEmpty(showTime)
-									&& showTime.equals(((CircusVariantTicketModel) product).getShowTime().getShowCode())))
+									&& showTime.equals(((CircusVariantTicketModel) product).getShowTime().getCode())))
 							{
 								final ProductData productData = populateTicketProduct(product, ticketBookDateD);
 								productDatas.add(productData);
 							}
 						}
-						else if (product instanceof CombinedTicketProductModel)
+						else if (product instanceof ParkBundleProductModel)
 						{
 							if (StringUtils.isEmpty(showTime)
 									|| (StringUtils.isNotEmpty(showTime) && hasShowInCombined(product, showTime)))
@@ -158,7 +161,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 				final List<ProductModel> products = category.getProducts();
 				for (final ProductModel product : products)
 				{
-					if ((product instanceof TicketProductModel || product instanceof CombinedTicketProductModel)
+					if ((product instanceof TicketProductModel || product instanceof ParkBundleProductModel)
 							&& isBookingDateTicket(product, ticketBookDateD))
 					{
 						final ProductData productData = populateTicketProduct(product, ticketBookDateD);
@@ -233,11 +236,12 @@ public class CategoryPageController extends AbstractCategoryPageController
 	{
 		if (product instanceof VariantProductModel && null != ((VariantProductModel) product).getBaseProduct())
 		{
-			for (final DateRangeModel dateRange : ((VariantProductModel) product).getBaseProduct().getDateRanges())
+			final DateStrategyModel dateStrategy = ((VariantProductModel) product).getBaseProduct().getDateStrategy();
+			for (final DateRangeModel dateRange : dateStrategy.getDateRanges())
 			{
 				if (!(date.before(dateRange.getStartingDate())) && !date.after(dateRange.getEndingDate()))
 				{
-					if (((VariantProductModel) product).getBaseProduct().getIsWeekend().equals(dateIsWeekends(date)))
+					if (dateIsDayOfWeeks(date, dateStrategy.getDayOfWeeks()).booleanValue())
 					{
 						return true;
 					}
@@ -246,11 +250,12 @@ public class CategoryPageController extends AbstractCategoryPageController
 		}
 		else
 		{
-			for (final DateRangeModel dateRange : product.getDateRanges())
+			final DateStrategyModel dateStrategy = product.getDateStrategy();
+			for (final DateRangeModel dateRange : dateStrategy.getDateRanges())
 			{
 				if (!(date.before(dateRange.getStartingDate())) && !date.after(dateRange.getEndingDate()))
 				{
-					if (product.getIsWeekend().equals(dateIsWeekends(date)))
+					if (dateIsDayOfWeeks(date, dateStrategy.getDayOfWeeks()).booleanValue())
 					{
 						return true;
 					}
@@ -260,15 +265,51 @@ public class CategoryPageController extends AbstractCategoryPageController
 		return false;
 	}
 
-	private Boolean dateIsWeekends(final Date date)
+	private Boolean dateIsDayOfWeeks(final Date date, final List<DayOfWeek> dayOfWeeks)
 	{
 		final Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+		for (final DayOfWeek dayOfWeek : dayOfWeeks)
 		{
-			return Boolean.TRUE;
+			if (cal.get(Calendar.DAY_OF_WEEK) == dayOfWeekMapInt(dayOfWeek))
+			{
+				return Boolean.TRUE;
+			}
 		}
 		return Boolean.FALSE;
+	}
+
+	private int dayOfWeekMapInt(final DayOfWeek dayOfWeek)
+	{
+		if (dayOfWeek.equals(DayOfWeek.MONDAY))
+		{
+			return 1;
+		}
+		else if (dayOfWeek.equals(DayOfWeek.TUESDAY))
+		{
+			return 2;
+		}
+		else if (dayOfWeek.equals(DayOfWeek.WEDNESDAY))
+		{
+			return 3;
+		}
+		else if (dayOfWeek.equals(DayOfWeek.THURSDAY))
+		{
+			return 4;
+		}
+		else if (dayOfWeek.equals(DayOfWeek.FRIDAY))
+		{
+			return 5;
+		}
+		else if (dayOfWeek.equals(DayOfWeek.SATURDAY))
+		{
+			return 6;
+		}
+		else if (dayOfWeek.equals(DayOfWeek.SUNDAY))
+		{
+			return 7;
+		}
+		return 0;
 	}
 
 	private ProductData populateTicketProduct(final ProductModel product, final Date date)
@@ -286,12 +327,15 @@ public class CategoryPageController extends AbstractCategoryPageController
 
 	private boolean hasShowInCombined(final ProductModel product, final String showTime)
 	{
-		final CombinedTicketProductModel combinedTicketProduct = (CombinedTicketProductModel) product;
-		for (final CombinedProductEntryModel combinedProductEntry : combinedTicketProduct.getCombinedProductEntries())
+		final ParkBundleProductModel parkBundleProduct = (ParkBundleProductModel) product;
+		for (final BundleProductEntryModel bundleProductEntry : parkBundleProduct.getBundleProductEntries())
 		{
-			if (combinedProductEntry.getProduct() instanceof CircusVariantTicketModel)
+			if (bundleProductEntry instanceof ParkBundleProductEntryModel
+					&& ((ParkBundleProductEntryModel) bundleProductEntry).getParkProduct() instanceof CircusVariantTicketModel)
 			{
-				if (showTime.equals(((CircusVariantTicketModel) combinedProductEntry.getProduct()).getShowTime()))
+				final CircusVariantTicketModel circusVariantTicketModel = (CircusVariantTicketModel) (((ParkBundleProductEntryModel) bundleProductEntry)
+						.getParkProduct());
+				if (showTime.equals(circusVariantTicketModel.getShowTime()))
 				{
 					return true;
 				}

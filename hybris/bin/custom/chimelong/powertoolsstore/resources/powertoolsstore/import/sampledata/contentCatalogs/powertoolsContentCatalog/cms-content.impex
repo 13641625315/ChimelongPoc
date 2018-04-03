@@ -31,7 +31,7 @@ $siteUid=powertools
 
 # CMS Site Settings
 UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);theme(code)
-;$siteUid;1355;2116282;lambda
+;$siteUid;;;lambda
 
 ###### Navigation Start ######
 ## navigation is in tree structure ##
@@ -566,8 +566,8 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 
 ## components in slot 3 ##
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;&componentRef
-;;PowertoolsHomepageNewProductCarouselComponent;What's New Powertools Homepage Product Carousel;3755219,3881018,3592865,2116279,3755204,1128762,3092788;allVisible;false;PowertoolsHomepageNewProductCarouselComponent
-;;PowertoolsHomepageProductCarouselComponent;Powertools Homepage Product Carousel;3755205,3755211,3756505,3793682,2221933,2116275,2116282;allVisible;false;PowertoolsHomepageProductCarouselComponent
+#;;PowertoolsHomepageNewProductCarouselComponent;What's New Powertools Homepage Product Carousel;3755219,3881018,3592865,2116279,3755204,1128762,3092788;allVisible;false;PowertoolsHomepageNewProductCarouselComponent
+#;;PowertoolsHomepageProductCarouselComponent;Powertools Homepage Product Carousel;3755205,3755211,3756505,3793682,2221933,2116275,2116282;allVisible;false;PowertoolsHomepageProductCarouselComponent
 
 ## This component is not used currently, but still import for future use ##
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;searchQuery;categoryCode;&componentRef

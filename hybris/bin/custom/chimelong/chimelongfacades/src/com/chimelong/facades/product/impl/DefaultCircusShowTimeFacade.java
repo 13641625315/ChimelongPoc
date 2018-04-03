@@ -12,6 +12,7 @@ package com.chimelong.facades.product.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import com.chimelong.core.model.CircusShowTimeModel;
@@ -41,8 +42,8 @@ public class DefaultCircusShowTimeFacade implements CircusShowTimeFacade
 		for (final CircusShowTimeModel circusShowTimeModel : circusShowTimeModels)
 		{
 			circusShowTimeData = new CircusShowTimeData();
-			circusShowTimeData.setShowCode(circusShowTimeModel.getShowCode());
-			circusShowTimeData.setShowTime(circusShowTimeModel.getShowTime());
+			circusShowTimeData.setShowCode(circusShowTimeModel.getCode());
+			circusShowTimeData.setShowTime(circusShowTimeModel.getName(Locale.CHINESE));
 			circusShowTimeDatas.add(circusShowTimeData);
 		}
 		return circusShowTimeDatas;

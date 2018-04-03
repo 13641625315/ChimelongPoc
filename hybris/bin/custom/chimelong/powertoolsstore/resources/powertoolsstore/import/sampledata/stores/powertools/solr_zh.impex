@@ -20,7 +20,6 @@ $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),versi
 $lang=zh
 
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
- ;;Colour of product, 1766;"颜色"
 
 # Redirect page URL (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrURIRedirect;url[unique=true];&redirectRefID
@@ -32,13 +31,9 @@ INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$fac
 
 # Category Redirect (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
-;1360;$productCatalog-redirectRefID-drill
-;1595;$productCatalog-redirectRefID-grinder
 
 # Keyword Redirects (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
- ;;;"drill";EXACT;$productCatalog-redirectRefID-drill;
- ;;;"grinder";EXACT;$productCatalog-redirectRefID-grinder;
 
 # Keyword Redirects (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]

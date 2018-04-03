@@ -201,8 +201,8 @@ UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[la
 # Powertools Homepage
 
 UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=en]
- ;;PowertoolsHomepageNewProductCarouselComponent;"WHAT'S NEW"
- ;;PowertoolsHomepageProductCarouselComponent;"Our Bestselling Products"
+# ;;PowertoolsHomepageNewProductCarouselComponent;"WHAT'S NEW"
+# ;;PowertoolsHomepageProductCarouselComponent;"Our Bestselling Products"
  ;;PremiumbuyersgroupHomepageProductCarouselComponent;"Our Bestselling Products"
 
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/jpeg'];$contentCV[unique=true];folder(qualifier)[default=images];
