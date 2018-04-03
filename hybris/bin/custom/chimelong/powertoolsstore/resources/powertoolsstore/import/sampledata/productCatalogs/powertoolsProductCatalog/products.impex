@@ -16,7 +16,7 @@ $productCatalogName=Powertools Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $supercategories=supercategories(code, $catalogVersion)
 $baseProduct=baseProduct(code,$catalogVersion)
-$approved=approvalstatus(code)[default='check']
+$approved=approvalstatus(code)[default='approved']
  
 # Language
 $lang=zh
@@ -26,16 +26,19 @@ $WeekendDays=SATURDAY,SUNDAY
  
  
 #### jinwei creates start ####
-INSERT_UPDATE DateRange ; startingDate[dateformat='yyyy-MM-dd'][unique=true] ; endingDate[dateformat='yyyy-MM-dd'][unique=true] ; &dateRangeRef 
-                        ; 2018-01-01                                         ; 2018-04-30                                       ; dateRange1    
-                        ; 2018-05-01                                         ; 2018-05-07                                       ; dateRange2    
-                        ; 2018-05-08                                         ; 2020-12-31                                       ; dateRange3    
-                        
-INSERT_UPDATE DateStrategy ; code[unique=true]          ; dayOfWeeks(code)       ; dateRanges(&dateRangeRef) ; name[lang=$lang] 
-                           ; normalStrategyWeekDays     ; $WeekDays              ; dateRange1,dateRange3     ; 平日               
-                           ; normalStrategyWeekendsDays ; $WeekendDays           ; dateRange1,dateRange3     ; 平日周末             
-                           ; 51holiday                  ; $WeekDays,$WeekendDays ; dateRange2                ; 五一劳动节            
+INSERT_UPDATE DateStrategy ; code[unique=true]          ; dayOfWeeks(code)       ; name[lang=$lang] 
+                           ; normalStrategyWeekDays     ; $WeekDays              ; 平日               
+                           ; normalStrategyWeekendsDays ; $WeekendDays           ; 平日周末             
+                           ; 51holiday                  ; $WeekDays,$WeekendDays ; 五一劳动节            
                            
+INSERT_UPDATE DateRange ; startingDate[dateformat='yyyy-MM-dd'][unique=true] ; endingDate[dateformat='yyyy-MM-dd'][unique=true] ; dateStrategy(code)[unique=true] 
+                        ; 2018-01-01                                         ; 2018-04-30                                       ; normalStrategyWeekDays          
+                        ; 2018-01-01                                         ; 2018-04-30                                       ; normalStrategyWeekendsDays      
+                        ; 2018-05-08                                         ; 2020-12-31                                       ; normalStrategyWeekDays          
+                        ; 2018-05-08                                         ; 2020-12-31                                       ; normalStrategyWeekendsDays      
+                        ; 2018-05-01                                         ; 2018-05-07                                       ; 51holiday                       
+                        
+                        
 INSERT_UPDATE TicketProduct ; code[unique=true] ; $supercategories ; ticketType(code) ; customerType(code) ; dateStrategy(code)         ; variantType(code)   ; unit(code)[default=pieces] ; $catalogVersion 
                             ; h001              ; cl11             ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekDays     ;                     ;                            ;                 
                             ; h002              ; cl11             ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekDays     ;                     ;                            ;                 
@@ -70,7 +73,7 @@ INSERT_UPDATE CircusShowTime ; code[unique=true] ; name[lang=$lang] ; startTime 
                              ; cst1730           ; 17:30~18:50      ; 17:30     ; 18:50   
                              ; cst1930           ; 19:30~20:50      ; 19:30     ; 20:50   
                              
-INSERT_UPDATE CircusVariantTicket ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; showTime(code) 
+INSERT_UPDATE CircusVariantTicket ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; showTime(code) ; $approved 
                                   ; cv001a            ;                 ; cl14             ; c001         ; cst1730        
                                   ; cv001b            ;                 ; cl14             ; c001         ; cst1930        
                                   ; cv002a            ;                 ; cl14             ; c002         ; cst1730        
