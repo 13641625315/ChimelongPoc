@@ -25,6 +25,8 @@
 			type="list" />
 		<collectiontype elementtype="Membership" code="MembershipList"
 			type="list" />
+		<collectiontype elementtype="ClSimplePriceRow" code="ClSimplePriceRowList"
+			type="list" />
 	</collectiontypes>
 
 	<enumtypes>
@@ -121,6 +123,14 @@
 			<targetElement qualifier="clDiscountGroups" type="ClDiscountGroup"
 				cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
+
+		<relation code="BundleEntry2Price" generate="true" localized="false"
+			autocreate="true">
+			<sourceElement qualifier="bundleProductEntry" type="BundleProductEntry"
+				cardinality="one" />
+			<targetElement qualifier="clSimplePriceRow" type="ClSimplePriceRow"
+				cardinality="many" collectiontype="list" ordered="true" />
+		</relation>
 	</relations>
 
 	<itemtypes>
@@ -161,18 +171,15 @@
 				generate="true" jaloclass="com.chimelong.core.jalo.BundleProductEntry">
 				<deployment table="BundleProductEntry" typecode="30002"></deployment>
 				<attributes>
-					<attribute qualifier="product" type="Product">
+					<attribute qualifier="entryNum" type="java.lang.Long">
 						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="quantity" type="java.lang.Long">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="bundlePrice" type="java.lang.Double">
+					<attribute qualifier="bundlePrices" type="ClSimplePriceRowList">
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="currency" type="Currency">
-						<persistence type="property" />
-					</attribute>					
 					<attribute qualifier="discount" type="java.lang.Double">
 						<persistence type="property" />
 					</attribute>
@@ -181,7 +188,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
- 
+
 			<itemtype code="ParkBundleProduct" extends="Product"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.ParkBundleProduct">
@@ -484,6 +491,28 @@
 						</persistence>
 					</attribute>
 					<attribute qualifier="currency" type="Currency">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ParkBundleProductEntry" extends="BundleProductEntry"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ParkBundleProductEntry">
+				<deployment table="ParkBundleProductEntry" typecode="30022"></deployment>
+				<attributes>
+					<attribute qualifier="parkProduct" type="Product">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="HotelBundleProductEntry" extends="BundleProductEntry"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.HotelBundleProductEntry">
+				<deployment table="HotelBundleProductEntry" typecode="30023"></deployment>
+				<attributes>
+					<attribute qualifier="hotelProduct" type="Product">
 						<persistence type="property" />
 					</attribute>
 				</attributes>
