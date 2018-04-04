@@ -412,6 +412,14 @@
 		</y:base>
 	</context>
 
+    <context type="Restaurant" component="base">
+        <y:base>
+            <y:labels>
+                <y:label>name + '[' + code +']'</y:label>
+            </y:labels>
+        </y:base>
+    </context>
+
 
     <!--AccommodationFacility START-->
     <context component="explorer-tree" merge-by="module">
@@ -431,11 +439,11 @@
     </context>
 
     <context component="create-wizard" type="AccommodationFacility">
-        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="AccommodationFacilityWizard" title="create.accommodationFacility.title">
+        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="AccommodationFacilityWizard" title="create.title(ctx.TYPE_CODE)">
             <wz:prepare id="accommodationFacilityPrepare">
                 <wz:initialize property="newAccommodationFacility" type="AccommodationFacility"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.necessary.label">
+            <wz:step id="step1" label="create.product.essential.label" sublabel="create.product.essential.sublabel">
                 <wz:content id="step1.content">
                     <wz:property-list root="newAccommodationFacility">
                         <wz:property qualifier="code"/>
@@ -491,11 +499,11 @@
     </context>
 
     <context component="create-wizard" type="DateRange">
-        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="DateRangeWizard" title="create.dateRange.title">
+        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="DateRangeWizard" title="create.title(ctx.TYPE_CODE)">
             <wz:prepare id="dateRangePrepare">
                 <wz:initialize property="newDateRange" type="DateRange"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.necessary.label">
+            <wz:step id="step1" label="create.product.essential.label" sublabel="create.product.essential.sublabel">
                 <wz:content id="step1.content">
                     <wz:property-list root="newDateRange">
                         <wz:property qualifier="startingDate" type="java.util.Date"/>
@@ -526,14 +534,457 @@
         </advanced-search:advanced-search>
     </context>
     <!--DateRange END-->
-    
+
+    <!--HotelBundleProduct START-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="HotelBundleProduct" code="HotelBundleProduct" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+    <context type="HotelBundleProduct" component="editor-area">
+        <editorArea:editorArea name=""
+                               xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials columns="4">
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="code" />
+                    <editorArea:attribute qualifier="name" />
+                    <editorArea:attribute qualifier="catalogVersion" />
+                    <editorArea:attribute qualifier="approvalStatus" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.tab.product.properties"
+                            position="1">
+                <editorArea:section name="hmc.section.hotelbundleproduct.description">
+                    <editorArea:attribute qualifier="description"
+                                          editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+                    <editorArea:attribute qualifier="totalPrice" />
+                    <editorArea:panel colspan="2" name="panel.dateRanges"
+                                      rowspan="2">
+                        <editorArea:attribute qualifier="dateRanges"
+                                              editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+                                              type="MultiReference-LIST(DateRange)">
+                        </editorArea:attribute>
+                    </editorArea:panel>
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.tab.product.categories"
+                            position="2">
+                <editorArea:section name="hmc.section.product.productincategory">
+                    <editorArea:attribute qualifier="supercategories">
+                        <editorArea:editor-parameter>
+                            <editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+                            <editorArea:value>true</editorArea:value>
+                        </editorArea:editor-parameter>
+                    </editorArea:attribute>
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.administration" position="99">
+                <editorArea:section name="hmc.section.metadata">
+                    <editorArea:attribute qualifier="pk" />
+                    <editorArea:attribute qualifier="itemtype" />
+                    <editorArea:attribute qualifier="creationtime" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.saved.values">
+                    <editorArea:attribute qualifier="savedValues" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!--HotelBundleProduct END-->
+
+    <!--HotelMealProduct START-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="HotelMealProduct" code="HotelMealProduct" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="HotelMealProduct" component="create-wizard">
+        <wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="productPrepare">
+                <wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+            </wz:prepare>
+            <wz:step id="step1" label="create.product.essential.label"
+                     sublabel="create.product.essential.sublabel">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newObject">
+                        <wz:property qualifier="code" />
+                        <wz:property qualifier="name" />
+                        <wz:property qualifier="catalogVersion" />
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel />
+                    <wz:done>
+                        <wz:save property="newObject" />
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="HotelMealProduct" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="code"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="name"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="catalogVersion"
+                        selected="true" operator="equals" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+
+    <context type="HotelMealProduct" component="editor-area" parent="Product">
+        <editorArea:editorArea>
+            <editorArea:essentials columns="4">
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="code" />
+                    <editorArea:attribute qualifier="name" />
+                    <editorArea:attribute qualifier="catalogVersion" />
+                    <editorArea:attribute qualifier="approvalStatus" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.tab.product.properties" position="1">
+                <editorArea:section columns="2" name="hmc.section.restaurant">
+                    <editorArea:attribute qualifier="restaurant" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.hotelmealproduct.description">
+                    <editorArea:attribute qualifier="description"
+                                          editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.tab.product.categories"
+                            position="2">
+                <editorArea:section name="hmc.section.hotelmealproduct.category">
+                    <editorArea:attribute qualifier="supercategories">
+                        <editorArea:editor-parameter>
+                            <editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+                            <editorArea:value>true</editorArea:value>
+                        </editorArea:editor-parameter>
+                    </editorArea:attribute>
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.administration" position="99">
+                <editorArea:section name="hmc.section.metadata">
+                    <editorArea:attribute qualifier="pk" />
+                    <editorArea:attribute qualifier="itemtype" />
+                    <editorArea:attribute qualifier="creationtime" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.saved.values">
+                    <editorArea:attribute qualifier="savedValues" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!--HotelMealProduct END-->
+
+    <!--HotelAddonProduct START-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="HotelAddonProduct" code="HotelAddonProduct" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="HotelAddonProduct" component="create-wizard">
+        <wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="productPrepare">
+                <wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+            </wz:prepare>
+            <wz:step id="step1" label="create.product.essential.label"
+                     sublabel="create.product.essential.sublabel">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newObject">
+                        <wz:property qualifier="code" />
+                        <wz:property qualifier="name" />
+                        <wz:property qualifier="catalogVersion" />
+                        <wz:property qualifier="addonType" />
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel />
+                    <wz:done>
+                        <wz:save property="newObject" />
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="HotelAddonProduct" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="code"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="name"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="catalogVersion"
+                        selected="true" operator="equals" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="addonType"
+                        selected="true" operator="equals" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+
+    <context type="HotelAddonProduct" component="editor-area" parent="Product">
+        <editorArea:editorArea>
+            <editorArea:essentials columns="4">
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="code" />
+                    <editorArea:attribute qualifier="name" />
+                    <editorArea:attribute qualifier="catalogVersion" />
+                    <editorArea:attribute qualifier="approvalStatus" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.tab.product.properties" position="1">
+                <editorArea:section name="hmc.section.hoteladdonproduct.description">
+                    <editorArea:attribute qualifier="description"
+                                          editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+                    <editorArea:attribute qualifier="addonType" />
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.tab.product.categories"
+                            position="2">
+                <editorArea:section name="hmc.section.hoteladdonproduct.category">
+                    <editorArea:attribute qualifier="supercategories">
+                        <editorArea:editor-parameter>
+                            <editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+                            <editorArea:value>true</editorArea:value>
+                        </editorArea:editor-parameter>
+                    </editorArea:attribute>
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.administration" position="99">
+                <editorArea:section name="hmc.section.metadata">
+                    <editorArea:attribute qualifier="pk" />
+                    <editorArea:attribute qualifier="itemtype" />
+                    <editorArea:attribute qualifier="creationtime" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.saved.values">
+                    <editorArea:attribute qualifier="savedValues" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!--HotelAddonProduct END-->
+
+    <!--ClDiscountRow END-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="ClDiscountRow" code="ClDiscountRow" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="ClDiscountRow" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="price" position="1"/>
+            <list:column qualifier="discount" position="2"/>
+            <list:column qualifier="currency" position="3"/>
+        </list:list-view>
+    </context>
+
+    <context type="ClDiscountRow" component="create-wizard">
+        <wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="productPrepare">
+                <wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+            </wz:prepare>
+            <wz:step id="step1" label="create.product.essential.label"
+                     sublabel="create.product.essential.sublabel">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newObject">
+                        <wz:property qualifier="currency" />
+                        <wz:property qualifier="categories" />
+                        <wz:property qualifier="products" />
+                        <wz:property qualifier="price" />
+                        <wz:property qualifier="discount" />
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel />
+                    <wz:done>
+                        <wz:save property="newObject" />
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="ClDiscountRow" component="simple-search">
+        <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+            <yss:field name="discount"/>
+            <yss:sort-field name="discount" asc="true"/>
+        </yss:simple-search>
+    </context>
+    <context type="ClDiscountRow" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="price"
+                        selected="true" operator="greater" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="discount"
+                        selected="true" operator="equals" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="currency"
+                        selected="true" operator="contains" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+
+    <context type="ClDiscountRow" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.tab.product.properties" position="1">
+                <editorArea:section name="hmc.section.cldiscountrow.properties">
+                    <editorArea:attribute qualifier="currency"/>
+                    <editorArea:attribute qualifier="categories" />
+                    <editorArea:attribute qualifier="exclusiveCategories" />
+                    <editorArea:attribute qualifier="products" />
+                    <editorArea:attribute qualifier="exclusiveProducts" />
+                    <editorArea:attribute qualifier="price" />
+                    <editorArea:attribute qualifier="discount" />
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.administration" position="99">
+                <editorArea:section name="hmc.section.metadata">
+                    <editorArea:attribute qualifier="pk" />
+                    <editorArea:attribute qualifier="itemtype" />
+                    <editorArea:attribute qualifier="creationtime" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.saved.values">
+                    <editorArea:attribute qualifier="savedValues" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!--ClDiscountRow END-->
+
+    <!--ClDiscountGroup END-->
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="ClDiscountGroup" code="ClDiscountGroup" />
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context type="ClDiscountGroup" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="code" position="1"/>
+            <list:column qualifier="name" position="2"/>
+            <list:column qualifier="discountType" position="3"/>
+        </list:list-view>
+    </context>
+
+    <context type="ClDiscountGroup" component="create-wizard">
+        <wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="productPrepare">
+                <wz:initialize property="newObject" type="ctx.TYPE_CODE" />
+            </wz:prepare>
+            <wz:step id="step1" label="create.product.essential.label"
+                     sublabel="create.product.essential.sublabel">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newObject">
+                        <wz:property qualifier="code" />
+                        <wz:property qualifier="name" />
+                        <wz:property qualifier="discountType" />
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel />
+                    <wz:done>
+                        <wz:save property="newObject" />
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="ClDiscountGroup" component="simple-search">
+        <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+            <yss:field name="code"/>
+            <yss:sort-field name="code" asc="true"/>
+        </yss:simple-search>
+    </context>
+    <context type="ClDiscountGroup" component="advanced-search">
+        <advanced-search:advanced-search
+                xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+            <advanced-search:field-list>
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="code"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="name"
+                        selected="true" operator="contains" />
+                <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="discountType"
+                        selected="true" operator="equals" />
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+
+    <context type="ClDiscountGroup" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:essentials columns="4">
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="code" />
+                    <editorArea:attribute qualifier="name" />
+                    <editorArea:attribute qualifier="discountType" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.tab.product.properties" position="1">
+                <editorArea:section name="hmc.section.cldiscountgroup.properties">
+                    <editorArea:attribute qualifier="clDiscountRows"/>
+                    <editorArea:attribute qualifier="memberships" />
+                    <editorArea:attribute qualifier="salesChannels" />
+                </editorArea:section>
+            </editorArea:tab>
+
+            <editorArea:tab name="hmc.administration" position="99">
+                <editorArea:section name="hmc.section.metadata">
+                    <editorArea:attribute qualifier="pk" />
+                    <editorArea:attribute qualifier="itemtype" />
+                    <editorArea:attribute qualifier="creationtime" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.saved.values">
+                    <editorArea:attribute qualifier="savedValues" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!--ClDiscountGroup END-->
+
     <context merge-by="module" parent="auto" component="explorer-tree">
 		<explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
 			<explorer-tree:navigation-node id="hmc.Circus" merge-mode="append">
 					<explorer-tree:type-node code="CircusVariantTicket" id="hmc_type_tree_circusvariantticket" />
 					<explorer-tree:type-node code="CircusShowTime" id="hmc_type_tree_circusshowtime" />
 			</explorer-tree:navigation-node>
-					<explorer-tree:type-node code="ClDiscountGroupRule" id="hmc_type_tree_cldiscountgrouprule" />
 		</explorer-tree:explorer-tree>
 	</context>
 	<context type="CircusVariantTicket" component="editor-area">
@@ -624,40 +1075,6 @@
 		</y:base>
 	</context>
 	
-	<context type="ClDiscountGroupRule" component="editor-area">
-		<editorArea:editorArea name=""
-			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
-			<editorArea:essentials columns="4">
-				<editorArea:essentialSection name="hmc.essential">
-				<editorArea:panel colspan="2"
-						name="panel.showTime" rowspan="2">
-						<editorArea:attribute qualifier="dateRanges"
-							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							type="MultiReference-LIST(DateRange)">
-						</editorArea:attribute>
-					</editorArea:panel>
-					<editorArea:panel colspan="2" name="panel.dateRanges"
-						rowspan="2">
-						<editorArea:attribute qualifier="discountRows"
-							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							type="MultiReference-LIST(DiscountRowCollectionType)">
-						</editorArea:attribute>
-					</editorArea:panel>
-				</editorArea:essentialSection>
-			</editorArea:essentials>
-
-			<editorArea:tab name="hmc.administration" position="99">
-				<editorArea:section name="hmc.section.metadata">
-					<editorArea:attribute qualifier="pk" />
-					<editorArea:attribute qualifier="itemtype" />
-					<editorArea:attribute qualifier="creationtime" />
-				</editorArea:section>
-				<editorArea:section name="hmc.section.saved.values">
-					<editorArea:attribute qualifier="savedValues" />
-				</editorArea:section>
-			</editorArea:tab>
-		</editorArea:editorArea>
-	</context>
 
 	<context component="explorer-tree" merge-by="module">
 		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
