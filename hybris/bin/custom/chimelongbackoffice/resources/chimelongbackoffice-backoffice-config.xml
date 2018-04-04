@@ -51,6 +51,7 @@
 					</editorArea:panel>
 				</editorArea:section>
 				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="totalPrice" />
 					<editorArea:attribute qualifier="dateStrategy" />
 					<editorArea:attribute qualifier="exclusiveDateStrategy" />
 					<editorArea:attribute qualifier="salesChannels" />
@@ -364,8 +365,10 @@
 
 	<context merge-by="type" type="BundleProductEntry" component="listview">
 		<list-view:list-view>
-			<list-view:column qualifier="product" position="1" />
-			<list-view:column qualifier="quantity" position="2" />
+			<list-view:column qualifier="parkBundleProduct" position="1" />
+			<list-view:column qualifier="hotelBundleProduct" position="2" />
+			<list-view:column qualifier="entryNum" position="3" />
+			<list-view:column qualifier="quantity" position="4" />
 		</list-view:list-view>
 	</context>
 
@@ -1076,13 +1079,17 @@
 	</context>
 	
 
-	<context component="explorer-tree" merge-by="module">
+		<context component="explorer-tree" merge-by="module">
 		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
 			<n:navigation-node id="hmc_typenode_ticketproduct">
 				<n:type-node id="hmc_typenode_ticketproduct" code="TicketProduct"/>
-				<n:type-node id="hmc_typenode_combinedticketproduct" code="CombinedTicketProduct"/>
-				<n:type-node id="hmc_typenode_combinedproductentry" code="CombinedProductEntry"/>
 				<n:type-node id="hmc_typenode_accommodationproduct" code="AccommodationProduct"/>
+				<n:type-node id="hmc_typenode_parkbundleproduct" code="ParkBundleProduct"/>
+				<n:type-node id="hmc_typenode_bundleproductentry" code="BundleProductEntry"/>
+				<n:type-node id="hmc_typenode_parkbundleproductentry" code="ParkBundleProductEntry"/>
+				<n:type-node id="hmc_typenode_hotelbundleproductentry" code="HotelBundleProductEntry"/>
+				<n:type-node id="hmc_typenode_stocklevel" code="StockLevel"/>
+				<n:type-node id="hmc_typenode_membership" code="Membership"/>
 			</n:navigation-node>
 		</n:explorer-tree>
 	</context>
@@ -1164,6 +1171,7 @@
 					<wz:property-list root="newObject">
 						<wz:property qualifier="code" />
 						<wz:property qualifier="name" />
+						<wz:property qualifier="discription"/>
 						<wz:property qualifier="catalogVersion" />
 					</wz:property-list>
 				</wz:content>
@@ -1251,6 +1259,7 @@
 					<wz:property-list root="newObject">
 						<wz:property qualifier="code" />
 						<wz:property qualifier="name" />
+						<wz:property qualifier="discription"/>
 						<wz:property qualifier="catalogVersion" />
 					</wz:property-list>
 				</wz:content>
@@ -1263,14 +1272,18 @@
 			</wz:step>
 		</wz:flow>
 	</context>
-	
-	<context type="CombinedProductEntry" component="editor-area">
+		
+	<context type="BundleProductEntry" component="editor-area">
 		<editorArea:editorArea>
 			<editorArea:essentials columns="4">
 				<editorArea:essentialSection name="hmc.essential">
-					<editorArea:attribute qualifier="product" />
+					<editorArea:attribute qualifier="parkBundleProduct" />
+					<editorArea:attribute qualifier="hotelBundleProduct" />
 					<editorArea:attribute qualifier="quantity" />
-					<editorArea:attribute qualifier="europe1Prices" />
+					<editorArea:attribute qualifier="entryNum" />
+					<editorArea:attribute qualifier="bundlePrices" />
+					<editorArea:attribute qualifier="discount" />
+					<editorArea:attribute qualifier="clSimplePriceRow" />
 					<editorArea:attribute qualifier="catalogVersion" />
 				</editorArea:essentialSection>
 			</editorArea:essentials>
