@@ -83,6 +83,14 @@ INSERT_UPDATE CircusVariantTicket ; code[unique=true] ; $catalogVersion ; $super
                                   ; cv0021a           ;                 ; cl14             ; c0021        ; cst1730        
                                   ; cv0021b           ;                 ; cl14             ; c0021        ; cst1930        
                                   
-#### jinwei creates end ####      
-                                  
-                                  
+INSERT_UPDATE Restaurant ; code[unique=true] ; name[lang=$lang] 
+                         ; BAIHU             ; 白虎餐厅             
+                         
+INSERT_UPDATE ParkMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] 
+                              ; pm001             ;                 ;                  ;                    ;                            
+                              
+INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] 
+                               ; pa001             ;                 ;                  ;                    ;                            
+#### jinwei creates end ####   
+                               
+                               
