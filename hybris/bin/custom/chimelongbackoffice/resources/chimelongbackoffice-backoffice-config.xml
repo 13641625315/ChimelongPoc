@@ -982,20 +982,24 @@
     </context>
     <!--ClDiscountGroup END-->
 
-    <context merge-by="module" parent="auto" component="explorer-tree">
-		<explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
-			<explorer-tree:navigation-node id="hmc.Circus" merge-mode="append">
-					<explorer-tree:type-node code="CircusVariantTicket" id="hmc_type_tree_circusvariantticket" />
-					<explorer-tree:type-node code="CircusShowTime" id="hmc_type_tree_circusshowtime" />
-			</explorer-tree:navigation-node>
-			<explorer-tree:navigation-node id="hmc.Park" merge-mode="append">
-					<explorer-tree:type-node code="ParkMealProduct" id="hmc_type_tree_parkaddonproduct" />
-					<explorer-tree:type-node code="ParkAddonProduct" id="hmc_type_tree_parkaddonproduct" />
-			</explorer-tree:navigation-node>
-					<explorer-tree:type-node code="ClSimplePriceRow" id="hmc_type_tree_ClSimplePriceRow" />
-					<explorer-tree:type-node code="DateStrategy" id="hmc_type_tree_DateStrategy" />
-		</explorer-tree:explorer-tree>
+	<context component="explorer-tree" merge-by="module">
+		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+			<n:navigation-node id="hmc_typenode_ticketproduct">
+				<n:type-node id="hmc_type_tree_circusvariantticket" code="CircusVariantTicket"/>
+				<n:type-node id="hmc_type_tree_circusshowtime" code="CircusShowTime"/>
+			</n:navigation-node>
+		</n:explorer-tree>
 	</context>
+	<context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_chimelongcustom">
+                <n:type-node id="hmc_type_tree_ClSimplePriceRow" code="ClSimplePriceRow" />
+                <n:type-node id="hmc_type_tree_DateStrategy" code="DateStrategy" />
+                <n:type-node id="hmc_type_tree_parkmealproduct" code="ParkMealProduct"/>
+				<n:type-node id="hmc_type_tree_parkaddonproduct" code="ParkAddonProduct"/>
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
 	
 	<context type="CircusVariantTicket" component="editor-area">
 		<editorArea:editorArea name=""
