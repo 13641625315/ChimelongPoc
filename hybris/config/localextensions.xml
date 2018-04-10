@@ -10,8 +10,8 @@
 		<extension name='commerceservicesbackoffice' />
 		<extension name='solrfacetsearchbackoffice' />
 		<extension name='solrserver' />
-		<extension name='ycommercewebservices' />
-		<extension name='ycommercewebservicestest' />
+		<!-- <extension name='ycommercewebservices' /> -->
+		<!-- <extension name='ycommercewebservicestest' /> -->
 		<!-- <extension name='electronicsstore' /> -->
 		<!-- <extension name='apparelstore' /> -->
 		<extension name='acceleratorwebservicesaddon' />
@@ -68,5 +68,6 @@
 		<extension name='chimelongcockpits' />
 		<extension name='chimelongfulfilmentprocess' />
 		<extension name="chimelongbackoffice"/>
+		<extension name="chimelongwebservices"/>
 	</extensions>
 </hybrisconfig>
