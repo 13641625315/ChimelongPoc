@@ -186,20 +186,22 @@ UPDATE B2BCustomer ; uid[unique=true]            ; permissions(code,unit(uid))  
 ######             
 INSERT_UPDATE UserGroup ; uid[unique=true]          ;  
                         ; chimelongb2ccustomergroup ;  
-                        ; flupig                    ;  
-                        ; guangzhouta               ;  
                         
-INSERT_UPDATE B2BUnit ; description ; uid[unique=true] ; name        ; groups(uid) ; reportingOrganization(uid) ; Addresses(&addId) ; &B2BUnitID  ; accountManager(uid) ; creditLimit(code) ; approvalProcessCode ; locName[lang=zh] 
-                      ; flypig      ; flypig           ; flypig      ; flupig      ; flypig                     ;                   ; flypig      ; acctmgra            ;                   ;                     ; 飞猪               
-                      ; guangzhouta ; guangzhouta      ; guangzhouta ; guangzhouta ; guangzhouta                ;                   ; guangzhouta ; acctmgra            ;                   ;                     ; 广州旅行社            
+INSERT_UPDATE B2BUnit ; description ; uid[unique=true] ; name        ; groups(uid) ; reportingOrganization(uid) ; Addresses(&addId) ; &B2BUnitID  ; accountManager(uid) ; creditLimit(code) ; approvalProcessCode ; locName[lang=en] ; locName[lang=zh] 
+                      ; flypig      ; flypig           ; flypig      ;             ; flypig                     ;                   ; flypig      ; acctmgra            ;                   ;                     ; flypig           ; 飞猪               
+                      ; guangzhouta ; guangzhouta      ; guangzhouta ;             ; guangzhouta                ;                   ; guangzhouta ; acctmgra            ;                   ;                     ; guangzhouta      ; 广州旅行社            
                       
 INSERT_UPDATE Membership ; code[unique=true] ; name[lang=zh] ;  
                          ; VIP1              ; VIP1          
                          ; VIP2              ; VIP2          
                          ; YEARCARD1         ; 年卡1           
                          
-# Customers              
-INSERT_UPDATE B2CCustomer ; originalUid[unique=true]  ; uid[unique=true]          ; title(code) ; name                       ; description                ; sessionLanguage(isocode) ; sessionCurrency(isocode) ; groups(uid)               ; password[default=$defaultPassword] ; memberships 
+INSERT_UPDATE SalesChannel ; code[unique=true] ; name[lang=zh] ;  
+                           ; TA                ; TA            
+                           ; OTA               ; OTA           
+                           
+# Customers                
+INSERT_UPDATE B2CCustomer ; originalUid[unique=true]  ; uid[unique=true]          ; title(code) ; name                       ; description                ; sessionLanguage(isocode) ; sessionCurrency(isocode) ; groups(uid)               ; password[default=$defaultPassword] ; memberships(code) 
                           ; b2ccustomer@chimelong.com ; b2ccustomer@chimelong.com ;             ; chimelong b2ccustomer user ; chimelong b2ccustomer user ; zh                       ; CNY                      ; chimelongb2ccustomergroup ;                                    ; VIP1        
                           
 INSERT_UPDATE B2BCustomer ; description               ; uid[unique=true]          ; originalUid               ; email                     ; name        ; title(code) ; groups(uid) ; permissionGroups(uid) ; sessionCurrency(isocode)[default='CNY'] ; password[default=$defaultPassword] ;  

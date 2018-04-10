@@ -15,6 +15,7 @@ $productCatalog=powertoolsProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
 $prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 $taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+$baseProduct=baseProduct(code,$catalogVersion)
 
 # Set product approval status to Approved only for those products that have prices.
 $approved=approvalstatus(code)[default='approved']
@@ -83,12 +84,15 @@ UPDATE Product;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogV
 ;cv0021b; priceRow-cv0021b
 
 INSERT_UPDATE ParkBundleProduct;code[unique=true];totalPrice;$catalogVersion;$approved
-;ha002 ; 400;
-;hb002 ; 295;
-;ha0021 ; 800;
-;hb0021 ; 590;
+;ha002 ; 400;;;
+;hb002 ; 295;;;
+;ha0021 ; 800;;;
+;hb0021 ; 590;;;
 
-INSERT_UPDATE ParkBundleProductEntry;parkBundleProduct(code)[unique=true];entryNum[unique=true];parkProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
+INSERT_UPDATE HotelBundleProduct ;code[unique=true];totalPrice;$catalogVersion;$approved;$baseProduct
+                                 ;cjt21            ;1499	  ;				  ;			;lhf0011
+
+INSERT_UPDATE ParkBundleProductEntry;parkBundleProduct(code[unique=true], $catalogVersion)[unique=true];entryNum[unique=true];parkProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
 ;ha002;1;h002;1;;bundleProductEntryha002-1
 ;ha002;2;a002;1;;bundleProductEntryha002-2
 ;hb002;1;h002;1;;bundleProductEntryhb002-1
@@ -98,6 +102,9 @@ INSERT_UPDATE ParkBundleProductEntry;parkBundleProduct(code)[unique=true];entryN
 ;hb0021;1;h0021;1;;bundleProductEntryhb0021-1
 ;hb0021;2;b0021;1;;bundleProductEntryhb0021-2
 
+INSERT_UPDATE HotelBundleProductEntry;HotelBundleProduct(code[unique=true], $catalogVersion)[unique=true];entryNum[unique=true];hotelProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
+;cjt21;1;lhf0011;1;;hotelBundleProductEntrycjt21-1
+;cjt21;2;h002;1;;hotelBundleProductEntrycjt21-2
 
 INSERT_UPDATE ClSimplePriceRow;price;bundleProductEntry(&bundleProductEntry)[unique=true];currency(isocode)[unique=true];
 ;200;bundleProductEntryha002-1;CNY
@@ -108,3 +115,5 @@ INSERT_UPDATE ClSimplePriceRow;price;bundleProductEntry(&bundleProductEntry)[uni
 ;400;bundleProductEntryha0021-2;CNY
 ;400;bundleProductEntryhb0021-1;CNY
 ;190;bundleProductEntryhb0021-2;CNY
+;1380;hotelBundleProductEntrycjt21-1;CNY
+;200;hotelBundleProductEntrycjt21-2;CNY
