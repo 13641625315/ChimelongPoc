@@ -317,7 +317,7 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="HotelBundleProduct" extends="AccommodationNetProduct"
+			<itemtype code="HotelBundleProduct" extends="Product"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.HotelBundleProduct">
 				<deployment table="HotelBundleProduct" typecode="30011"></deployment>
