@@ -143,6 +143,8 @@
 					<editorArea:attribute qualifier="salesChannels" />
 					<editorArea:attribute qualifier="customerType" />
 					<editorArea:attribute qualifier="ticketType" />
+					<editorArea:attribute qualifier="variants" />
+					<editorArea:attribute qualifier="variantType" />
 				</editorArea:section>
 			</editorArea:tab>
 
