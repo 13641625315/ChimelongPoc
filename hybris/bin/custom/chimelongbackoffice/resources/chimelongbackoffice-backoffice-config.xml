@@ -1077,18 +1077,10 @@
 				<editorArea:section name="hmc.section.CircusVariantTicket.description">
 					<editorArea:attribute qualifier="description"
 						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
-					<editorArea:panel colspan="2"
-						name="panel.showTime" rowspan="2">
-						<editorArea:attribute qualifier="showTime">
-						</editorArea:attribute>
-					</editorArea:panel>
-					<editorArea:panel colspan="2" name="panel.dateRanges"
-						rowspan="2">
-						<editorArea:attribute qualifier="dateRanges"
-							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							type="MultiReference-LIST(DateRange)">
-						</editorArea:attribute>
-					</editorArea:panel>
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="showTime" />
+					<editorArea:attribute qualifier="baseProduct" />
 				</editorArea:section>
 			</editorArea:tab>
 
@@ -1101,6 +1093,28 @@
 							<editorArea:value>true</editorArea:value>
 						</editorArea:editor-parameter>
 					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
+			
+			<editorArea:tab name="hmc.tab.product.prices"
+				position="3">
+				<editorArea:section name="hmc.section.product.pricesdiscounts">
+					<editorArea:panel colspan="2" name="panel.europe1Prices"
+						rowspan="2">
+						<editorArea:attribute description="hmc.text.product.pg"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							qualifier="europe1Prices">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1PricesListView</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+
+					</editorArea:panel>
 				</editorArea:section>
 			</editorArea:tab>
 
@@ -1390,21 +1404,15 @@
 			</editorArea:essentials>
 			<editorArea:tab name="hmc.tab.product.properties"
 				position="1">
-				<editorArea:section name="hmc.section.parkaddonproduct.description">
+				<editorArea:section name="hmc.product.descriptions">
 					<editorArea:attribute qualifier="description"
 						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
-					<editorArea:panel colspan="2"
-						name="panel.restaurant" rowspan="2">
-						<editorArea:attribute qualifier="addonType">
-						</editorArea:attribute>
-					</editorArea:panel>
-					<editorArea:panel colspan="2" name="panel.dateRanges"
-						rowspan="2">
-						<editorArea:attribute qualifier="dateRanges"
-							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-							type="MultiReference-LIST(DateRange)">
-						</editorArea:attribute>
-					</editorArea:panel>
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="addonType" />
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
 				</editorArea:section>
 			</editorArea:tab>
 
@@ -1419,6 +1427,29 @@
 					</editorArea:attribute>
 				</editorArea:section>
 			</editorArea:tab>
+			
+			<editorArea:tab name="hmc.tab.product.prices"
+				position="3">
+				<editorArea:section name="hmc.section.product.pricesdiscounts">
+					<editorArea:panel colspan="2" name="panel.europe1Prices"
+						rowspan="2">
+						<editorArea:attribute description="hmc.text.product.pg"
+							editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+							qualifier="europe1Prices">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1PricesListView</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+
+					</editorArea:panel>
+				</editorArea:section>
+			</editorArea:tab>
+			
 
 			<editorArea:tab name="hmc.administration" position="99">
 				<editorArea:section name="hmc.section.metadata">
