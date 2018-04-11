@@ -620,6 +620,7 @@
                         <wz:property qualifier="code" />
                         <wz:property qualifier="name" />
                         <wz:property qualifier="catalogVersion" />
+                        <wz:property qualifier="restaurant" />
                     </wz:property-list>
                 </wz:content>
                 <wz:navigation id="step1.navigation">
@@ -643,6 +644,9 @@
                         xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="name"
                         selected="true" operator="contains" />
                 <advanced-search:field
+                        xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="restaurant"
+                        selected="true" operator="contains" />
+                <advanced-search:field
                         xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="catalogVersion"
                         selected="true" operator="equals" />
             </advanced-search:field-list>
@@ -650,48 +654,75 @@
     </context>
 
     <context type="HotelMealProduct" component="editor-area" parent="Product">
-        <editorArea:editorArea>
-            <editorArea:essentials columns="4">
-                <editorArea:essentialSection name="hmc.essential">
-                    <editorArea:attribute qualifier="code" />
-                    <editorArea:attribute qualifier="name" />
-                    <editorArea:attribute qualifier="catalogVersion" />
-                    <editorArea:attribute qualifier="approvalStatus" />
-                </editorArea:essentialSection>
-            </editorArea:essentials>
-            <editorArea:tab name="hmc.tab.product.properties" position="1">
-                <editorArea:section columns="2" name="hmc.section.restaurant">
-                    <editorArea:attribute qualifier="restaurant" />
-                </editorArea:section>
-                <editorArea:section name="hmc.section.hotelmealproduct.description">
-                    <editorArea:attribute qualifier="description"
-                                          editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
-                </editorArea:section>
-            </editorArea:tab>
+		<editorArea:editorArea name=""
+							   xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="code" />
+					<editorArea:attribute qualifier="name" />
+					<editorArea:attribute qualifier="catalogVersion" />
+					<editorArea:attribute qualifier="approvalStatus" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.tab.product.properties"
+							position="1">
+				<editorArea:section name="hmc.product.descriptions">
+					<editorArea:attribute qualifier="description"
+										  editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="restaurant" />
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
+				</editorArea:section>
+			</editorArea:tab>
 
-            <editorArea:tab name="hmc.tab.product.categories"
-                            position="2">
-                <editorArea:section name="hmc.section.hotelmealproduct.category">
-                    <editorArea:attribute qualifier="supercategories">
-                        <editorArea:editor-parameter>
-                            <editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
-                            <editorArea:value>true</editorArea:value>
-                        </editorArea:editor-parameter>
-                    </editorArea:attribute>
-                </editorArea:section>
-            </editorArea:tab>
+			<editorArea:tab name="hmc.tab.product.categorysystem"
+							position="2">
+				<editorArea:section name="hmc.section.product.productincategory">
+					<editorArea:attribute qualifier="supercategories">
+						<editorArea:editor-parameter>
+							<editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+							<editorArea:value>true</editorArea:value>
+						</editorArea:editor-parameter>
+					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
 
-            <editorArea:tab name="hmc.administration" position="99">
-                <editorArea:section name="hmc.section.metadata">
-                    <editorArea:attribute qualifier="pk" />
-                    <editorArea:attribute qualifier="itemtype" />
-                    <editorArea:attribute qualifier="creationtime" />
-                </editorArea:section>
-                <editorArea:section name="hmc.section.saved.values">
-                    <editorArea:attribute qualifier="savedValues" />
-                </editorArea:section>
-            </editorArea:tab>
-        </editorArea:editorArea>
+			<editorArea:tab name="hmc.tab.product.prices"
+							position="3">
+				<editorArea:section name="hmc.section.product.pricesdiscounts">
+					<editorArea:panel colspan="2" name="panel.europe1Prices"
+									  rowspan="2">
+						<editorArea:attribute description="hmc.text.product.pg"
+											  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+											  qualifier="europe1Prices">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1PricesListView</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+
+					</editorArea:panel>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
     </context>
     <!--HotelMealProduct END-->
 
@@ -750,46 +781,75 @@
     </context>
 
     <context type="HotelAddonProduct" component="editor-area" parent="Product">
-        <editorArea:editorArea>
-            <editorArea:essentials columns="4">
-                <editorArea:essentialSection name="hmc.essential">
-                    <editorArea:attribute qualifier="code" />
-                    <editorArea:attribute qualifier="name" />
-                    <editorArea:attribute qualifier="catalogVersion" />
-                    <editorArea:attribute qualifier="approvalStatus" />
-                </editorArea:essentialSection>
-            </editorArea:essentials>
-            <editorArea:tab name="hmc.tab.product.properties" position="1">
-                <editorArea:section name="hmc.section.hoteladdonproduct.description">
-                    <editorArea:attribute qualifier="description"
-                                          editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
-                    <editorArea:attribute qualifier="addonType" />
-                </editorArea:section>
-            </editorArea:tab>
+		<editorArea:editorArea name=""
+							   xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="code" />
+					<editorArea:attribute qualifier="name" />
+					<editorArea:attribute qualifier="catalogVersion" />
+					<editorArea:attribute qualifier="approvalStatus" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.tab.product.properties"
+							position="1">
+				<editorArea:section name="hmc.product.descriptions">
+					<editorArea:attribute qualifier="description"
+										  editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+				</editorArea:section>
+				<editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="addonType" />
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
+				</editorArea:section>
+			</editorArea:tab>
 
-            <editorArea:tab name="hmc.tab.product.categories"
-                            position="2">
-                <editorArea:section name="hmc.section.hoteladdonproduct.category">
-                    <editorArea:attribute qualifier="supercategories">
-                        <editorArea:editor-parameter>
-                            <editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
-                            <editorArea:value>true</editorArea:value>
-                        </editorArea:editor-parameter>
-                    </editorArea:attribute>
-                </editorArea:section>
-            </editorArea:tab>
+			<editorArea:tab name="hmc.tab.product.categorysystem"
+							position="2">
+				<editorArea:section name="hmc.section.product.productincategory">
+					<editorArea:attribute qualifier="supercategories">
+						<editorArea:editor-parameter>
+							<editorArea:name>isNestedObjectCreationDisabled</editorArea:name>
+							<editorArea:value>true</editorArea:value>
+						</editorArea:editor-parameter>
+					</editorArea:attribute>
+				</editorArea:section>
+			</editorArea:tab>
 
-            <editorArea:tab name="hmc.administration" position="99">
-                <editorArea:section name="hmc.section.metadata">
-                    <editorArea:attribute qualifier="pk" />
-                    <editorArea:attribute qualifier="itemtype" />
-                    <editorArea:attribute qualifier="creationtime" />
-                </editorArea:section>
-                <editorArea:section name="hmc.section.saved.values">
-                    <editorArea:attribute qualifier="savedValues" />
-                </editorArea:section>
-            </editorArea:tab>
-        </editorArea:editorArea>
+			<editorArea:tab name="hmc.tab.product.prices"
+							position="3">
+				<editorArea:section name="hmc.section.product.pricesdiscounts">
+					<editorArea:panel colspan="2" name="panel.europe1Prices"
+									  rowspan="2">
+						<editorArea:attribute description="hmc.text.product.pg"
+											  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+											  qualifier="europe1Prices">
+							<editorArea:editor-parameter>
+								<editorArea:name>listConfigContext</editorArea:name>
+								<editorArea:value>europe1PricesListView</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+								<editorArea:value>create-wizard-no-save</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+
+					</editorArea:panel>
+				</editorArea:section>
+			</editorArea:tab>
+
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
     </context>
     <!--HotelAddonProduct END-->
 

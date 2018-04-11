@@ -309,7 +309,15 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="HotelBundleProduct" extends="VariantProduct"
+			<itemtype code="AccommodationNetProduct" extends="VariantProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.AccommodationNetProduct">
+				<deployment table="AccommodationNetProduct" typecode="30024"></deployment>
+				<attributes>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="HotelBundleProduct" extends="Product"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.HotelBundleProduct">
 				<deployment table="HotelBundleProduct" typecode="30011"></deployment>
@@ -517,6 +525,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
+
 		</typegroup>
 
 		<!-- TypeGroups are for structure of this file only -->

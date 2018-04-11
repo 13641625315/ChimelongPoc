@@ -74,15 +74,46 @@ INSERT_UPDATE CircusShowTime ; code[unique=true] ; name[lang=$lang] ; startTime 
                              ; cst1930           ; 19:30~20:50      ; 19:30     ; 20:50   
                              
 INSERT_UPDATE CircusVariantTicket ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; showTime(code) ; $approved 
-                                  ; cv001a            ;                 ; cl14             ; c001         ; cst1730        
-                                  ; cv001b            ;                 ; cl14             ; c001         ; cst1930        
-                                  ; cv002a            ;                 ; cl14             ; c002         ; cst1730        
-                                  ; cv002b            ;                 ; cl14             ; c002         ; cst1930        
-                                  ; cv0011a           ;                 ; cl14             ; c0011        ; cst1730        
-                                  ; cv0011b           ;                 ; cl14             ; c0011        ; cst1930        
-                                  ; cv0021a           ;                 ; cl14             ; c0021        ; cst1730        
-                                  ; cv0021b           ;                 ; cl14             ; c0021        ; cst1930        
+                                  ; cv001a            ;                 ; cl14             ; c001         ; cst1730        ;           
+                                  ; cv001b            ;                 ; cl14             ; c001         ; cst1930        ;           
+                                  ; cv002a            ;                 ; cl14             ; c002         ; cst1730        ;           
+                                  ; cv002b            ;                 ; cl14             ; c002         ; cst1930        ;           
+                                  ; cv0011a           ;                 ; cl14             ; c0011        ; cst1730        ;           
+                                  ; cv0011b           ;                 ; cl14             ; c0011        ; cst1930        ;           
+                                  ; cv0021a           ;                 ; cl14             ; c0021        ; cst1730        ;           
+                                  ; cv0021b           ;                 ; cl14             ; c0021        ; cst1930        ;           
                                   
-#### jinwei creates end ####      
-                                  
-                                  
+INSERT_UPDATE Restaurant ; code[unique=true] ; name[lang=$lang] 
+                         ; BAIHU             ; 白虎餐厅             
+                         
+INSERT_UPDATE ParkMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
+                              ; pm001             ;                 ;                  ;                    ;                            ;园餐1
+                              
+INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
+                               ; pa001             ;                 ;                  ;                    ;                            ;园二销1
+                               
+INSERT_UPDATE AccommodationFacility ; code[unique=true] ; name[lang=$lang] ; discription[lang=$lang] 
+                                    ; swimpool          ; 泳池              ; swimpool                
+                                    
+INSERT_UPDATE AccommodationProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code)     ; bedType(code) ; accommodationFacilities(code) ; unit(code)[default=pieces] ; variantType(code)       
+                                   ; lhf001            ;                 ; cl21             ; normalStrategyWeekDays ;               ;                               ;                            ; AccommodationNetProduct 
+                                   
+INSERT_UPDATE AccommodationNetProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; $approved 
+                                      ; lhf0011           ;                 ; cl21             ; lhf001       ;           
+                                      
+INSERT_UPDATE HotelMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
+                               ; hm001             ;                 ;                  ;                    ;                            ;酒餐1
+                               
+INSERT_UPDATE HotelAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
+                                ; ha001             ;                 ;                  ;                    ;                            ;酒二销1
+                                
+INSERT_UPDATE ParkBundleProduct ; code[unique=true] ; totalPrice ; $catalogVersion ; $approved 
+                                ; ha002             ; 400        ;                 ;             
+                                ; hb002             ; 295        ;                 ;             
+                                ; ha0021            ; 800        ;                 ;             
+                                ; hb0021            ; 590        ;                 ;             
+                                
+INSERT_UPDATE HotelBundleProduct ; code[unique=true] ; totalPrice ; $supercategories ; $catalogVersion ; $approved 
+                                 ; cjt21             ; 1499       ; cl21             ;                 ;           
+                                 
+#### jinwei creates end ####     
