@@ -86,34 +86,34 @@ INSERT_UPDATE CircusVariantTicket ; code[unique=true] ; $catalogVersion ; $super
 INSERT_UPDATE Restaurant ; code[unique=true] ; name[lang=$lang] 
                          ; BAIHU             ; 白虎餐厅             
                          
-INSERT_UPDATE ParkMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
-                              ; pm001             ;                 ;                  ;                    ;                            ;园餐1
+INSERT_UPDATE ParkMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; name[lang=$lang] ;$approved 
+                              ; pm001             ;                 ;                  ;                    ;                            ; 园餐1              
                               
-INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
-                               ; pa001             ;                 ;                  ;                    ;                            ;园二销1
+INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; name[lang=$lang] ;$approved 
+                               ; pa001             ;                 ;                  ;                    ;                            ; 园二销1             
                                
 INSERT_UPDATE AccommodationFacility ; code[unique=true] ; name[lang=$lang] ; discription[lang=$lang] 
-                                    ; swimpool          ; 泳池              ; swimpool                
+                                    ; swimpool          ; 泳池               ; swimpool                
                                     
-INSERT_UPDATE AccommodationProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code)     ; bedType(code) ; accommodationFacilities(code) ; unit(code)[default=pieces] ; variantType(code)       
-                                   ; lhf001            ;                 ; cl21             ; normalStrategyWeekDays ;               ;                               ;                            ; AccommodationNetProduct 
+INSERT_UPDATE AccommodationProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code)     ; bedType(code) ; accommodationFacilities(code) ; unit(code)[default=pieces] ; variantType(code)       ; name[lang=$lang] 
+                                   ; lhf001            ;                 ; cl21             ; normalStrategyWeekDays ;               ;                               ;                            ; AccommodationNetProduct ; 老虎房              
                                    
-INSERT_UPDATE AccommodationNetProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; $approved 
-                                      ; lhf0011           ;                 ; cl21             ; lhf001       ;           
+INSERT_UPDATE AccommodationNetProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; $approved ; name[lang=$lang] 
+                                      ; lhf0011           ;                 ; cl21             ; lhf001       ;           ; 老虎房净房            
                                       
-INSERT_UPDATE HotelMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
-                               ; hm001             ;                 ;                  ;                    ;                            ;酒餐1
+INSERT_UPDATE HotelMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; name[lang=$lang] ;$approved 
+                               ; hm001             ;                 ;                  ;                    ;                            ; 酒餐1              
                                
-INSERT_UPDATE HotelAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ;name[lang=$lang]
-                                ; ha001             ;                 ;                  ;                    ;                            ;酒二销1
+INSERT_UPDATE HotelAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; name[lang=$lang] ;$approved 
+                                ; ha001             ;                 ;                  ;                    ;                            ; 酒二销1             
                                 
 INSERT_UPDATE ParkBundleProduct ; code[unique=true] ; totalPrice ; $catalogVersion ; $approved 
-                                ; ha002             ; 400        ;                 ;             
-                                ; hb002             ; 295        ;                 ;             
-                                ; ha0021            ; 800        ;                 ;             
-                                ; hb0021            ; 590        ;                 ;             
+                                ; ha002             ; 400        ;                 ;           
+                                ; hb002             ; 295        ;                 ;           
+                                ; ha0021            ; 800        ;                 ;           
+                                ; hb0021            ; 590        ;                 ;           
                                 
-INSERT_UPDATE HotelBundleProduct ; code[unique=true] ; totalPrice ; $supercategories ; $catalogVersion ; $approved 
-                                 ; cjt21             ; 1499       ; cl21             ;                 ;           
+INSERT_UPDATE HotelBundleProduct ; code[unique=true] ; totalPrice ; $supercategories ; $catalogVersion ; $approved ; name[lang=$lang] 
+                                 ; cjt21             ; 1499       ; cl21             ;                 ;           ; 长酒房包票1           
                                  
 #### jinwei creates end ####     

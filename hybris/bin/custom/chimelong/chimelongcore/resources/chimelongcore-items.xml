@@ -60,7 +60,6 @@
 
 		<enumtype generate="true" code="BedType" autocreate="true">
 			<value code="BIGBED" />
-			<value code="ONEBED" />
 			<value code="TWOBED" />
 		</enumtype>
 
@@ -83,17 +82,9 @@
 				cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
 
-		<relation code="ParkBundle2BundleEntryRel" generate="true"
+		<relation code="Bundle2BundleEntryRel" generate="true"
 			localized="false" autocreate="true">
-			<sourceElement qualifier="parkBundleProduct" type="ParkBundleProduct"
-				cardinality="one" />
-			<targetElement qualifier="bundleProductEntries" type="BundleProductEntry"
-				cardinality="many" collectiontype="list" ordered="true" />
-		</relation>
-
-		<relation code="HotelBundle2BundleEntryRel" generate="true"
-			localized="false" autocreate="true">
-			<sourceElement qualifier="hotelBundleProduct" type="HotelBundleProduct"
+			<sourceElement qualifier="bundleProduct" type="BundleProduct"
 				cardinality="one" />
 			<targetElement qualifier="bundleProductEntries" type="BundleProductEntry"
 				cardinality="many" collectiontype="list" ordered="true" />
@@ -189,10 +180,9 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="ParkBundleProduct" extends="Product"
-				autocreate="true" generate="true"
-				jaloclass="com.chimelong.core.jalo.ParkBundleProduct">
-				<deployment table="ParkBundleProduct" typecode="30003"></deployment>
+			<itemtype code="BundleProduct" extends="Product" autocreate="true"
+				generate="true" jaloclass="com.chimelong.core.jalo.BundleProduct">
+				<deployment table="BundleProduct" typecode="30025"></deployment>
 				<attributes>
 					<attribute qualifier="totalPrice" type="java.lang.Double">
 						<persistence type="property">
@@ -202,6 +192,12 @@
 						</persistence>
 					</attribute>
 				</attributes>
+			</itemtype>
+
+			<itemtype code="ParkBundleProduct" extends="BundleProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ParkBundleProduct">
+				<deployment table="ParkBundleProduct" typecode="30003"></deployment>
 			</itemtype>
 
 			<itemtype code="CircusVariantTicket" extends="VariantProduct"
@@ -317,19 +313,10 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="HotelBundleProduct" extends="Product"
+			<itemtype code="HotelBundleProduct" extends="BundleProduct"
 				autocreate="true" generate="true"
 				jaloclass="com.chimelong.core.jalo.HotelBundleProduct">
 				<deployment table="HotelBundleProduct" typecode="30011"></deployment>
-				<attributes>
-					<attribute qualifier="totalPrice" type="java.lang.Double">
-						<persistence type="property">
-							<columntype>
-								<value>java.math.BigDecimal</value>
-							</columntype>
-						</persistence>
-					</attribute>
-				</attributes>
 			</itemtype>
 
 			<itemtype code="HotelMealProduct" extends="Product"

@@ -83,7 +83,7 @@ UPDATE Product;code[unique=true];europe1Prices(&priceRowRef);$approved;$catalogV
 ;cv0021a; priceRow-cv0021a
 ;cv0021b; priceRow-cv0021b
 
-INSERT_UPDATE ParkBundleProductEntry;parkBundleProduct(code[unique=true], $catalogVersion)[unique=true];entryNum[unique=true];parkProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
+INSERT_UPDATE ParkBundleProductEntry;bundleProduct(code[unique=true], $catalogVersion)[unique=true];entryNum[unique=true];parkProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
 ;ha002;1;h002;1;;bundleProductEntryha002-1
 ;ha002;2;a002;1;;bundleProductEntryha002-2
 ;hb002;1;h002;1;;bundleProductEntryhb002-1
@@ -93,7 +93,7 @@ INSERT_UPDATE ParkBundleProductEntry;parkBundleProduct(code[unique=true], $catal
 ;hb0021;1;h0021;1;;bundleProductEntryhb0021-1
 ;hb0021;2;b0021;1;;bundleProductEntryhb0021-2
 
-INSERT_UPDATE HotelBundleProductEntry;HotelBundleProduct(code[unique=true], $catalogVersion)[unique=true];entryNum[unique=true];hotelProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
+INSERT_UPDATE HotelBundleProductEntry;bundleProduct(code[unique=true], $catalogVersion)[unique=true];entryNum[unique=true];hotelProduct(code, $catalogVersion);quantity;$catalogVersion;&bundleProductEntry
 ;cjt21;1;lhf0011;1;;hotelBundleProductEntrycjt21-1
 ;cjt21;2;h002;1;;hotelBundleProductEntrycjt21-2
 
