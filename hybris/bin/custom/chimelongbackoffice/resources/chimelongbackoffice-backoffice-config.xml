@@ -341,7 +341,7 @@
 		</wz:flow>
 	</context>
 
-	<context type="BundleProductEntry" component="create-wizard-no-save">
+	<!-- <context type="BundleProductEntry" component="create-wizard-no-save">
 		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:prepare id="productPrepare">
 				<wz:initialize property="newObject" type="ctx.TYPE_CODE" />
@@ -363,14 +363,13 @@
 				</wz:navigation>
 			</wz:step>
 		</wz:flow>
-	</context>
+	</context> -->
 
 	<context merge-by="type" type="BundleProductEntry" component="listview">
 		<list-view:list-view>
-			<list-view:column qualifier="parkBundleProduct" position="1" />
-			<list-view:column qualifier="hotelBundleProduct" position="2" />
-			<list-view:column qualifier="entryNum" position="3" />
-			<list-view:column qualifier="quantity" position="4" />
+			<list-view:column qualifier="quantity" position="1" />
+			<list-view:column qualifier="entryNum" position="2" />
+			<list-view:column qualifier="catalogVersion" position="3" />
 		</list-view:list-view>
 	</context>
 
@@ -564,15 +563,13 @@
                 <editorArea:section name="hmc.section.hotelbundleproduct.description">
                     <editorArea:attribute qualifier="description"
                                           editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
-                    <editorArea:attribute qualifier="totalPrice" />
-                    <editorArea:panel colspan="2" name="panel.dateRanges"
-                                      rowspan="2">
-                        <editorArea:attribute qualifier="dateRanges"
-                                              editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
-                                              type="MultiReference-LIST(DateRange)">
-                        </editorArea:attribute>
-                    </editorArea:panel>
                 </editorArea:section>
+                <editorArea:section columns="2" name="">
+					<editorArea:attribute qualifier="totalPrice" />
+					<editorArea:attribute qualifier="dateStrategy" />
+					<editorArea:attribute qualifier="exclusiveDateStrategy" />
+					<editorArea:attribute qualifier="salesChannels" />
+				</editorArea:section>
             </editorArea:tab>
 
             <editorArea:tab name="hmc.tab.product.categories"
@@ -1335,8 +1332,6 @@
 		<editorArea:editorArea>
 			<editorArea:essentials columns="4">
 				<editorArea:essentialSection name="hmc.essential">
-					<editorArea:attribute qualifier="parkBundleProduct" />
-					<editorArea:attribute qualifier="hotelBundleProduct" />
 					<editorArea:attribute qualifier="quantity" />
 					<editorArea:attribute qualifier="entryNum" />
 					<editorArea:attribute qualifier="bundlePrices" />
@@ -1359,7 +1354,42 @@
 		</editorArea:editorArea>
 	</context>
 	
-	<context type="BundleProductEntry" component="create-wizard">
+	<context merge-by="type" type="ParkBundleProductEntry" component="listview">
+		<list-view:list-view>
+			<list-view:column qualifier="parkProduct" position="1" />
+			<list-view:column qualifier="quantity" position="2" />
+			<list-view:column qualifier="entryNum" position="3" />
+			<list-view:column qualifier="catalogVersion" position="4" />
+		</list-view:list-view>
+	</context>
+	
+	<context type="ParkBundleProductEntry" component="editor-area">
+		<editorArea:editorArea>
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="parkProduct" />
+					<editorArea:attribute qualifier="quantity" />
+					<editorArea:attribute qualifier="entryNum" />
+					<editorArea:attribute qualifier="bundlePrices" />
+					<editorArea:attribute qualifier="discount" />
+					<editorArea:attribute qualifier="clSimplePriceRow" />
+					<editorArea:attribute qualifier="catalogVersion" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	
+	<context type="ParkBundleProductEntry" component="create-wizard">
 		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:prepare id="productPrepare">
 				<wz:initialize property="newObject" type="ctx.TYPE_CODE" />
@@ -1368,8 +1398,8 @@
 				sublabel="create.product.essential.sublabel">
 				<wz:content id="step1.content">
 					<wz:property-list root="newObject">
-						<wz:property qualifier="parkBundleProduct" />
-						<wz:property qualifier="hotelBundleProduct" />
+						<wz:property qualifier="parkProduct" />
+						<wz:property qualifier="quantity" />
 						<wz:property qualifier="catalogVersion" />
 					</wz:property-list>
 				</wz:content>
@@ -1381,6 +1411,41 @@
 				</wz:navigation>
 			</wz:step>
 		</wz:flow>
+	</context>
+	
+	<context merge-by="type" type="HotelBundleProductEntry" component="listview">
+		<list-view:list-view>
+			<list-view:column qualifier="hotelProduct" position="1" />
+			<list-view:column qualifier="quantity" position="2" />
+			<list-view:column qualifier="entryNum" position="3" />
+			<list-view:column qualifier="catalogVersion" position="4" />
+		</list-view:list-view>
+	</context>
+	
+	<context type="HotelBundleProductEntry" component="editor-area">
+		<editorArea:editorArea>
+			<editorArea:essentials columns="4">
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="hotelProduct" />
+					<editorArea:attribute qualifier="quantity" />
+					<editorArea:attribute qualifier="entryNum" />
+					<editorArea:attribute qualifier="bundlePrices" />
+					<editorArea:attribute qualifier="discount" />
+					<editorArea:attribute qualifier="clSimplePriceRow" />
+					<editorArea:attribute qualifier="catalogVersion" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+			<editorArea:tab name="hmc.administration" position="99">
+				<editorArea:section name="hmc.section.metadata">
+					<editorArea:attribute qualifier="pk" />
+					<editorArea:attribute qualifier="itemtype" />
+					<editorArea:attribute qualifier="creationtime" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.saved.values">
+					<editorArea:attribute qualifier="savedValues" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
 	</context>
 	
 	<context type="StockLevel" component="editor-area">
