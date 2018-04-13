@@ -1046,7 +1046,7 @@
 
 	<context component="explorer-tree" merge-by="module">
 		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
-			<n:navigation-node id="hmc_typenode_ticketproduct">
+			<n:navigation-node id="hmc_treenode_chimelongcustom">
 				<n:type-node id="hmc_type_tree_circusvariantticket" code="CircusVariantTicket"/>
 				<n:type-node id="hmc_type_tree_circusshowtime" code="CircusShowTime"/>
 			</n:navigation-node>
@@ -1167,9 +1167,9 @@
 	</context>
 	
 
-		<context component="explorer-tree" merge-by="module">
+	<context component="explorer-tree" merge-by="module">
 		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
-			<n:navigation-node id="hmc_typenode_ticketproduct">
+			<n:navigation-node id="hmc_treenode_chimelongcustom">
 				<n:type-node id="hmc_typenode_ticketproduct" code="TicketProduct"/>
 				<n:type-node id="hmc_typenode_accommodationproduct" code="AccommodationProduct"/>
 				<n:type-node id="hmc_typenode_parkbundleproduct" code="ParkBundleProduct"/>
