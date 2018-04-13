@@ -283,31 +283,31 @@ public class CategoryPageController extends AbstractCategoryPageController
 	{
 		if (dayOfWeek.equals(DayOfWeek.MONDAY))
 		{
-			return 1;
+			return 2;
 		}
 		else if (dayOfWeek.equals(DayOfWeek.TUESDAY))
 		{
-			return 2;
+			return 3;
 		}
 		else if (dayOfWeek.equals(DayOfWeek.WEDNESDAY))
 		{
-			return 3;
+			return 4;
 		}
 		else if (dayOfWeek.equals(DayOfWeek.THURSDAY))
 		{
-			return 4;
+			return 5;
 		}
 		else if (dayOfWeek.equals(DayOfWeek.FRIDAY))
 		{
-			return 5;
+			return 6;
 		}
 		else if (dayOfWeek.equals(DayOfWeek.SATURDAY))
 		{
-			return 6;
+			return 7;
 		}
 		else if (dayOfWeek.equals(DayOfWeek.SUNDAY))
 		{
-			return 7;
+			return 1;
 		}
 		return 0;
 	}
