@@ -526,6 +526,23 @@
 				</attributes>
 			</itemtype>
 
+
+			<itemtype code="AbstractOrderEntry" autocreate="false" generate="false">
+				<description>Extending the AbstractOrderEntry type from core with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="useStartTime" type="java.util.Date">
+						<description>Time limit of start using.</description>
+						<modifiers  write="true" read="true" unique="false" />
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute qualifier="useEndTime" type="java.util.Date">
+						<description>Time limit of end using.</description>
+						<modifiers  write="true" read="true" unique="false" />
+						<persistence type="property"></persistence>
+					</attribute>
+				</attributes>
+			</itemtype>
+
 		</typegroup>
 
 		<!-- TypeGroups are for structure of this file only -->

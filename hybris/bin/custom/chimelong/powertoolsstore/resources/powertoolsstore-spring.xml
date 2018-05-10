@@ -64,6 +64,25 @@
     </bean>
 
 	<!-- Solr field value providers TEMPORARY FOR NOW SO DO NOT NEED TO DEPEND ON yb2bacceleratorcore -->
-	
-	
+
+
+    <alias name="chimelongOrderEntryRaoConverter" alias="orderEntryRaoConverter" />
+    <bean id="chimelongOrderEntryRaoConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.platform.ruleengineservices.rao.OrderEntryRAO" />
+        <property name="populators">
+            <list>
+                <ref bean="orderEntryRaoPopulator"/>
+                <ref bean="orderEntryRaoEntryGroupNumbersPopulator"/>
+                <ref bean="chimelongOrderEntryRaoUseTimePopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="chimelongOrderEntryRaoUseTimePopulator"
+          class="de.hybris.platform.powertoolsstore.populator.ChimelongOrderEntryRaoUseTimePopulator">
+    </bean>
+
+    <bean id="chimelongRuleUseTimeConditionTranslator" class="de.hybris.platform.powertoolsstore.definition.condition.RuleUseTimeConditionTranslator" />
+
+
 </beans>

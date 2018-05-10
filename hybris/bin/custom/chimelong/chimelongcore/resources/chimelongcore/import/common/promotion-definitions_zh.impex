@@ -1,0 +1,11 @@
+$lang = zh
+
+INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]
+; use_time ; 游玩时间限制
+
+INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; name[lang = $lang]; description[lang = $lang]
+; use_time ; useStartTime ; 开始时间 ; 游玩开始时间限制
+; use_time ; useEndTime   ; 结束时间 ; 游玩结束时间限制
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping; definition(id)[unique = true]; ruleType(code)[default = PromotionSourceRule][unique = true]
+; use_time ;

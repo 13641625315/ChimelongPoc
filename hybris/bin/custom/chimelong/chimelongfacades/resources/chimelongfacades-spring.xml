@@ -194,5 +194,32 @@
 	<bean id="circusShowTimeFacade" class="com.chimelong.facades.product.impl.DefaultCircusShowTimeFacade">
 		<property name="circusShowTimeService" ref="circusShowTimeService"/>
 	</bean>
+
+
+    <alias name="chimelongCommerceCartParameterConverter" alias="commerceCartParameterConverter"/>
+    <bean name="chimelongCommerceCartParameterConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.platform.commerceservices.service.data.CommerceCartParameter"/>
+        <property name="populators">
+            <list>
+                <ref bean="commerceCartParameterBasicPopulator"/>
+                <ref bean="chimelongCartParameterUseTimePopulator"/>
+            </list>
+        </property>
+    </bean>
+
+	<bean id="chimelongCartParameterUseTimePopulator"
+		  class="com.chimelong.facades.populators.ChimelongCartParameterUseTimePopulator">
+	</bean>
+
+    <alias name="chimelongCommerceAddToCartStrategy" alias="commerceAddToCartStrategy"/>
+    <bean id="chimelongCommerceAddToCartStrategy"
+          class="com.chimelong.facades.strategy.ChimelongAddToCartStrategy"
+          parent="defaultCommerceAddToCartStrategy">
+    </bean>
+
+
+
+
+
 	
 </beans>
