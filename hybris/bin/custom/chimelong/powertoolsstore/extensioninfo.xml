@@ -13,6 +13,7 @@
 	<extension abstractclassprefix="Generated" classprefix="PowertoolsStore" managername="PowertoolsStoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="powertoolsstore">
 			
 		<requires-extension name="b2bacceleratorservices"/>
+		<requires-extension name="promotionengineservices"/>
 
 		<coremodule generated="true" manager="de.hybris.platform.powertoolsstore.jalo.PowertoolsStoreManager" packageroot="de.hybris.platform.powertoolsstore"/>
 

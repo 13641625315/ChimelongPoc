@@ -49,6 +49,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		importImpexFile(context, "/chimelongcore/import/common/themes.impex");
 		importImpexFile(context, "/chimelongcore/import/common/user-groups.impex");
 		importImpexFile(context, "/chimelongcore/import/common/cronjobs.impex");
+		importImpexFile(context, "/chimelongcore/import/common/promotion-definitions.impex");
 	}
 
 	/**

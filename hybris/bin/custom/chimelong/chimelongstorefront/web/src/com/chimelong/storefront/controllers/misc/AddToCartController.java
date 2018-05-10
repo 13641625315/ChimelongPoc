@@ -10,6 +10,7 @@
  */
 package com.chimelong.storefront.controllers.misc;
 
+import com.chimelong.storefront.util.DateTimeHelper;
 import de.hybris.platform.acceleratorfacades.product.data.ProductWrapperData;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.AbstractController;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.AddToCartForm;
@@ -28,12 +29,8 @@ import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
 import com.chimelong.storefront.controllers.ControllerConstants;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -95,7 +92,16 @@ public class AddToCartController extends AbstractController
 		{
 			try
 			{
-				final CartModificationData cartModification = cartFacade.addToCart(code, qty);
+				LocalDateTime localDateTimeStart = LocalDateTime.of(2018, 10, 1, 0, 0 , 0);
+				Date useStartTime = DateTimeHelper.LocalDateTimeToDate(localDateTimeStart);
+				LocalDateTime localDateTimeEnd = LocalDateTime.of(2018, 10, 3, 0, 0 , 0);
+				Date useEndTime = DateTimeHelper.LocalDateTimeToDate(localDateTimeEnd);
+				AddToCartParams params = new AddToCartParams();
+				params.setProductCode(code);
+				params.setQuantity(qty);
+				params.setUseStartTime(useStartTime);
+				params.setUseEndTime(useEndTime);
+				final CartModificationData cartModification = cartFacade.addToCart(params);
 				model.addAttribute(QUANTITY_ATTR, Long.valueOf(cartModification.getQuantityAdded()));
 				model.addAttribute("entry", cartModification.getEntry());
 				model.addAttribute("cartCode", cartModification.getCartCode());

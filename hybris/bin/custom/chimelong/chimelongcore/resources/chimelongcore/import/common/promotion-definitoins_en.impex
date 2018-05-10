@@ -1,0 +1,11 @@
+$lang = en
+
+INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]
+; use_time ; Use Time
+
+INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; name[lang = $lang]; description[lang = $lang]
+; use_time ; useStartTime ; Start Time ; The start time limit to use tickets
+; use_time ; useEndTime   ; End Time ; The end time limit to use tickets
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping; definition(id)[unique = true]; ruleType(code)[default = PromotionSourceRule][unique = true]
+; use_time ;

@@ -21,4 +21,19 @@
 		<property name="showCode" type="String" />
 		<property name="showTime" type="String" />
 	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.AddToCartParams">
+		<property name="useStartTime" type="java.util.Date"/>
+		<property name="useEndTime" type="java.util.Date"/>
+	</bean>
+	<bean class="de.hybris.platform.commerceservices.service.data.CommerceCartParameter">
+		<property name="useStartTime" type="java.util.Date"/>
+		<property name="useEndTime" type="java.util.Date"/>
+	</bean>
+
+	<bean class="de.hybris.platform.ruleengineservices.rao.OrderEntryRAO">
+		<property name="useStartTime" type="java.util.Date" />
+		<property name="useEndTime" type="java.util.Date" />
+	</bean>
+
 </beans>
