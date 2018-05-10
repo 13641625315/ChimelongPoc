@@ -99,3 +99,4 @@ hybris/out/
 # FrontEnd files
 
 .DS_Store
+hybris/bin/custom/chimelong/chimelongstorefront/resources/wro_addons.xml
