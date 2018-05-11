@@ -10,7 +10,7 @@
  */
 package com.chimelong.storefront.controllers.misc;
 
-import com.chimelong.storefront.util.DateTimeHelper;
+import com.chimelong.core.util.DateTimeHelper;
 import de.hybris.platform.acceleratorfacades.product.data.ProductWrapperData;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.AbstractController;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.AddToCartForm;
@@ -29,7 +29,7 @@ import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
 import com.chimelong.storefront.controllers.ControllerConstants;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 
 import javax.annotation.Resource;
@@ -73,8 +73,10 @@ public class AddToCartController extends AbstractController
 	private GroupCartModificationListPopulator groupCartModificationListPopulator;
 
 	@RequestMapping(value = "/cart/add", method = RequestMethod.POST, produces = "application/json")
-	public String addToCart(@RequestParam("productCodePost") final String code, final Model model,
-			@Valid final AddToCartForm form, final BindingResult bindingErrors)
+	public String addToCart(@RequestParam("productCodePost") final String code,
+                            @RequestParam("useStartTime") final String useStartTime,
+                            @RequestParam("useEndTime") final String useEndTime,
+                            final Model model, @Valid final AddToCartForm form, final BindingResult bindingErrors)
 	{
 		if (bindingErrors.hasErrors())
 		{
@@ -92,30 +94,32 @@ public class AddToCartController extends AbstractController
 		{
 			try
 			{
-				LocalDateTime localDateTimeStart = LocalDateTime.of(2018, 10, 1, 0, 0 , 0);
-				Date useStartTime = DateTimeHelper.LocalDateTimeToDate(localDateTimeStart);
-				LocalDateTime localDateTimeEnd = LocalDateTime.of(2018, 10, 3, 0, 0 , 0);
-				Date useEndTime = DateTimeHelper.LocalDateTimeToDate(localDateTimeEnd);
-				AddToCartParams params = new AddToCartParams();
-				params.setProductCode(code);
-				params.setQuantity(qty);
-				params.setUseStartTime(useStartTime);
-				params.setUseEndTime(useEndTime);
-				final CartModificationData cartModification = cartFacade.addToCart(params);
-				model.addAttribute(QUANTITY_ATTR, Long.valueOf(cartModification.getQuantityAdded()));
-				model.addAttribute("entry", cartModification.getEntry());
-				model.addAttribute("cartCode", cartModification.getCartCode());
-				model.addAttribute("isQuote", cartFacade.getSessionCart().getQuoteData() != null ? Boolean.TRUE : Boolean.FALSE);
+			    if(useStartTime != null && useEndTime != null && useStartTime.length() == 10 && useEndTime.length() == 10){
+                    LocalDate localDateStart = DateTimeHelper.getLocalDate(useStartTime);
+                    LocalDate localDateEnd = DateTimeHelper.getLocalDate(useEndTime);
+                    Date startDate = DateTimeHelper.LocalDateTimeToDate(localDateStart.atStartOfDay());
+                    Date endDate = DateTimeHelper.LocalDateTimeToDate(localDateEnd.atStartOfDay());
+                    AddToCartParams params = new AddToCartParams();
+                    params.setProductCode(code);
+                    params.setQuantity(qty);
+                    params.setUseStartTime(startDate);
+                    params.setUseEndTime(endDate);
+                    final CartModificationData cartModification = cartFacade.addToCart(params);
+                    model.addAttribute(QUANTITY_ATTR, Long.valueOf(cartModification.getQuantityAdded()));
+                    model.addAttribute("entry", cartModification.getEntry());
+                    model.addAttribute("cartCode", cartModification.getCartCode());
+                    model.addAttribute("isQuote", cartFacade.getSessionCart().getQuoteData() != null ? Boolean.TRUE : Boolean.FALSE);
 
-				if (cartModification.getQuantityAdded() == 0L)
-				{
-					model.addAttribute(ERROR_MSG_TYPE, "basket.information.quantity.noItemsAdded." + cartModification.getStatusCode());
-				}
-				else if (cartModification.getQuantityAdded() < qty)
-				{
-					model.addAttribute(ERROR_MSG_TYPE,
-							"basket.information.quantity.reducedNumberOfItemsAdded." + cartModification.getStatusCode());
-				}
+                    if (cartModification.getQuantityAdded() == 0L)
+                    {
+                        model.addAttribute(ERROR_MSG_TYPE, "basket.information.quantity.noItemsAdded." + cartModification.getStatusCode());
+                    }
+                    else if (cartModification.getQuantityAdded() < qty)
+                    {
+                        model.addAttribute(ERROR_MSG_TYPE,
+                                "basket.information.quantity.reducedNumberOfItemsAdded." + cartModification.getStatusCode());
+                    }
+                }
 			}
 			catch (final CommerceCartModificationException ex)
 			{

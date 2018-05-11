@@ -18592,7 +18592,7 @@ select[multiple].input-sm {
 }
 .cts-msg-history-item-agent .well,
 .cts-msg-history-item-agent .cts-msg-history-item-info {
-  text-align: right;
+  text-align: initial;
 }
 .cts-msg-history #ct-toggle-all-messages {
   display: block;

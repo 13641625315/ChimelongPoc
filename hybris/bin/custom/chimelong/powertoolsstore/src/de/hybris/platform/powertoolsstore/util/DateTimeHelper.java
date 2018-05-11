@@ -1,4 +1,4 @@
-package com.chimelong.storefront.util;
+package de.hybris.platform.powertoolsstore.util;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -13,8 +13,10 @@ public class DateTimeHelper
 {
 
     public static final String BCF_12HOUR_FORMAT = "h:mm a";
-    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT);
+    public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT);
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT);
     /**
      * @param dateTime
      *           standard format yyyy-MM-dd'T'HH:mm:ss
@@ -22,7 +24,7 @@ public class DateTimeHelper
      */
     public static LocalDateTime getLocalDateTime(final String dateTime)
     {
-        return LocalDateTime.parse(dateTime, fmt);
+        return LocalDateTime.parse(dateTime, dateTimeFormatter);
     }
 
     /**
@@ -32,7 +34,7 @@ public class DateTimeHelper
      */
     public static LocalDate getLocalDate(final String dateTime)
     {
-        return LocalDate.parse(dateTime, fmt);
+        return LocalDate.parse(dateTime, dateFormatter);
     }
 
     /**
@@ -44,7 +46,7 @@ public class DateTimeHelper
      */
     public static String getString(final String dateTime, final String targetFormat)
     {
-        return getString(dateTime, DEFAULT_DATE_FORMAT, targetFormat);
+        return getString(dateTime, DEFAULT_DATE_TIME_FORMAT, targetFormat);
     }
 
     /**

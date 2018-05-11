@@ -19,6 +19,8 @@
             <input type="hidden" name="productCodePost" value="${fn:escapeXml(product.code)}"/>
             <input type="hidden" name="productNamePost" value="${fn:escapeXml(product.name)}"/>
             <input type="hidden" name="productPostPrice" value="${product.price.value}"/>
+            <input type="date" name="useStartTime" value="2018-10-01"/>
+            <input type="date" name="useEndTime" value="2018-10-05"/>
 
             <c:choose>
                 <c:when test="${product.stock.stockLevelStatus.code eq 'outOfStock' }">

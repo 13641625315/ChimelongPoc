@@ -34,6 +34,7 @@
 	<bean class="de.hybris.platform.ruleengineservices.rao.OrderEntryRAO">
 		<property name="useStartTime" type="java.util.Date" />
 		<property name="useEndTime" type="java.util.Date" />
+		<property name="dayCount" type="java.lang.Long" />
 	</bean>
 
 </beans>

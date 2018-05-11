@@ -82,6 +82,7 @@
     </bean>
 
     <bean id="chimelongRuleUseTimeConditionTranslator" class="de.hybris.platform.powertoolsstore.definition.condition.RuleUseTimeConditionTranslator" />
+    <bean id="chimelongRuleDayCountConditionTranslator" class="de.hybris.platform.powertoolsstore.definition.condition.RuleDayCountConditionTranslator" />
 
 
 </beans>

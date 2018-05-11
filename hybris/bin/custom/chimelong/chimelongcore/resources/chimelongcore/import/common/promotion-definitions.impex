@@ -1,9 +1,16 @@
+INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; priority
+; time ; 1200
+
 INSERT_UPDATE RuleConditionDefinition; id[unique = true]; priority; allowsChildren; translatorId; translatorParameters; categories(id)
-; use_time ; 900 ; false ; chimelongRuleUseTimeConditionTranslator ; ; cart ;
+; use_time  ; 900 ; false ; chimelongRuleUseTimeConditionTranslator  ; ; time ;
+; day_count ; 900 ; false ; chimelongRuleDayCountConditionTranslator ; ; time ;
 
 INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; priority; type; value; required[default = true]; validators; filters; defaultEditor
-; use_time ; useStartTime ; 2001 ; java.util.Date ; ; ; ;
-; use_time ; useEndTime   ; 2000 ; java.util.Date ; ; ; ;
+; use_time  ; useStartTime ; 2100 ; java.util.Date                                          ;                             ; ;                                      ;
+; use_time  ; useEndTime   ; 2000 ; java.util.Date                                          ;                             ; ;                                      ;
+; day_count ; operator     ; 2100 ; Enum(de.hybris.platform.ruledefinitions.AmountOperator) ; """GREATER_THAN_OR_EQUAL""" ; ;                                      ;
+; day_count ; dayCount     ; 2000 ; java.lang.Long                                       ; 1                           ; ; rulePositiveNumberParameterValidator ;
 
 INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping; definition(id)[unique = true]; ruleType(code)[default = PromotionSourceRule][unique = true]
-; use_time ;
+; use_time  ;
+; day_count ;

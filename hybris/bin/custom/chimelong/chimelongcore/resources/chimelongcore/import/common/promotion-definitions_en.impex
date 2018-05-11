@@ -1,11 +1,13 @@
 $lang = en
 
+INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; name[lang = $lang]
+; time ; Time
+
 INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]
-; use_time ; Use Time
+; use_time  ; Use Time
+; day_count ; Day Count
 
 INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; name[lang = $lang]; description[lang = $lang]
-; use_time ; useStartTime ; Start Time ; The start time limit to use tickets
-; use_time ; useEndTime   ; End Time ; The end time limit to use tickets
-
-INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping; definition(id)[unique = true]; ruleType(code)[default = PromotionSourceRule][unique = true]
-; use_time ;
+; use_time  ; useStartTime ; Start Time ; The start time limit to use tickets
+; use_time  ; useEndTime   ; End Time   ; The end time limit to use tickets
+; day_count ; dayCount     ; Day Count  ; How many days do customers live
