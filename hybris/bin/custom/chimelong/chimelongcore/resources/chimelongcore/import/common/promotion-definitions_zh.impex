@@ -4,10 +4,15 @@ INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; name[lang = $l
 ; time ; 时间
 
 INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]
-; use_time  ; 游玩时间限制
-; day_count ; 入住天数限制
+; use_time            ; 游玩时间限制 ; 游玩时间在 {useStartTime} 和 {useEndTime} 之间
+; day_count           ; 入住天数限制 ; 入住天数 {operator} {dayCount}
+; pre_order_day_limit ; 预定天数限制 ; 预定天数 {operator} {daysInAdvance}
 
 INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; name[lang = $lang]; description[lang = $lang]
-; use_time  ; useStartTime ; 开始时间 ; 游玩开始时间限制
-; use_time  ; useEndTime   ; 结束时间 ; 游玩结束时间限制
-; day_count ; dayCount     ; 天数   ; 游客入住天数
+; use_time            ; useStartTime  ; 开始时间 ; 游玩开始时间限制
+; use_time            ; useEndTime    ; 结束时间 ; 游玩结束时间限制
+; day_count           ; operator      ; 操作符  ; 操作符
+; day_count           ; dayCount      ; 天数   ; 游客入住天数
+; pre_order_day_limit ; operator      ; 操作符  ; 操作符
+; pre_order_day_limit ; daysInAdvance ; 提前天数 ; 下单时距实际使用还有几天
+

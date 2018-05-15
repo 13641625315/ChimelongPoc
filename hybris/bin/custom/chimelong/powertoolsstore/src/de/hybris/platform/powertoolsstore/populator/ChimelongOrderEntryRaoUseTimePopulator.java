@@ -19,12 +19,15 @@ public class ChimelongOrderEntryRaoUseTimePopulator implements Populator<Abstrac
         Date startTime = abstractOrderEntryModel.getUseStartTime();
         Date endTime = abstractOrderEntryModel.getUseEndTime();
 
+        LocalDateTime now = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
         LocalDateTime startLocalDateTime =  DateTimeHelper.getLocalDateTime(startTime).withHour(0).withMinute(0).withSecond(0).withNano(0);
         LocalDateTime endLocalDateTime =  DateTimeHelper.getLocalDateTime(endTime).withHour(0).withMinute(0).withSecond(0).withNano(0);
-        long days = Duration.between(startLocalDateTime, endLocalDateTime).toDays();
+        long dayCount = Duration.between(startLocalDateTime, endLocalDateTime).toDays();
+        long daysInAdvance = Duration.between(now, startLocalDateTime).toDays();
         orderEntryRAO.setUseStartTime(startTime);
         orderEntryRAO.setUseEndTime(endTime);
-        orderEntryRAO.setDayCount(days);
+        orderEntryRAO.setDayCount(dayCount);
+        orderEntryRAO.setDaysInAdvance(daysInAdvance);
 
     }
 }

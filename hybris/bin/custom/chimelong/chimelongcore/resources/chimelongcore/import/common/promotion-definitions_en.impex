@@ -3,11 +3,15 @@ $lang = en
 INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; name[lang = $lang]
 ; time ; Time
 
-INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]
-; use_time  ; Use Time
-; day_count ; Day Count
+INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]; breadcrumb[lang = $lang]
+; use_time            ; Use Time             ; Use Time between {useStartTime} and {useEndTime}
+; day_count           ; Day Count            ; Day Count {operator} {dayCount}
+; pre_order_day_limit ; Pre-Order Days Limit ; Pre-Order Days Limit {operator} {daysInAdvance}
 
 INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; name[lang = $lang]; description[lang = $lang]
-; use_time  ; useStartTime ; Start Time ; The start time limit to use tickets
-; use_time  ; useEndTime   ; End Time   ; The end time limit to use tickets
-; day_count ; dayCount     ; Day Count  ; How many days do customers live
+; use_time            ; useStartTime  ; Start Time      ; The start time limit to use tickets
+; use_time            ; useEndTime    ; End Time        ; The end time limit to use tickets
+; day_count           ; operator      ; Operator        ; Operator
+; day_count           ; dayCount      ; Day Count       ; How many days do customers live
+; pre_order_day_limit ; operator      ; Operator        ; Operator
+; pre_order_day_limit ; daysInAdvance ; Days in advance ; How many days is the using time in advance of ordering time
