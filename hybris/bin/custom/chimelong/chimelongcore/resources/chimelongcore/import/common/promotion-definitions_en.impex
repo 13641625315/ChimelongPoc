@@ -1,7 +1,7 @@
 $lang = en
 
 INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; name[lang = $lang]
-; time ; Time
+; time_category ; Time
 
 INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]; breadcrumb[lang = $lang]
 ; use_time            ; Use Time             ; Use Time between {useStartTime} and {useEndTime}

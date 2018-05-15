@@ -1,9 +1,9 @@
 $lang = zh
 
 INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; name[lang = $lang]
-; time ; 时间
+; time_category ; 时间
 
-INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]
+INSERT_UPDATE RuleConditionDefinition; id[unique = true]; name[lang = $lang]; breadcrumb[lang = $lang]
 ; use_time            ; 游玩时间限制 ; 游玩时间在 {useStartTime} 和 {useEndTime} 之间
 ; day_count           ; 入住天数限制 ; 入住天数 {operator} {dayCount}
 ; pre_order_day_limit ; 预定天数限制 ; 预定天数 {operator} {daysInAdvance}
@@ -16,3 +16,4 @@ INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; i
 ; pre_order_day_limit ; operator      ; 操作符  ; 操作符
 ; pre_order_day_limit ; daysInAdvance ; 提前天数 ; 下单时距实际使用还有几天
 
+∑
