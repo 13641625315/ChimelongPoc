@@ -1,10 +1,10 @@
 INSERT_UPDATE RuleConditionDefinitionCategory; id[unique = true]; priority
-; time_category ; 1200
+; time_category ; 2000
 
 INSERT_UPDATE RuleConditionDefinition; id[unique = true]; priority; allowsChildren; translatorId; translatorParameters; categories(id)
 ; use_time            ; 900 ; false ; chimelongRuleUseTimeConditionTranslator          ; ; time_category
-; day_count           ; 900 ; false ; chimelongRuleDayCountConditionTranslator         ; ; time_category
-; pre_order_day_limit ; 900 ; false ; chimelongRulePreOrderDayLimitConditionTranslator ; ; time_category
+; day_count           ; 800 ; false ; chimelongRuleDayCountConditionTranslator         ; ; time_category
+; pre_order_day_limit ; 700 ; false ; chimelongRulePreOrderDayLimitConditionTranslator ; ; time_category
 
 INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; priority; type; value; required[default = true]; validators; filters; defaultEditor
 ; use_time            ; useStartTime  ; 2100 ; java.util.Date                                          ;                             ; ;                                      ;
