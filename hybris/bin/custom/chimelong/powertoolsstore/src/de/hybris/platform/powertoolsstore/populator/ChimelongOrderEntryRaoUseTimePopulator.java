@@ -24,8 +24,8 @@ public class ChimelongOrderEntryRaoUseTimePopulator implements Populator<Abstrac
         LocalDateTime endLocalDateTime =  DateTimeHelper.getLocalDateTime(endTime).withHour(0).withMinute(0).withSecond(0).withNano(0);
         long dayCount = Duration.between(startLocalDateTime, endLocalDateTime).toDays();
         long daysInAdvance = Duration.between(now, startLocalDateTime).toDays();
-        orderEntryRAO.setUseStartTime(startTime);
-        orderEntryRAO.setUseEndTime(endTime);
+        orderEntryRAO.setUseStartTime(DateTimeHelper.setTimeZeroinDate(startTime));
+        orderEntryRAO.setUseEndTime(DateTimeHelper.setTimeZeroinDate(endTime));
         orderEntryRAO.setDayCount(dayCount);
         orderEntryRAO.setDaysInAdvance(daysInAdvance);
 

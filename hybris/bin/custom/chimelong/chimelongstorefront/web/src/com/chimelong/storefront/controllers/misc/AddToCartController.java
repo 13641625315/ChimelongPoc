@@ -97,8 +97,8 @@ public class AddToCartController extends AbstractController
 			    if(useStartTime != null && useEndTime != null && useStartTime.length() == 10 && useEndTime.length() == 10){
                     LocalDate localDateStart = DateTimeHelper.getLocalDate(useStartTime);
                     LocalDate localDateEnd = DateTimeHelper.getLocalDate(useEndTime);
-                    Date startDate = DateTimeHelper.LocalDateTimeToDate(localDateStart.atStartOfDay());
-                    Date endDate = DateTimeHelper.LocalDateTimeToDate(localDateEnd.atStartOfDay());
+                    Date startDate = DateTimeHelper.localDateTimeToDate(localDateStart.atStartOfDay());
+                    Date endDate = DateTimeHelper.localDateTimeToDate(localDateEnd.atStartOfDay());
                     AddToCartParams params = new AddToCartParams();
                     params.setProductCode(code);
                     params.setQuantity(qty);

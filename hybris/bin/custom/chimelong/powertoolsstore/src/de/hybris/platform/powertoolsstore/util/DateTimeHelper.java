@@ -131,7 +131,7 @@ public class DateTimeHelper
      * @param dateTime
      * @return Date
      */
-    public static Date LocalDateTimeToDate(final LocalDateTime dateTime)
+    public static Date localDateTimeToDate(final LocalDateTime dateTime)
     {
         final Instant instant = dateTime.atZone(ZoneId.systemDefault()).toInstant();
         return Date.from(instant);
@@ -193,6 +193,12 @@ public class DateTimeHelper
             }
         }
         return timeStr;
+    }
+
+    public static Date setTimeZeroinDate(final Date date)
+    {
+        LocalDateTime localDateTime = getLocalDateTime(date).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        return localDateTimeToDate(localDateTime);
     }
 
 }

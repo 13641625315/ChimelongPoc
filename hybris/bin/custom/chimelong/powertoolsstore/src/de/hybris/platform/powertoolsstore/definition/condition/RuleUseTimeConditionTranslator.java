@@ -1,6 +1,7 @@
 package de.hybris.platform.powertoolsstore.definition.condition;
 
 import com.google.common.collect.Lists;
+import de.hybris.platform.powertoolsstore.util.DateTimeHelper;
 import de.hybris.platform.ruledefinitions.conditions.AbstractRuleConditionTranslator;
 import de.hybris.platform.ruledefinitions.conditions.builders.IrConditions;
 import de.hybris.platform.ruledefinitions.conditions.builders.RuleIrAttributeConditionBuilder;
@@ -13,6 +14,7 @@ import de.hybris.platform.ruleengineservices.rule.data.RuleConditionData;
 import de.hybris.platform.ruleengineservices.rule.data.RuleConditionDefinitionData;
 import de.hybris.platform.ruleengineservices.rule.data.RuleParameterData;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,8 @@ public class RuleUseTimeConditionTranslator extends AbstractRuleConditionTransla
         if (this.verifyAllPresent(new Object[]{startTimeParameter, endTimeParameter})) {
             Date startTime = (Date) startTimeParameter.getValue();
             Date endTime = (Date) endTimeParameter.getValue();
+            startTime = DateTimeHelper.setTimeZeroinDate(startTime);
+            endTime = DateTimeHelper.setTimeZeroinDate(endTime);
             if (this.verifyAllPresent(new Object[]{startTime, endTime})) {
                 return this.getUseTimeConditions(context, startTime, endTime);
             }
