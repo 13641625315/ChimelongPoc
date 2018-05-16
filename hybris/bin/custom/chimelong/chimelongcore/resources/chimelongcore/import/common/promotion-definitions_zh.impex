@@ -15,5 +15,3 @@ INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; i
 ; day_count           ; dayCount      ; 天数   ; 游客入住天数
 ; pre_order_day_limit ; operator      ; 操作符  ; 操作符
 ; pre_order_day_limit ; daysInAdvance ; 提前天数 ; 下单时距实际使用还有几天
-
-∑
